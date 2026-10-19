@@ -182,9 +182,12 @@ function ProcessLine() {
   return (
     <section className="bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
+        <Reveal>
         <h2 className="mb-14 text-center font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
           How It Works
         </h2>
+        </Reveal>
+        <Reveal delay={80}>
         <div className="relative grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6">
           <div className="pointer-events-none absolute left-[16.6%] right-[16.6%] top-[21px] hidden h-[2px] bg-[#E7E4DE] sm:block">
             <div
@@ -225,6 +228,7 @@ function ProcessLine() {
             );
           })}
         </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -296,9 +300,9 @@ export default function SmeView() {
             <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">Who We Help</h2>
           </Reveal>
           <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {audiences.map((item) => (
+            {audiences.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70} className="h-full">
               <article
-                key={item.title}
                 className="theme-card group flex h-full flex-col rounded-[2rem] bg-[#1F4F4A] p-6 text-white transition-all duration-300 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)] sm:p-7"
               >
                 <span className="icon-chip mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#55BBB0]/15 text-[#55BBB0]">
@@ -306,6 +310,7 @@ export default function SmeView() {
                 </span>
                 <h3 className="font-manrope text-xl font-bold leading-snug">{item.title}</h3>
               </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -322,6 +327,7 @@ export default function SmeView() {
 
       <section className="pb-20 lg:pb-28">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <div
             className="rounded-[2rem] px-6 py-14 text-center text-white sm:px-12"
             style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
@@ -343,6 +349,7 @@ export default function SmeView() {
               Rates, eligibility and approval depend on each bank’s policies and your personal profile. AllWin Finances cannot guarantee approval.
             </p>
           </div>
+          </Reveal>
         </div>
       </section>
     </div>

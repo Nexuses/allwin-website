@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Icon from "@/components/Icon";
 import { ukBuyerPost } from "@/components/blog/posts";
+import Reveal from "@/components/about/Reveal";
 
 export const metadata: Metadata = {
   title: "Dubai Mortgage & Finance Blog | AllWin Finances",
@@ -35,6 +36,7 @@ export default function BlogPage() {
         </section>
 
         <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+          <Reveal>
           <a
             href={ukBuyerPost.href}
             className="group grid lg:grid-cols-12 gap-8 rounded-[2rem] bg-white border border-[#A9C1B8]/60 p-6 sm:p-8 lg:p-10 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -53,10 +55,12 @@ export default function BlogPage() {
               <p className="font-inter text-[#26332F]/85 leading-relaxed">{ukBuyerPost.excerpt}</p>
             </div>
           </a>
+          </Reveal>
         </section>
 
         <section className="pb-20 lg:pb-28">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal>
             <div
               className="rounded-[2rem] px-6 py-14 sm:px-12 text-center text-white"
               style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
@@ -72,6 +76,7 @@ export default function BlogPage() {
                 <Icon name="arrow_forward" className="text-[18px]" />
               </a>
             </div>
+            </Reveal>
           </div>
         </section>
       </main>

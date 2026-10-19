@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Reveal from "@/components/about/Reveal";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | AllWin Finances",
@@ -17,6 +18,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="font-manrope text-4xl sm:text-5xl font-bold text-[#385445] tracking-tight mb-6">
             Privacy Policy
           </h1>
+          <Reveal>
           <div className="space-y-4 font-inter text-base sm:text-lg text-[#26332F]/85 leading-relaxed">
             <p>
               AllWin Finances uses the name, phone number, email and message you send through our forms so we can reply to your enquiry.
@@ -30,6 +32,7 @@ export default function PrivacyPolicyPage() {
               .
             </p>
           </div>
+          </Reveal>
         </article>
       </main>
       <Footer />

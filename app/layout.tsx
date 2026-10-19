@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Manrope } from "next/font/google";
+import ScrollToHero from "@/components/ScrollToHero";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -29,8 +31,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
         />
+        <Script id="scroll-to-hero-on-refresh" strategy="beforeInteractive">
+          {`(function(){try{var entry=performance.getEntriesByType("navigation")[0];if(!entry||entry.type!=="reload")return;if("scrollRestoration"in history)history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);var pin=function(){window.scrollTo(0,0)};pin();document.addEventListener("DOMContentLoaded",pin);window.addEventListener("load",function(){pin();requestAnimationFrame(pin)})}catch(e){}})();`}
+        </Script>
       </head>
       <body className="bg-surface text-[#26332F] antialiased selection:bg-[#55BBB0]/30 selection:text-[#26332F]">
+        <ScrollToHero />
         {children}
       </body>
     </html>

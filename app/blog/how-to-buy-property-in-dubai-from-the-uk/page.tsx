@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Icon from "@/components/Icon";
 import { ukBuyerPost } from "@/components/blog/posts";
+import Reveal from "@/components/about/Reveal";
 
 export const metadata: Metadata = {
   title: "How to Buy Property in Dubai From the UK (2026 Guide) | AllWin Finances",
@@ -25,6 +26,7 @@ export default function UkBuyerGuidePage() {
           <h1 className="font-manrope text-3xl sm:text-5xl font-bold text-[#385445] tracking-tight leading-tight mb-8">
             {ukBuyerPost.title}
           </h1>
+          <Reveal>
           <div className="space-y-5 font-inter text-base sm:text-lg text-[#26332F]/85 leading-relaxed">
             <p>
               Buying in Dubai from the UK is possible, and many buyers do it without living in the UAE. The process is clearer when you separate the property decision from the finance decision, and when you know which documents a bank will ask for before you reserve a unit.
@@ -62,10 +64,12 @@ export default function UkBuyerGuidePage() {
               </a>
             </p>
           </div>
+          </Reveal>
         </article>
 
         <section className="pb-20 lg:pb-28">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal>
             <div
               className="rounded-[2rem] px-6 py-14 sm:px-12 text-center text-white"
               style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
@@ -81,6 +85,7 @@ export default function UkBuyerGuidePage() {
                 <Icon name="arrow_forward" className="text-[18px]" />
               </a>
             </div>
+            </Reveal>
           </div>
         </section>
       </main>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Icon from "../Icon";
+import Reveal from "../about/Reveal";
 
 const products = [
   {
@@ -40,14 +41,14 @@ export default function CoreExpertise() {
   return (
     <section className="w-full py-20 lg:py-28 bg-[#FFFFFF]" id="products">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-3">
             Our Core Expertise
           </h2>
           <p className="font-inter text-gray-600 text-base sm:text-lg">
             Finance solutions designed around your needs
           </p>
-        </div>
+        </Reveal>
 
         <div
           className="flex flex-col md:flex-row gap-5 md:gap-4 items-stretch"
@@ -57,14 +58,18 @@ export default function CoreExpertise() {
             const open = active === index;
 
             return (
-              <article
+              <Reveal
                 key={product.title}
+                delay={index * 70}
+                className={`flex min-w-0 ${open ? "md:flex-[2.4]" : "md:flex-1"}`}
+              >
+              <article
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
-                className={`group bg-white rounded-3xl overflow-hidden border shadow-xs flex flex-col min-w-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`group h-full w-full bg-white rounded-3xl overflow-hidden border shadow-xs flex flex-col min-w-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   open
-                    ? "border-[#55BBB0]/40 shadow-xl md:flex-[2.4]"
-                    : "border-[#A9C1B8] hover:shadow-md md:flex-1"
+                    ? "border-[#55BBB0]/40 shadow-xl"
+                    : "border-[#A9C1B8] hover:shadow-md"
                 }`}
               >
                 <div className="relative h-52 md:h-56 overflow-hidden shrink-0">
@@ -117,6 +122,7 @@ export default function CoreExpertise() {
                   </div>
                 </div>
               </article>
+              </Reveal>
             );
           })}
         </div>

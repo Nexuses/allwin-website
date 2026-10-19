@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Icon from "../Icon";
+import Reveal from "../about/Reveal";
 
 const faqs = [
   {
@@ -45,73 +46,36 @@ export default function FAQ({
   items?: FaqItem[];
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [visible, setVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const element = sectionRef.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="w-full py-20 lg:py-28 bg-white"
-      id="faq"
-    >
+    <section className="w-full py-20 lg:py-28 bg-white" id="faq">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-        <div
-          className={`text-center max-w-2xl mx-auto mb-12 lg:mb-16 transition-all duration-700 ease-out ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
+        <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#A9C1B8] text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-3">
             {eyebrow}
           </div>
           <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-3">
             {title}
           </h2>
-          <p className="font-inter text-gray-600 text-base sm:text-lg">
-            {intro}
-          </p>
-        </div>
+          <p className="font-inter text-gray-600 text-base sm:text-lg">{intro}</p>
+        </Reveal>
 
         <div className="max-w-3xl mx-auto flex flex-col gap-3">
           {items.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
+              <Reveal key={faq.question} delay={index * 70}>
               <div
-                key={faq.question}
                 className={`rounded-2xl border transition-all duration-500 ease-out ${
                   isOpen
-                    ? "border-[#55BBB0]/40 bg-[#A9C1B8]/50 shadow-sm"
+                    ? "border-[#55BBB0]/40 bg-[#A9C1B8]/50"
                     : "border-[#A9C1B8] bg-[#F3EFE3] hover:border-[#55BBB0]/25"
-                } ${
-                  visible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
                 }`}
-                style={{
-                  transitionDelay: visible ? `${120 + index * 80}ms` : "0ms",
-                }}
               >
                 <button
                   type="button"
-                  className="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-5"
+                  className="faq-toggle w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-5 shadow-none"
                   aria-expanded={isOpen}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
@@ -141,6 +105,7 @@ export default function FAQ({
                   </div>
                 </div>
               </div>
+              </Reveal>
             );
           })}
         </div>

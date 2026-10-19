@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "../about/Reveal";
 
 const TESTIMONIALS_IMAGE =
   "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/midsection-colleagues-analyzing-graphs-desk.jpg";
@@ -31,7 +32,7 @@ export default function Testimonials() {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6">
+          <Reveal className="lg:col-span-6">
             <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#F3EFE3] tracking-tight mb-2">
               What Our Clients Say
             </h2>
@@ -62,8 +63,8 @@ export default function Testimonials() {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="lg:col-span-6 flex justify-center">
+          </Reveal>
+          <Reveal delay={100} className="lg:col-span-6 flex justify-center">
             <div className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] bg-white">
               <Image
                 alt="Colleagues analyzing graphs and sales reports"
@@ -73,7 +74,7 @@ export default function Testimonials() {
                 sizes="(min-width: 1024px) 512px, 100vw"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

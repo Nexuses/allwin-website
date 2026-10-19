@@ -5,6 +5,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import Icon from "@/components/Icon";
 import OfficeMap, { OFFICE_MAP_URL } from "@/components/OfficeMap";
 import ContactPageForm from "@/components/contact/ContactPageForm";
+import Reveal from "@/components/about/Reveal";
 
 const socials = [
   { label: "Instagram", icon: "photo_camera", href: "#" },
@@ -43,6 +44,7 @@ export default function ContactPage() {
         </section>
 
         <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-12 lg:py-16">
+          <Reveal>
           <p className="font-inter text-base sm:text-lg text-[#26332F]/85 leading-relaxed max-w-3xl">
             Have a question about a home loan, refinancing or business finance? Call us, message us on{" "}
             <a
@@ -53,10 +55,12 @@ export default function ContactPage() {
             </a>{" "}
             or send us a note. We will get back to you as soon as we can.
           </p>
+          </Reveal>
         </section>
 
         <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pb-16 lg:pb-24 grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
+          <div>
             <h2 className="font-manrope text-3xl font-bold text-[#385445] tracking-tight mb-6">
               How to Reach Us
             </h2>
@@ -123,16 +127,18 @@ export default function ContactPage() {
               ))}
             </div>
           </div>
+          </Reveal>
 
-          <div className="lg:col-span-7 bg-white rounded-[2rem] border border-[#A9C1B8]/60 p-6 sm:p-10">
+          <Reveal delay={100} className="lg:col-span-7 bg-white rounded-[2rem] border border-[#A9C1B8]/60 p-6 sm:p-10">
             <h2 className="font-manrope text-3xl font-bold text-[#385445] tracking-tight mb-6">
               Send Us a Message
             </h2>
             <ContactPageForm />
-          </div>
+          </Reveal>
         </section>
 
         <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pb-20">
+          <Reveal>
           <div className="relative rounded-[2rem] overflow-hidden border border-[#A9C1B8]/60 bg-[#1F4F4A]">
             <OfficeMap className="w-full h-72 sm:h-96 border-0" />
             <a
@@ -144,6 +150,7 @@ export default function ContactPage() {
               Open in Maps
             </a>
           </div>
+          </Reveal>
         </section>
       </main>
       <Footer />

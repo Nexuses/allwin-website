@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "../about/Reveal";
 
 const PARTNER_BASE =
   "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/Screenshot%202026-09-29%20";
@@ -46,9 +47,11 @@ export default function BankingPartners() {
   return (
     <section className="relative z-10 w-full py-16 lg:py-20 bg-[#F8F9FA] rounded-t-[2rem] sm:rounded-t-[2.5rem] border-t border-[#E9ECEF] shadow-[0_-24px_80px_rgba(0,0,0,0.28)]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
+        <Reveal>
         <h2 className="font-manrope text-2xl sm:text-3xl lg:text-4xl font-bold text-[#212529] tracking-tight mb-10">
           We Work With Leading Banks Across the UAE
         </h2>
+        </Reveal>
         <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] group/marquee">
           <div className="animate-marquee-track items-center gap-12 sm:gap-16">
             <LogoGroup />

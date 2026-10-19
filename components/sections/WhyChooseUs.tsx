@@ -1,4 +1,5 @@
 import Icon from "../Icon";
+import Reveal from "../about/Reveal";
 
 const reasons = [
   {
@@ -32,7 +33,7 @@ export default function WhyChooseUs() {
     <section className="w-full py-20 lg:py-28 bg-[#212529] text-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
             <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-4 leading-tight sm:leading-10">
               Why Choose AllWin Finances?
             </h2>
@@ -50,12 +51,12 @@ export default function WhyChooseUs() {
               <span>About Us</span>
               <Icon name="arrow_forward" className="text-[18px] transition-transform duration-300 group-hover/btn:translate-x-1" />
             </a>
-          </div>
+          </Reveal>
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {reasons.map((reason) => (
+            {reasons.map((reason, index) => (
+              <Reveal key={reason.title} delay={index * 70} className="h-full">
               <div
-                key={reason.title}
-                className="why-card group bg-[#1e2227] p-6 rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#55BBB0]/70 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
+                className="why-card group h-full bg-[#1e2227] p-6 rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#55BBB0]/70 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
               >
                 <div className="icon-chip w-12 h-12 rounded-xl bg-[#55BBB0]/10 text-[#55BBB0] flex items-center justify-center mb-4">
                   <Icon name={reason.icon} className="text-[26px]" />
@@ -67,6 +68,7 @@ export default function WhyChooseUs() {
                   {reason.description}
                 </p>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>

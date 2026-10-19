@@ -105,8 +105,8 @@ function ServiceRail() {
           {services.map((service, index) => {
             const current = index === active;
             return (
+              <Reveal key={service.id} delay={index * 40}>
               <article
-                key={service.id}
                 id={service.id}
                 className={`scroll-mt-28 rounded-[2rem] p-6 transition-all duration-500 sm:p-8 ${
                   current
@@ -134,6 +134,7 @@ function ServiceRail() {
                   </div>
                 ) : null}
               </article>
+              </Reveal>
             );
           })}
         </div>
@@ -178,14 +179,17 @@ export default function ValueAddedView() {
 
       <section className="pb-8">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <p className="font-inter text-sm leading-relaxed text-[#26332F]/70">
             Some services are provided through licensed third-party partners.
           </p>
+          </Reveal>
         </div>
       </section>
 
       <section className="pb-20 lg:pb-28">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <div
             className="rounded-[2rem] px-6 py-14 text-center text-white sm:px-12"
             style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
@@ -204,6 +208,7 @@ export default function ValueAddedView() {
               <Icon name="arrow_forward" className="text-[18px]" />
             </a>
           </div>
+          </Reveal>
         </div>
       </section>
     </div>

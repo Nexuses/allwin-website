@@ -116,7 +116,7 @@ export default function Header() {
           <div className="flex items-center gap-5 lg:gap-8">
             <nav className="hidden lg:flex items-center gap-1">
               <a
-                className="relative px-3.5 py-2 text-[#55BBB0] font-medium text-[15px] rounded-full transition-colors hover:bg-white/5"
+                className="px-3.5 py-2 text-white/85 hover:text-[#55BBB0] font-medium text-[15px] rounded-full transition-colors hover:bg-white/5"
                 href="/"
               >
                 Home

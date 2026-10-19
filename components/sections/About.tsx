@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Icon from "../Icon";
+import Reveal from "../about/Reveal";
 
 const ABOUT_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDKtZT39uMrOzvhqQuy0mYnL_69NroPhn_MXs1uib68T_JcdMr0-9jqs-AKJrZbLr7H7ZPHkjuBaOyeya8O4zlAmqFEX8EfZ1ofVoZCJZdULGAm0uyp_W4sm8AWOauiTRqsuzce4c_LG_45VCfe3GonXld39FhTR_j8jK5JNBDdBEysTiswku9Rum_7ZJXm8QqjpeTIHfxgLtBME6qH_iFtbdyXaa5ZlLNTelF7ojSk05rulWEfGjhX";
@@ -51,14 +52,14 @@ export default function About() {
     <section className="w-full py-20 lg:py-28 bg-[#FFFFFF]" id="about">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-6 order-2 lg:order-1 flex justify-center">
+          <Reveal className="lg:col-span-6 order-2 lg:order-1 flex justify-center">
             <FramedImage
               src={ABOUT_IMAGE}
               alt="Expert Finance Solutions"
               tilt="-rotate-2"
             />
-          </div>
-          <div className="lg:col-span-6 order-1 lg:order-2">
+          </Reveal>
+          <Reveal delay={100} className="lg:col-span-6 order-1 lg:order-2">
             <Eyebrow>Our Foundation</Eyebrow>
             <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#212529] tracking-tight mb-2">
               About AllWin Finances
@@ -89,7 +90,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -246,9 +246,12 @@ function ProcessLine() {
   return (
     <section className="bg-white py-16 lg:py-24">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal>
         <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight text-center mb-14">
           How Our Mortgage Process Works
         </h2>
+        </Reveal>
+        <Reveal delay={80}>
         <div className="relative grid grid-cols-4">
           <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[21px] h-[2px] bg-[#E7E4DE]">
             <div
@@ -295,6 +298,7 @@ function ProcessLine() {
             );
           })}
         </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -366,10 +370,10 @@ export default function MortgageView() {
             </h2>
           </Reveal>
           <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4">
-            {moreOptions.map((item) => (
+            {moreOptions.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70} className="snap-start shrink-0 w-[82%] sm:w-[420px]">
               <article
-                key={item.title}
-                className="snap-start shrink-0 w-[82%] sm:w-[420px] rounded-[2rem] bg-white border border-[#A9C1B8]/60 p-7 shadow-xs"
+                className="h-full rounded-[2rem] bg-white border border-[#A9C1B8]/60 p-7 shadow-xs"
               >
                 <h2 className="font-manrope text-2xl font-bold text-[#385445] mb-3">
                   {item.title === "Tailor-Made Mortgages" ? (
@@ -390,6 +394,7 @@ export default function MortgageView() {
                 </h2>
                 <p className="font-inter text-[#26332F]/85 leading-relaxed">{item.text}</p>
               </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -397,6 +402,7 @@ export default function MortgageView() {
 
       <section id="non-resident" className="py-8 lg:py-12">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <div className="rounded-[2rem] bg-[#385445] text-white p-8 sm:p-12 grid lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#55BBB0] mb-3">Non-resident</p>
@@ -413,6 +419,7 @@ export default function MortgageView() {
               </p>
             </div>
           </div>
+          </Reveal>
         </div>
       </section>
 
@@ -425,14 +432,15 @@ export default function MortgageView() {
             </h2>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-4 auto-rows-fr">
-            {commercialOptions.map((item) => (
+            {commercialOptions.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70} className="h-full">
               <article
-                key={item.title}
                 className="theme-card h-full rounded-[2rem] bg-[#1F4F4A] text-white p-6 sm:p-8 transition-all duration-300 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
               >
                 <h2 className="font-manrope text-2xl font-bold mb-3">{item.title}</h2>
                 <p className="font-inter text-white/80 leading-relaxed">{item.text}</p>
               </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -440,6 +448,7 @@ export default function MortgageView() {
 
       <section className="pb-16 lg:pb-24">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <div className="rounded-[2rem] border border-[#A9C1B8]/70 bg-white p-8 sm:p-12 grid lg:grid-cols-12 gap-8">
             <h2 className="lg:col-span-5 font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight">
               Real Estate Investment Advice
@@ -453,6 +462,7 @@ export default function MortgageView() {
               </p>
             </div>
           </div>
+          </Reveal>
         </div>
       </section>
 
@@ -462,6 +472,7 @@ export default function MortgageView() {
 
       <section className="pb-20 lg:pb-28">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <div
             className="rounded-[2rem] px-6 py-14 sm:px-12 text-center text-white"
             style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
@@ -483,6 +494,7 @@ export default function MortgageView() {
               Rates, eligibility and approval depend on each bank’s policies and your personal profile. AllWin Finances cannot guarantee approval.
             </p>
           </div>
+          </Reveal>
         </div>
       </section>
     </div>

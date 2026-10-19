@@ -91,7 +91,7 @@
 }
 
 @media (hover: hover) {
-  button:hover,
+  button:hover:not(.faq-toggle),
   a[class*="px-5"]:hover,
   a[class*="px-6"]:hover,
   a[class*="px-7"]:hover,
