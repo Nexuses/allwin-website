@@ -21,23 +21,22 @@ export default function Refinance() {
             </div>
           </div>
           <div className="lg:col-span-7">
-            <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-[#212529] tracking-tight mb-3">
-              Looking to Refinance or Buy-Out Your Current Mortgage?
+            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-3">
+              Want to Refinance or Buy Out Your Mortgage?
             </h2>
-            <h3 className="font-poppins text-xl font-semibold text-[#55BBB0] mb-5">
-              Smarter Moves for Your Money
+            <h3 className="font-manrope text-xl font-semibold text-[#55BBB0] mb-5">
+              Compare rates and find a better deal
             </h3>
             <p className="font-inter text-gray-600 leading-relaxed text-sm sm:text-base sm:leading-6 mb-8">
-              Our refinancing experts will help you compare interest/profit
-              rates from various lenders, organize paperwork, and negotiate the
-              best possible terms — all while ensuring a smooth transition with
-              zero stress.
+              We compare interest and profit rates from different lenders,
+              prepare your paperwork and negotiate for you, so switching is
+              smooth and stress-free.
             </p>
             <a
-              className="bg-[#55BBB0] hover:bg-[#44aba0] text-[#1e2227] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center gap-2 text-sm"
+              className="bg-[#55BBB0] hover:bg-[#20AA45] text-[#1F4F4A] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center gap-2 text-sm"
               href="#contact"
             >
-              <span>Our Services</span>
+              <span>Check Your Refinance Options</span>
               <Icon name="arrow_forward" className="text-[18px]" />
             </a>
           </div>

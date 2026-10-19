@@ -27,21 +27,20 @@ export default function Testimonials() {
   return (
     <section
       className="w-full py-20 lg:py-28"
-      style={{ background: "linear-gradient(135deg, #74e5d6 0%, #55BBB0 100%)" }}
+      style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 38%, #55BBB0 72%, #20AA5C 100%)" }}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
-            <span className="text-xs uppercase tracking-wider font-semibold text-[#1e2227]/80 block mb-2">
+            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#F3EFE3] tracking-tight mb-2">
               What Our Clients Say
-            </span>
-            <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-[#1e2227] tracking-tight mb-3">
-              Real Stories. Real Impact.
             </h2>
-            <p className="font-inter text-[#1e2227]/90 text-sm sm:text-base leading-relaxed sm:leading-6 mb-8">
-              We&apos;ve helped hundreds of individuals and businesses across the
-              UAE achieve their financial goals. Here&apos;s what some of our
-              happy clients have to say:
+            <h3 className="font-manrope text-xl font-semibold text-[#F3EFE3]/90 mb-4">
+              Real stories. Real impact.
+            </h3>
+            <p className="font-inter text-[#F3EFE3]/90 text-sm sm:text-base leading-relaxed sm:leading-6 mb-8">
+              We have helped individuals and businesses across the UAE reach
+              their financial goals. Here is what some of our clients say.
             </p>
             <div className="space-y-4">
               {testimonials.map((testimonial) => (
@@ -53,7 +52,7 @@ export default function Testimonials() {
                     {`"${testimonial.quote}"`}
                   </p>
                   <div className="flex items-center justify-between">
-                    <strong className="font-poppins text-xs font-bold text-[#212529]">
+                    <strong className="font-manrope text-xs font-bold text-[#385445]">
                       {testimonial.name}
                     </strong>
                     <span className="text-[11px] text-gray-500 font-medium">

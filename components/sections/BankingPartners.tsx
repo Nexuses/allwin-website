@@ -33,9 +33,9 @@ function LogoGroup({ hidden = false }: { hidden?: boolean }) {
           src={logo.src}
           alt={logo.alt}
           width={200}
-          height={40}
+          height={50}
           loading="eager"
-          className="h-9 sm:h-10 w-auto object-contain mix-blend-multiply opacity-75 hover:opacity-100 hover:scale-105 transition-all duration-300 cursor-pointer"
+          className="h-[46px] sm:h-[50px] w-auto object-contain mix-blend-multiply opacity-75 hover:opacity-100 hover:scale-105 transition-all duration-300 cursor-pointer"
         />
       ))}
     </div>
@@ -44,11 +44,11 @@ function LogoGroup({ hidden = false }: { hidden?: boolean }) {
 
 export default function BankingPartners() {
   return (
-    <section className="w-full py-16 bg-[#F8F9FA] border-y border-[#E9ECEF]">
+    <section className="relative z-10 w-full py-16 lg:py-20 bg-[#F8F9FA] rounded-t-[2rem] sm:rounded-t-[2.5rem] border-t border-[#E9ECEF] shadow-[0_-24px_80px_rgba(0,0,0,0.28)]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
-        <p className="font-inter text-gray-500 font-medium text-sm sm:text-base mb-8">
-          We collaborate with the leading banks across the United Arab Emirates.
-        </p>
+        <h2 className="font-manrope text-2xl sm:text-3xl lg:text-4xl font-bold text-[#212529] tracking-tight mb-10">
+          We Work With Leading Banks Across the UAE
+        </h2>
         <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] group/marquee">
           <div className="animate-marquee-track items-center gap-12 sm:gap-16">
             <LogoGroup />

@@ -3,15 +3,21 @@
 
 @theme {
   --color-primary: #55bbb0;
-  --color-primary-hover: #44aba0;
-  --color-brand-dark: #212529;
-  --color-brand-charcoal: #1e2227;
-  --color-brand-green: #20a94a;
+  --color-primary-green: #20aa45;
+  --color-primary-forest: #385445;
+  --color-primary-hover: #20aa45;
+  --color-brand-dark: #26332f;
+  --color-brand-charcoal: #1f4f4a;
+  --color-brand-green: #20aa45;
   --color-brand-mint: #55bbb0;
-  --color-mint-soft: #e8f8f5;
-  --color-mint-gradient: #67d9cc;
-  --color-surface: #f8f9fa;
-  --color-border-subtle: #e9ecef;
+  --color-secondary: #c95a3d;
+  --color-secondary-sage: #a9c1b8;
+  --color-secondary-cream: #f3efe3;
+  --color-mint-soft: #a9c1b8;
+  --color-surface: #f3efe3;
+  --color-border-subtle: #a9c1b8;
+  --color-gradient-deep: #0c665c;
+  --color-gradient-mid: #20aa5c;
 
   /* Tailwind v3 gray palette, matching the original design */
   --color-gray-50: #f9fafb;
@@ -25,7 +31,7 @@
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
 
-  --font-poppins: var(--font-poppins-family), "Poppins", sans-serif;
+  --font-manrope: var(--font-manrope-family), "Manrope", sans-serif;
   --font-inter: var(--font-inter-family), "Inter", sans-serif;
 }
 
@@ -47,7 +53,11 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-poppins);
+    font-family: var(--font-manrope);
+  }
+
+  p {
+    font-family: var(--font-inter);
   }
 
   button:not(:disabled),
@@ -74,6 +84,42 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.material-icon {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  button:hover,
+  a[class*="px-5"]:hover,
+  a[class*="px-6"]:hover,
+  a[class*="px-7"]:hover,
+  a[class*="px-8"]:hover {
+    box-shadow: 0 12px 28px rgba(85, 187, 176, 0.38);
+  }
+
+  button:hover > .material-icon:not([class*="rotate"]),
+  a:hover > .material-icon:not([class*="rotate"]) {
+    transform: translateX(4px);
+  }
+
+  .why-card:hover,
+  .theme-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.icon-chip {
+  transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.group:hover .icon-chip,
+.icon-chip:hover {
+  background-color: #55bbb0;
+  color: #1f4f4a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(85, 187, 176, 0.4);
 }
 
 @keyframes partner-marquee {

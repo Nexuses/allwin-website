@@ -5,7 +5,7 @@ const HERO_BG =
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[620px] lg:min-h-[680px] w-full flex items-center bg-[#1e2227] overflow-hidden">
+    <section className="relative min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-5rem)] w-full flex items-center bg-[#1F4F4A] overflow-hidden">
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url("${HERO_BG}")` }}
@@ -20,28 +20,29 @@ export default function Hero() {
             <span className="w-2 h-2 rounded-full bg-[#55BBB0] animate-pulse" />
             UAE MORTGAGE &amp; FINANCIAL ADVISORY
           </div>
-          <h1 className="font-poppins text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] sm:leading-none mb-6">
-            Smarter Financial Decisions Start With The Right Partner
+          <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] sm:leading-none mb-6">
+            Seamless Finances Solutions Under One Roof.
           </h1>
           <p className="font-inter text-base sm:text-lg text-gray-300 leading-relaxed sm:leading-7 mb-8 max-w-xl">
-            Access tailored mortgage, business finance and wealth solutions with
-            experts who understand UAE markets, banking requirements and your
-            long-term goals.
+            We Work with all of the UAE Banks &amp; Financial Institutions to get
+            you the best offers.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <a
-              className="bg-[#55BBB0] hover:bg-[#44aba0] text-[#1e2227] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2 text-sm md:text-base"
+              className="bg-[#55BBB0] hover:bg-[#20AA45] text-[#1F4F4A] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2 text-sm md:text-base"
               href="#contact"
             >
-              <span>Get Your Free Consultation</span>
+              <span>Get a Free Quote</span>
               <Icon name="arrow_forward" className="text-[20px]" />
             </a>
             <a
               className="bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3.5 rounded-full transition-all duration-300 border border-white/20 flex items-center gap-2 text-sm md:text-base backdrop-blur-xs"
-              href="#products"
+              href="https://wa.me/971585666955"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <span>Explore Solutions</span>
-              <Icon name="expand_more" className="text-[18px]" />
+              <span>Chat on WhatsApp</span>
+              <Icon name="chat" className="text-[18px]" />
             </a>
           </div>
         </div>
