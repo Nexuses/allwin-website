@@ -41,7 +41,6 @@ const navLinks = [
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
@@ -51,8 +50,6 @@ export default function Header() {
     const updateHeader = () => {
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY.current;
-
-      setScrolled(currentY > 24);
 
       if (currentY < 80) {
         setHidden(false);
@@ -82,30 +79,13 @@ export default function Header() {
         hidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       }`}
     >
-      <div
-        className={`mx-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled
-            ? "max-w-[1400px] px-3 sm:px-4 lg:px-6 pt-3"
-            : "max-w-none px-0 pt-0"
-        }`}
-      >
-        <div
-          className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled
-              ? "h-16 px-4 sm:px-6 lg:px-8 rounded-2xl bg-[#1e2227]/85 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
-              : "h-20 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto bg-[#212529]/95 backdrop-blur-md border-b border-white/10"
-          }`}
-        >
+      <div className="mx-auto max-w-[1400px] px-3 sm:px-4 lg:px-6 pt-3">
+        <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 rounded-2xl bg-[#1e2227]/85 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.28)]">
           <a className="flex items-center py-2 bg-transparent shrink-0" href="/">
             <Image
               alt="AllWin Finances"
-              className={`w-auto object-contain block bg-transparent transition-all duration-500 ${
-                scrolled ? "h-10" : "h-12"
-              }`}
-              style={{
-                height: scrolled ? 40 : 48,
-                maxHeight: scrolled ? 44 : 52,
-              }}
+              className="h-10 w-auto object-contain block bg-transparent"
+              style={{ height: 40, maxHeight: 44 }}
               src={LOGO_URL}
               width={240}
               height={52}

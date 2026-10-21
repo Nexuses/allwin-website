@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="pt-20 w-full">
+      <main className="w-full">
         <div className="relative">
           <StickyHero />
           <div className="relative z-10">

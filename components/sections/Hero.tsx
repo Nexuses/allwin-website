@@ -5,7 +5,7 @@ const HERO_BG =
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-5rem)] w-full flex items-center bg-[#1F4F4A] overflow-hidden">
+    <section className="relative min-h-[100svh] w-full flex items-center bg-[#1F4F4A] overflow-hidden">
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url("${HERO_BG}")` }}
@@ -14,7 +14,7 @@ export default function Hero() {
         className="absolute inset-0 z-0"
         style={{ backgroundColor: "rgba(20, 28, 28, 0.65)" }}
       />
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-24 lg:py-32 w-full">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-32 pb-24 lg:pt-40 lg:pb-32 w-full">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-[#55BBB0] text-xs font-semibold tracking-wider uppercase mb-6 border border-white/10">
             <span className="w-2 h-2 rounded-full bg-[#55BBB0] animate-pulse" />

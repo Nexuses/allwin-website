@@ -35,7 +35,6 @@ const faqs = [
 type FaqItem = { question: string; answer: string };
 
 export default function FAQ({
-  eyebrow = "FAQ",
   title = "Frequently Asked Questions",
   intro = "Clear answers to common questions about mortgages and finance in the UAE.",
   items = faqs,
@@ -51,9 +50,6 @@ export default function FAQ({
     <section className="w-full py-20 lg:py-28 bg-white" id="faq">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#A9C1B8] text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-3">
-            {eyebrow}
-          </div>
           <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-3">
             {title}
           </h2>
