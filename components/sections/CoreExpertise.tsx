@@ -66,6 +66,7 @@ export default function CoreExpertise() {
               <article
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
+                onClick={() => setActive(open ? null : index)}
                 className={`group h-full w-full bg-white rounded-3xl overflow-hidden border shadow-xs flex flex-col min-w-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   open
                     ? "border-[#55BBB0]/40 shadow-xl"

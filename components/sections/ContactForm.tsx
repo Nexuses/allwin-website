@@ -4,7 +4,7 @@ import { useState } from "react";
 import { submitLead } from "../contact/submitLead";
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-hidden focus:border-[#55BBB0] transition-colors disabled:opacity-60";
+  "w-full px-4 py-3 rounded-xl border border-gray-200 text-base sm:text-sm focus:outline-hidden focus:border-[#55BBB0] transition-colors disabled:opacity-60";
 
 const labelClass = "block text-xs font-semibold text-gray-700 mb-1";
 
@@ -119,7 +119,7 @@ export default function ContactForm() {
         <select
           id="contact-type"
           name="type"
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-hidden focus:border-[#55BBB0] bg-white transition-colors"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base sm:text-sm focus:outline-hidden focus:border-[#55BBB0] bg-white transition-colors"
         >
           {requirementOptions.map((option) => (
             <option key={option}>{option}</option>

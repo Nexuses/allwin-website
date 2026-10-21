@@ -91,7 +91,13 @@ function ServiceStack() {
             <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
               Our Business Finance Services
             </h2>
-            <div className="mt-8 flex gap-2">
+            <p className="mt-4 max-w-sm font-inter leading-relaxed text-[#26332F]/75">
+              Five ways we can fund and support your business. Keep scrolling to explore each one.
+            </p>
+            <p className="mt-6 font-manrope text-sm font-bold tracking-widest text-[#1F4F4A]">
+              0{Math.round(index) + 1} <span className="text-[#A9C1B8]">/ 0{services.length}</span>
+            </p>
+            <div className="mt-3 flex gap-2">
               {services.map((service, i) => (
                 <span
                   key={service.title}
@@ -102,7 +108,7 @@ function ServiceStack() {
               ))}
             </div>
           </div>
-          <div className="relative h-[min(440px,calc(100svh-9rem))] lg:col-span-8">
+          <div className="relative h-[min(360px,calc(100svh-13rem))] lg:col-span-8">
             {services.map((service, i) => {
               const delta = i - index;
               const behind = Math.max(delta, 0);
@@ -112,7 +118,7 @@ function ServiceStack() {
               return (
                 <article
                   key={service.title}
-                  className={`theme-card absolute inset-0 flex flex-col justify-center rounded-[2rem] p-7 text-white shadow-[0_24px_60px_rgba(31,79,74,0.16)] transition-shadow duration-300 sm:p-10 ${
+                  className={`theme-card absolute inset-0 flex flex-col rounded-[2rem] p-5 text-white shadow-[0_24px_60px_rgba(31,79,74,0.16)] transition-shadow duration-300 sm:p-8 ${
                     i % 2 === 0 ? "bg-[#1F4F4A]" : "bg-[#385445]"
                   } ${front ? "hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]" : ""}`}
                   style={{
@@ -122,11 +128,31 @@ function ServiceStack() {
                     transform: `translateY(calc(${passed * 110}% + ${behind * 16}px)) scale(${1 - behind * 0.04})`,
                   }}
                 >
-                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#55BBB0] text-[#1F4F4A]">
-                    <Icon name={service.icon} className="text-[24px]" />
-                  </span>
-                  <h3 className="mb-3 font-manrope text-2xl font-bold tracking-tight sm:text-3xl">{service.title}</h3>
-                  <p className="max-w-2xl font-inter leading-relaxed text-white/85">{service.text}</p>
+                  <div className="flex items-start justify-between">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#55BBB0] text-[#1F4F4A]">
+                      <Icon name={service.icon} className="text-[24px]" />
+                    </span>
+                    <span aria-hidden="true" className="font-manrope text-5xl font-bold leading-none text-white/15">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <div className="mt-6">
+                    <h3 className="mb-3 font-manrope text-2xl font-bold tracking-tight sm:text-3xl">{service.title}</h3>
+                    <p className="max-w-2xl font-inter leading-relaxed text-white/85">{service.text}</p>
+                  </div>
+                  <div className="mt-auto flex items-center justify-between gap-4 border-t border-white/15 pt-5">
+                    <span className="font-inter text-xs font-semibold uppercase tracking-wider text-white/60">
+                      Service 0{i + 1} of 0{services.length}
+                    </span>
+                    <a
+                      href="/contact"
+                      tabIndex={front ? 0 : -1}
+                      className="inline-flex shrink-0 items-center gap-1.5 font-inter text-sm font-semibold text-[#55BBB0] transition-colors hover:text-white"
+                    >
+                      Talk to an advisor
+                      <Icon name="arrow_forward" className="text-[18px]" />
+                    </a>
+                  </div>
                 </article>
               );
             })}

@@ -125,7 +125,7 @@ export default function AboutView() {
               Expert finance advice built on real banking experience
             </p>
           </div>
-          <div className="lg:col-span-6 relative h-[420px] sm:h-[480px]">
+          <div className="lg:col-span-6 relative h-[300px] sm:h-[480px]">
             <div className="absolute right-0 top-6 w-[72%] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <Image
                 src={PORTRAIT}

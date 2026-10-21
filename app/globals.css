@@ -40,6 +40,9 @@
   body {
     margin: 0;
     padding: 0;
+    /* `clip` (not `hidden`) stops sideways scroll/white gaps without
+       breaking position: sticky sections */
+    overflow-x: clip;
   }
 
   body {

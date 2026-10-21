@@ -4,7 +4,7 @@ import { useState } from "react";
 import { submitLead } from "./submitLead";
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-[#A9C1B8]/70 bg-white text-sm text-[#26332F] focus:outline-hidden focus:border-[#55BBB0] transition-colors disabled:opacity-60";
+  "w-full px-4 py-3 rounded-xl border border-[#A9C1B8]/70 bg-white text-base sm:text-sm text-[#26332F] focus:outline-hidden focus:border-[#55BBB0] transition-colors disabled:opacity-60";
 
 const labelClass = "block font-inter text-sm font-semibold text-[#385445] mb-1.5";
 

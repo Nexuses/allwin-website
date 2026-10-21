@@ -147,7 +147,7 @@ function SpreadStack() {
           <article
             key={card.id}
             id={card.id}
-            className={`rounded-[2rem] p-7 sm:p-10 shadow-xl ${card.dark ? "bg-[#1F4F4A] text-white" : "bg-white text-[#385445]"}`}
+            className={`rounded-[2rem] p-5 sm:p-10 shadow-xl ${card.dark ? "bg-[#1F4F4A] text-white" : "bg-white text-[#385445]"}`}
           >
             <p className={`text-xs font-semibold uppercase tracking-wider mb-3 ${card.dark ? "text-[#55BBB0]" : "text-[#1F4F4A]"}`}>
               {card.eyebrow}
@@ -177,7 +177,7 @@ function SpreadStack() {
               <article
                 key={card.id}
                 id={card.id}
-                className={`absolute inset-x-4 sm:inset-x-6 top-0 h-full rounded-[2rem] p-7 sm:p-10 shadow-[0_24px_60px_rgba(31,79,74,0.18)] overflow-auto ${
+                className={`absolute inset-x-4 sm:inset-x-6 top-0 h-full rounded-[2rem] p-5 sm:p-10 shadow-[0_24px_60px_rgba(31,79,74,0.18)] overflow-auto ${
                   card.dark ? "bg-[#1F4F4A] text-white" : i % 2 === 0 ? "bg-white text-[#385445]" : "bg-[#F3EFE3] text-[#385445] border border-[#A9C1B8]/70"
                 }`}
                 style={{
@@ -252,8 +252,8 @@ function ProcessLine() {
         </h2>
         </Reveal>
         <Reveal delay={80}>
-        <div className="relative grid grid-cols-4">
-          <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[21px] h-[2px] bg-[#E7E4DE]">
+        <div className="relative grid grid-cols-2 gap-y-10 sm:grid-cols-4 sm:gap-y-0">
+          <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[21px] hidden h-[2px] bg-[#E7E4DE] sm:block">
             <div
               ref={lineRef}
               className="h-full origin-left"
