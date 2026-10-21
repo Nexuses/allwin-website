@@ -28,7 +28,7 @@ export default function SmeCorporateLendingPage() {
   return (
     <>
       <Header />
-      <main className="w-full pt-20">
+      <main className="w-full">
         <SmeView />
       </main>
       <Footer />

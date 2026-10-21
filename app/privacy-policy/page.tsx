@@ -13,8 +13,8 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <Header />
-      <main className="pt-20 w-full bg-[#F3EFE3] text-[#26332F]">
-        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <main className="w-full bg-[#F3EFE3] text-[#26332F]">
+        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-[144px] pb-16 lg:pt-[176px] lg:pb-24">
           <h1 className="font-manrope text-4xl sm:text-5xl font-bold text-[#385445] tracking-tight mb-6">
             Privacy Policy
           </h1>

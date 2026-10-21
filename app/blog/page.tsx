@@ -16,13 +16,13 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="pt-20 w-full bg-[#F3EFE3] text-[#26332F]">
+      <main className="w-full bg-[#F3EFE3] text-[#26332F]">
         <section className="relative overflow-hidden bg-[#1F4F4A] text-white">
           <div
             className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full opacity-40 blur-3xl"
             style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
           />
-          <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+          <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[144px] pb-16 lg:pt-[176px] lg:pb-24">
             <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-5">
               Blog
             </p>

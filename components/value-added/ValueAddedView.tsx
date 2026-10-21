@@ -151,7 +151,7 @@ export default function ValueAddedView() {
           className="pointer-events-none absolute -left-16 top-10 h-72 w-72 rounded-full opacity-40 blur-3xl"
           style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
         />
-        <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <div className="relative mx-auto max-w-[1440px] px-4 pt-[160px] pb-20 sm:px-6 lg:px-10 lg:pt-[192px] lg:pb-28">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#55BBB0]">
             Beyond finance
           </p>

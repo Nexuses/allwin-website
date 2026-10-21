@@ -28,7 +28,7 @@ export default function MortgageFinancingPage() {
   return (
     <>
       <Header />
-      <main className="pt-20 w-full">
+      <main className="w-full">
         <MortgageView />
       </main>
       <Footer />

@@ -242,7 +242,7 @@ export default function SmeView() {
           className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full opacity-40 blur-3xl"
           style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
         />
-        <div className="relative mx-auto grid max-w-[1440px] items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:px-10 lg:py-24">
+        <div className="relative mx-auto grid max-w-[1440px] items-center gap-12 px-4 pt-[144px] pb-16 sm:px-6 lg:grid-cols-12 lg:px-10 lg:pt-[176px] lg:pb-24">
           <div className="lg:col-span-7">
             <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#55BBB0]">
               Business finance

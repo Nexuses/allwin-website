@@ -103,7 +103,7 @@ export default function AboutView() {
     <div className="bg-[#F3EFE3] text-[#26332F]">
       <div className="relative">
       <StickyCover>
-      <section className="relative overflow-hidden bg-[#1F4F4A] text-white min-h-[calc(100svh-5rem)] flex items-center">
+      <section className="relative overflow-hidden bg-[#1F4F4A] text-white min-h-[100svh] flex items-center">
         <div
           className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full opacity-40 blur-3xl"
           style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
@@ -112,7 +112,7 @@ export default function AboutView() {
           className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 rounded-full opacity-30 blur-3xl"
           style={{ background: "radial-gradient(circle, #20AA45, transparent 70%)" }}
         />
-        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
+        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[160px] pb-20 lg:pt-[192px] lg:pb-28 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
             <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-5">
               <span className="w-2 h-2 rounded-full bg-[#20AA45] animate-pulse" />

@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="pt-20 w-full">
+      <main className="w-full">
         <AboutView />
       </main>
       <Footer />

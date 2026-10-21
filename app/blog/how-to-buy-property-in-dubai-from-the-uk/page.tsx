@@ -16,8 +16,8 @@ export default function UkBuyerGuidePage() {
   return (
     <>
       <Header />
-      <main className="pt-20 w-full bg-[#F3EFE3] text-[#26332F]">
-        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <main className="w-full bg-[#F3EFE3] text-[#26332F]">
+        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-[144px] pb-16 lg:pt-[176px] lg:pb-24">
           <a href="/blog" className="inline-flex items-center gap-1 font-inter text-sm font-semibold text-[#1F4F4A] mb-8">
             <Icon name="arrow_back" className="text-[18px]" />
             Back to blog

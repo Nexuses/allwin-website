@@ -14,7 +14,7 @@ export default function ValueAddedServicesPage() {
   return (
     <>
       <Header />
-      <main className="w-full pt-20">
+      <main className="w-full">
         <ValueAddedView />
       </main>
       <Footer />

@@ -28,7 +28,7 @@ export default function ConsumerFinancePage() {
   return (
     <>
       <Header />
-      <main className="w-full pt-20">
+      <main className="w-full">
         <ConsumerView />
       </main>
       <Footer />

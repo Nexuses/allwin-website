@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import { submitLead } from "../contact/submitLead";
+
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-hidden focus:border-[#55BBB0] transition-colors";
+  "w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-hidden focus:border-[#55BBB0] transition-colors disabled:opacity-60";
 
 const labelClass = "block text-xs font-semibold text-gray-700 mb-1";
 
@@ -12,9 +15,44 @@ const requirementOptions = [
   "Consumer Finance",
 ];
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function ContactForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    setStatus("sending");
+    setError("");
+
+    try {
+      await submitLead({
+        source: "Homepage contact form",
+        name: String(data.get("name") || ""),
+        phone: String(data.get("phone") || ""),
+        email: String(data.get("email") || ""),
+        age: String(data.get("age") || ""),
+        type: String(data.get("type") || ""),
+        message: String(data.get("requirement") || ""),
+      });
+      form.reset();
+      setStatus("success");
+    } catch (submitError) {
+      setStatus("error");
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : "We could not send your message.",
+      );
+    }
+  }
+
   return (
-    <form className="space-y-4" onSubmit={(event) => event.preventDefault()}>
+    <form className="space-y-4" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelClass} htmlFor="contact-name">
@@ -26,6 +64,8 @@ export default function ContactForm() {
             className={inputClass}
             placeholder="Full Name"
             type="text"
+            autoComplete="name"
+            required
           />
         </div>
         <div>
@@ -38,6 +78,8 @@ export default function ContactForm() {
             className={inputClass}
             placeholder="Contact Number"
             type="tel"
+            autoComplete="tel"
+            required
           />
         </div>
       </div>
@@ -52,6 +94,8 @@ export default function ContactForm() {
             className={inputClass}
             placeholder="Your email"
             type="email"
+            autoComplete="email"
+            required
           />
         </div>
         <div>
@@ -64,6 +108,7 @@ export default function ContactForm() {
             className={inputClass}
             placeholder="Age"
             type="number"
+            min={18}
           />
         </div>
       </div>
@@ -94,11 +139,28 @@ export default function ContactForm() {
         />
       </div>
       <button
-        className="w-full bg-[#55BBB0] hover:bg-[#44aba0] text-[#1e2227] font-bold py-3.5 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg text-sm tracking-wide"
+        className="w-full bg-[#55BBB0] hover:bg-[#44aba0] text-[#1e2227] font-bold py-3.5 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg text-sm tracking-wide disabled:cursor-not-allowed disabled:opacity-60"
         type="submit"
+        disabled={status === "sending"}
       >
-        Submit
+        {status === "sending" ? "Sending..." : "Submit"}
       </button>
+      {status === "success" ? (
+        <p
+          role="status"
+          className="rounded-xl border border-[#55BBB0]/40 bg-[#E8F8F5] px-4 py-3 text-sm font-medium text-[#1F4F4A]"
+        >
+          Thank you. Your message has been sent and we will get back to you soon.
+        </p>
+      ) : null}
+      {status === "error" ? (
+        <p
+          role="alert"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
+        >
+          {error}
+        </p>
+      ) : null}
     </form>
   );
 }
