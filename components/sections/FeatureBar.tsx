@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import Icon from "../Icon";
@@ -8,6 +9,7 @@ const features: {
   id: string;
   title: ReactNode;
   description: string;
+  image: string;
   /**
    * Travel is in grid steps: x -1 starts one column left, y 1 starts one row down.
    */
@@ -17,9 +19,17 @@ const features: {
 }[] = [
   {
     id: "home-loans",
-    title: "Home Loans & Mortgages",
+    title: (
+      <>
+        Home Loans &amp;
+        <br />
+        Mortgages
+      </>
+    ),
     description:
       "Buy a home, refinance your mortgage or release cash from your property with Islamic or conventional finance.",
+    image:
+      "https://assets.nexuses.xyz/home-loan-officer-gives-house-keys-client-after-signing-real-estate-contract-with-approved-mortgage-application-regarding-offer-mortgage-loans-home-insurance__1__1792995944384_9jm2.jpg",
     from: { x: 0, y: 0.75 },
     place: "lg:col-start-1 lg:row-start-1",
     href: "/mortgage-financing",
@@ -35,24 +45,42 @@ const features: {
     ),
     description:
       "Working capital, trade finance, invoice discounting and more for businesses of all sizes.",
+    image:
+      "https://assets.nexuses.xyz/signing-contract-client-broker-agent-lease-agreement-successful-deal-young-business-sitting-desk-office__1__1792995944384_79y5.jpg",
     from: { x: -1, y: 0 },
     place: "lg:col-start-3 lg:row-start-1",
     href: "/sme-corporate-lending",
   },
   {
     id: "property-visa",
-    title: "Property, Visa & Business Setup Support",
+    title: (
+      <>
+        Property, Visa &amp;
+        <br />
+        Business Setup Support
+      </>
+    ),
     description:
       "Extra help with property investment, business setup, insurance and Golden Visa guidance.",
+    image:
+      "https://assets.nexuses.xyz/business-meeting-office__1__1792995944457_xyoi.jpg",
     from: { x: 1, y: 1 },
     place: "lg:col-start-1 lg:row-start-2",
     href: "/value-added-services",
   },
   {
     id: "personal-car",
-    title: "Personal, Car & Credit Card Finance",
+    title: (
+      <>
+        Personal, Car &amp;
+        <br />
+        Credit Card Finance
+      </>
+    ),
     description:
       "Simple personal loans, car finance and credit cards for salaried and self-employed people.",
+    image:
+      "https://assets.nexuses.xyz/credit-cards-laptop-leather-wallet-grey-table__1__1792995944457_bxmg.jpg",
     from: { x: 0, y: -0.7 },
     place: "lg:col-start-3 lg:row-start-2",
     href: "/consumer-finance",
@@ -84,23 +112,43 @@ function FeatureCard({
     <a
       href={feature.href}
       data-feature={feature.id}
-      className={`group bg-[#F3EFE3] hover:bg-white text-[#385445] rounded-2xl shadow-xs hover:shadow-[0_16px_36px_rgba(85,187,176,0.28)] p-4 flex flex-col self-center h-auto text-left will-change-transform ${feature.place}`}
+      className={`group relative overflow-hidden rounded-2xl p-4 flex flex-col self-center h-auto min-h-[168px] text-left text-white shadow-xs will-change-transform hover:shadow-[0_16px_36px_rgba(85,187,176,0.35)] ${feature.place}`}
       style={{
         transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
         opacity,
       }}
     >
-      <h3 className="font-manrope text-base font-bold leading-snug">
-        {feature.title}
-      </h3>
-      <p className="font-inter text-sm text-[#26332F]/80 leading-snug font-normal mt-2">
-        {feature.description}
-      </p>
-      <div className="flex justify-end mt-3">
-        <Icon
-          name="arrow_forward"
-          className="text-[18px] text-[#20AA45] transition-transform duration-300 group-hover:translate-x-1"
-        />
+      <Image
+        src={feature.image}
+        alt={
+          {
+            "home-loans": "Home Loans & Mortgages",
+            "business-sme": "Business & SME Loans",
+            "property-visa": "Property, Visa & Business Setup Support",
+            "personal-car": "Personal, Car & Credit Card Finance",
+          }[feature.id] ?? "Finance solution"
+        }
+        fill
+        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+        sizes="(min-width: 1024px) 28vw, 100vw"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-[#1F4F4A]/92 via-[#1F4F4A]/55 to-[#1F4F4A]/25 transition-colors duration-300 group-hover:from-[#1F4F4A]/95 group-hover:via-[#1F4F4A]/60"
+      />
+      <div className="relative z-10 mt-[10px] flex h-full flex-col">
+        <h3 className="font-manrope text-base font-bold leading-snug text-white">
+          {feature.title}
+        </h3>
+        <p className="mt-2 font-inter text-sm font-normal leading-snug text-white/85">
+          {feature.description}
+        </p>
+        <div className="mt-auto flex justify-end pt-3">
+          <Icon
+            name="arrow_forward"
+            className="text-[18px] text-[#55BBB0] transition-transform duration-300 group-hover:translate-x-1"
+          />
+        </div>
       </div>
     </a>
   );

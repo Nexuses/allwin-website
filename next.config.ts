@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     agentFeedback: true,
+    agentUpgrade: "security",
   },
   cacheComponents: true,
   partialPrefetching: true,
@@ -26,6 +27,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
         pathname: "/aida-public/**",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.nexuses.xyz",
+        pathname: "/**",
       },
     ],
   },

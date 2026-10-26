@@ -9,7 +9,7 @@ const products = [
   {
     title: "Real Estate Mortgages in the UAE",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC_4qsdVQUzIoqlk8p4KsjK1dpqd2ARg-LPcQvDLX2-sfeoJn_y1L6Mo7gie2WjOe4uLCL9ilSOwHkTiaqi7SurNZ9vKSwKsHpSqvXPuPHq0to7PKbhrr3sijUhJqJ26E1Y4dymyuPn7RyW9nHFbOVSLNAGn1akrzTQZwmr4O6T6pAvR9h9z6iCCG-UT2m4VRM-GifAdZJkcOggHDQACv3_K0hmR4Fsfms9AfZC0_GSPNYhN-ooTCa-",
+      "https://assets.nexuses.xyz/38d6060c7f961f35de4fe86ab256cfc3_1792732637106_rfaz.jpg",
     description:
       "First-time buyer, investor or looking to refinance? We help you find the right residential or commercial mortgage from UAE banks and guide you at every step.",
     cta: "Get Started",
@@ -18,7 +18,7 @@ const products = [
   {
     title: "SME & Corporate Lending",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAey97j8TFmrC6pb3hFhWYjiUbz-QBuGqOBoyzTYZyl3_z90zwZZS26ACxv5ruUSAExHorozwOoLb-F8weyE3nb8VGRVsJYppURZNQxIiu-SLtF68G5NCwbNQPy7KQYjIWn6YPNAJR44rlmu9KlCAbvtAAtLnCfE0KhULNgPM1ueUGcP2aPUxEhiAzdtU4jFcq0G5Li2A6bpMa0qO_b-EbnPaYuMkjBcMYzyPafr20ILOzMo7wQoKB",
+      "https://assets.nexuses.xyz/53d019de559409815fdc8513398573e3_1792732637106_ln36.jpg",
     description:
       "We match businesses of all sizes with flexible lending options, from trade finance and working capital to funding for growth.",
     cta: "Explore Corporate",
@@ -27,7 +27,7 @@ const products = [
   {
     title: "Consumer Finance Products",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDDzIS047m5ZDSA0WTbAtDGGGsvFJZuJlKapIsbQL2Pb13K2LRLblw5igdkY09_SEVYwotvMQI-WTp1ySNjv-gUbC1fxDVjl7QE8xh68Q8xJVbiF0fiW5pqQHltfRV2rhA6D4mPSv5RmA7FoqHaat7AFmRABvSQ8ORiBqXGMPVDzEVUzU8J3W42Jj-pTvIGuyg_hmrSbsc3nAESQ0T9DoaEVZcCParzQf_DvVEllHtErx-iS4tkydJp",
+      "https://assets.nexuses.xyz/8e90ac7259fb2ac2b9d3c1823e9aff59_1792732637106_6ddz.jpg",
     description:
       "Personal loans, car finance, credit cards and finance for everyday purchases, with clear terms that fit your budget.",
     cta: "View Options",
@@ -35,95 +35,126 @@ const products = [
   },
 ];
 
+const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
+
 export default function CoreExpertise() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section className="w-full py-20 lg:py-28 bg-[#FFFFFF]" id="products">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-3">
+    <section
+      className="w-full bg-[#FFFFFF] pt-[30px] pb-20 lg:pt-[62px] lg:pb-28"
+      id="products"
+    >
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+        <Reveal className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-3 font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
             Our Core Expertise
           </h2>
-          <p className="font-inter text-gray-600 text-base sm:text-lg">
+          <p className="font-inter text-base text-gray-600 sm:text-lg">
             Finance solutions designed around your needs
           </p>
         </Reveal>
 
         <div
-          className="flex flex-col md:flex-row gap-5 md:gap-4 items-stretch"
+          className="flex flex-col items-stretch gap-5 md:flex-row md:gap-4"
           onMouseLeave={() => setActive(null)}
         >
           {products.map((product, index) => {
             const open = active === index;
 
             return (
-              <Reveal
+              <div
                 key={product.title}
-                delay={index * 70}
-                className={`flex min-w-0 ${open ? "md:flex-[2.4]" : "md:flex-1"}`}
+                className="flex min-w-0"
+                style={{
+                  flexGrow: open ? 2.45 : 1,
+                  flexShrink: 1,
+                  flexBasis: 0,
+                  transition: `flex-grow 800ms ${ease}`,
+                }}
               >
-              <article
-                onMouseEnter={() => setActive(index)}
-                onFocus={() => setActive(index)}
-                onClick={() => setActive(open ? null : index)}
-                className={`group h-full w-full bg-white rounded-3xl overflow-hidden border shadow-xs flex flex-col min-w-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                  open
-                    ? "border-[#55BBB0]/40 shadow-xl"
-                    : "border-[#A9C1B8] hover:shadow-md"
-                }`}
-              >
-                <div className="relative h-52 md:h-56 overflow-hidden shrink-0">
-                  <Image
-                    alt={product.title}
-                    className={`w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      open ? "scale-110" : "scale-100"
-                    }`}
-                    src={product.image}
-                    fill
-                    sizes="(min-width: 768px) 40vw, 100vw"
-                  />
-                  <div className="absolute bottom-4 left-4 w-9 h-9 rounded-full bg-[#55BBB0] text-white flex items-center justify-center shadow-md">
-                    <Icon name="check" className="text-[20px]" />
-                  </div>
-                </div>
-
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-manrope text-lg md:text-xl font-bold text-[#385445] mb-3">
-                    {product.title}
-                  </h3>
-
-                  <p
-                    className={`font-inter text-gray-600 text-sm leading-relaxed transition-all duration-500 ${
-                      open ? "line-clamp-none" : "line-clamp-2"
-                    }`}
-                  >
-                    {product.description}
-                  </p>
-
-                  <div
-                    className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                <Reveal delay={index * 70} className="h-full w-full min-w-0">
+                  <article
+                    onMouseEnter={() => setActive(index)}
+                    onFocus={() => setActive(index)}
+                    onClick={() => setActive(open ? null : index)}
+                    className={`group flex h-full w-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-3xl border bg-white ${
                       open
-                        ? "grid-rows-[1fr] opacity-100 mt-6"
-                        : "grid-rows-[0fr] opacity-0 mt-0"
+                        ? "border-[#55BBB0]/45 shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
+                        : "border-[#A9C1B8] hover:border-[#55BBB0]/30 hover:shadow-[0_14px_32px_rgba(85,187,176,0.16)]"
                     }`}
+                    style={{
+                      transition: `border-color 600ms ${ease}, box-shadow 600ms ${ease}, transform 600ms ${ease}`,
+                      transform: open ? "translateY(-3px)" : "translateY(0)",
+                    }}
                   >
-                    <div className="overflow-hidden">
-                      <a
-                        className="inline-flex items-center gap-1.5 text-[#55BBB0] font-semibold text-sm hover:text-[#20AA45]"
-                        href={product.href}
+                    <div className="relative h-52 shrink-0 overflow-hidden md:h-56">
+                      <Image
+                        alt={product.title}
+                        className="h-full w-full object-cover will-change-transform"
+                        src={product.image}
+                        fill
+                        sizes="(min-width: 768px) 40vw, 100vw"
+                        style={{
+                          transform: open ? "scale(1.08)" : "scale(1)",
+                          transition: `transform 850ms ${ease}`,
+                        }}
+                      />
+                      <div
+                        className="absolute bottom-4 left-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#55BBB0] text-white shadow-md"
+                        style={{
+                          transform: open ? "scale(1.06)" : "scale(1)",
+                          transition: `transform 600ms ${ease}`,
+                        }}
                       >
-                        <span>{product.cta}</span>
-                        <Icon
-                          name="arrow_forward"
-                          className="text-[18px] transition-transform duration-300 group-hover:translate-x-1"
-                        />
-                      </a>
+                        <Icon name="check" className="text-[20px]" />
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </article>
-              </Reveal>
+
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="mb-3 font-manrope text-lg font-bold text-[#385445] md:text-xl">
+                        {product.title}
+                      </h3>
+
+                      <p
+                        className="font-inter text-sm leading-relaxed text-gray-600"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitBoxOrient: "vertical" as const,
+                          WebkitLineClamp: open ? 8 : 2,
+                          overflow: "hidden",
+                        }}
+                      >
+                        {product.description}
+                      </p>
+
+                      <div
+                        className="grid"
+                        style={{
+                          gridTemplateRows: open ? "1fr" : "0fr",
+                          opacity: open ? 1 : 0,
+                          marginTop: open ? 24 : 0,
+                          transition: `grid-template-rows 650ms ${ease}, opacity 450ms ${ease}, margin-top 650ms ${ease}`,
+                        }}
+                      >
+                        <div className="overflow-hidden">
+                          <a
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#55BBB0] transition-colors duration-300 hover:text-[#20AA45]"
+                            href={product.href}
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            <span>{product.cta}</span>
+                            <Icon
+                              name="arrow_forward"
+                              className="text-[18px] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              </div>
             );
           })}
         </div>

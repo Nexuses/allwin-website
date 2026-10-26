@@ -50,6 +50,11 @@
     font-family: var(--font-inter);
   }
 
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
   h1,
   h2,
   h3,

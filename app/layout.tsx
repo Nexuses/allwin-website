@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Manrope } from "next/font/google";
 import ScrollToHero from "@/components/ScrollToHero";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Script>
       </head>
       <body className="bg-surface text-[#26332F] antialiased selection:bg-[#55BBB0]/30 selection:text-[#26332F]">
+        <SmoothScroll />
         <ScrollToHero />
         {children}
       </body>

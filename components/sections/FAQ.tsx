@@ -1,8 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Icon from "../Icon";
 import Reveal from "../about/Reveal";
+
+const FAQ_IMAGE =
+  "https://assets.nexuses.xyz/Confused_business_character_compressed_1792993768345_gmck.jpg";
 
 const faqs = [
   {
@@ -36,7 +40,6 @@ type FaqItem = { question: string; answer: string };
 
 export default function FAQ({
   title = "Frequently Asked Questions",
-  intro = "Clear answers to common questions about mortgages and finance in the UAE.",
   items = faqs,
 }: {
   eyebrow?: string;
@@ -47,63 +50,80 @@ export default function FAQ({
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full py-20 lg:py-28 bg-white" id="faq">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-        <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
-          <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-3">
-            {title}
-          </h2>
-          <p className="font-inter text-gray-600 text-base sm:text-lg">{intro}</p>
-        </Reveal>
+    <section className="w-full bg-[#F3EFE3] py-20 lg:py-28" id="faq">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-5">
+            <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#1F4F4A] sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+              {title}
+            </h2>
+            <p className="mt-3 font-manrope text-2xl font-semibold tracking-tight text-[#55BBB0] sm:text-3xl lg:text-4xl lg:leading-[1.15]">
+              Clear answers.
+            </p>
+            <div className="relative mt-8 aspect-square w-full max-w-[420px] overflow-hidden rounded-[2rem] bg-white/60 shadow-[0_18px_40px_rgba(31,79,74,0.12)] sm:mt-10">
+              <Image
+                src={FAQ_IMAGE}
+                alt="Confused business character asking questions"
+                fill
+                className="object-contain object-center p-4 sm:p-6"
+                sizes="(min-width: 1024px) 420px, 90vw"
+              />
+            </div>
+          </Reveal>
 
-        <div className="max-w-3xl mx-auto flex flex-col gap-3">
-          {items.map((faq, index) => {
-            const isOpen = openIndex === index;
+          <div className="lg:col-span-7 lg:mt-[150px]">
+            <div className="border-t border-[#A9C1B8]/70">
+              {items.map((faq, index) => {
+                const isOpen = openIndex === index;
 
-            return (
-              <Reveal key={faq.question} delay={index * 70}>
-              <div
-                className={`rounded-2xl border transition-all duration-500 ease-out ${
-                  isOpen
-                    ? "border-[#55BBB0]/40 bg-[#A9C1B8]/50"
-                    : "border-[#A9C1B8] bg-[#F3EFE3] hover:border-[#55BBB0]/25"
-                }`}
-              >
-                <button
-                  type="button"
-                  className="faq-toggle w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-5 shadow-none"
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                >
-                  <span className="font-manrope text-base sm:text-lg font-semibold text-[#385445] pr-2">
-                    {faq.question}
-                  </span>
-                  <span
-                    className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      isOpen
-                        ? "bg-[#55BBB0] text-[#1F4F4A] rotate-180"
-                        : "bg-white text-[#55BBB0] border border-[#A9C1B8]"
-                    }`}
-                  >
-                    <Icon name="expand_more" className="text-[22px]" />
-                  </span>
-                </button>
+                return (
+                  <Reveal key={faq.question} delay={index * 60}>
+                    <div className="border-b border-[#A9C1B8]/70">
+                      <button
+                        type="button"
+                        className="faq-toggle flex w-full items-start justify-between gap-4 py-5 text-left shadow-none transition-colors duration-300 sm:py-6"
+                        aria-expanded={isOpen}
+                        onClick={() => setOpenIndex(isOpen ? null : index)}
+                      >
+                        <span
+                          className={`font-manrope text-base font-bold leading-snug transition-colors duration-300 sm:text-lg ${
+                            isOpen ? "text-[#1F4F4A]" : "text-[#385445]"
+                          }`}
+                        >
+                          {faq.question}
+                        </span>
+                        <span
+                          className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                            isOpen
+                              ? "bg-[#55BBB0] text-[#1F4F4A]"
+                              : "bg-transparent text-[#1F4F4A] hover:bg-[#55BBB0]/15"
+                          }`}
+                          aria-hidden="true"
+                        >
+                          <Icon
+                            name={isOpen ? "close" : "add"}
+                            className="text-[22px]"
+                          />
+                        </span>
+                      </button>
 
-                <div
-                  className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="font-inter text-gray-600 text-sm sm:text-base leading-relaxed px-5 sm:px-6 pb-5 pt-0">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              </Reveal>
-            );
-          })}
+                      <div
+                        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="pb-5 font-inter text-sm leading-relaxed text-[#26332F]/75 sm:pb-6 sm:text-base sm:leading-7">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

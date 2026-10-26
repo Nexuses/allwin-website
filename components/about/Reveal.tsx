@@ -41,10 +41,15 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
-      style={{ transitionDelay: shown ? `${delay}ms` : "0ms" }}
+      suppressHydrationWarning
+      className={[
+        "transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={shown && delay > 0 ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
     </div>

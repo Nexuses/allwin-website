@@ -3,7 +3,7 @@ import Icon from "../Icon";
 import Reveal from "../about/Reveal";
 
 const ABOUT_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDKtZT39uMrOzvhqQuy0mYnL_69NroPhn_MXs1uib68T_JcdMr0-9jqs-AKJrZbLr7H7ZPHkjuBaOyeya8O4zlAmqFEX8EfZ1ofVoZCJZdULGAm0uyp_W4sm8AWOauiTRqsuzce4c_LG_45VCfe3GonXld39FhTR_j8jK5JNBDdBEysTiswku9Rum_7ZJXm8QqjpeTIHfxgLtBME6qH_iFtbdyXaa5ZlLNTelF7ojSk05rulWEfGjhX";
+  "https://assets.nexuses.xyz/849e6238fc4b9a326589fc6f212bf90f_1792734932834_e21q.jpg";
 
 const highlights = [
   { icon: "verified", title: "100% Impartial", subtitle: "Zero broker bias" },
