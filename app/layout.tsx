@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "AllWin Finances | Seamless Finance Solutions Under One Roof",
   description:
     "Access tailored mortgage, business finance and wealth solutions with experts who understand UAE markets, banking requirements and your long-term goals.",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
