@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/about/Reveal";
 import FAQ from "@/components/sections/FAQ";
-import { audiences, services, smeFaqs, steps } from "./content";
+import { services, smeFaqs, steps } from "./content";
+import WhoWeHelp from "./WhoWeHelp";
 
 const HERO =
   "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/midsection-colleagues-analyzing-graphs-desk.jpg";
@@ -320,27 +321,7 @@ export default function SmeView() {
 
       <ServiceStack />
 
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-          <Reveal className="mb-8 max-w-2xl">
-            <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">Who We Help</h2>
-          </Reveal>
-          <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {audiences.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70} className="h-full">
-              <article
-                className="theme-card group flex h-full flex-col rounded-[2rem] bg-[#1F4F4A] p-6 text-white transition-all duration-300 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)] sm:p-7"
-              >
-                <span className="icon-chip mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#55BBB0]/15 text-[#55BBB0]">
-                  <Icon name={item.icon} className="text-[24px]" />
-                </span>
-                <h3 className="font-manrope text-xl font-bold leading-snug">{item.title}</h3>
-              </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhoWeHelp />
 
       <ProcessLine />
 

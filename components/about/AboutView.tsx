@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "@/components/CountUp";
 import Icon from "@/components/Icon";
+import StackSpread, {
+  type StackSpreadCard,
+} from "@/components/ui/stack-spread";
 import Reveal from "./Reveal";
 
 function StickyCover({ children }: { children: React.ReactNode }) {
@@ -63,12 +66,114 @@ const LEADERSHIP =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuB51E08sqpKpZ_DmbjQ1Kre5Tbr2ihcw7AkZexhCdDN2u9V4zEwJ_NxdPpLByOQM1qdeAnWHNgNX5IHAfMdK9BxjmdBymLr6yMbvp7oUaihX9C5oRZI7F5k-xp9PWL1U_8KsU-CHp_qJylSV85Buzas6WgjrsCdcf5WYdUtg_Sy0mzegAX1mJVGL-fupbsnh6eaIOpAbLRsRk_9oo8MZNsyODSQ5nufju0Nd3YCFhlRwcop4tWyz4oN";
 
 const expertise = [
-  { icon: "payments", label: "Consumer finance" },
-  { icon: "account_tree", label: "Product structuring" },
-  { icon: "trending_up", label: "Sales" },
-  { icon: "verified_user", label: "Anti-money laundering (AML)" },
-  { icon: "gavel", label: "Regulatory compliance" },
-  { icon: "apartment", label: "Mortgage, SME and corporate finance" },
+  {
+    icon: "payments",
+    label: "Consumer finance",
+    image:
+      "https://assets.nexuses.xyz/Modern_Office_Document_Signing_1793085038867_q25x.png",
+  },
+  {
+    icon: "account_tree",
+    label: "Product structuring",
+    image:
+      "https://assets.nexuses.xyz/product_structuring_1793084475473_il8s.jpg",
+  },
+  {
+    icon: "trending_up",
+    label: "Sales",
+    image: "https://assets.nexuses.xyz/sales_1793084475473_wle1.jpg",
+  },
+  {
+    icon: "verified_user",
+    label: "Anti-money laundering (AML)",
+    image: "https://assets.nexuses.xyz/AML_1793084475473_ml4d.jpg",
+  },
+  {
+    icon: "gavel",
+    label: "Regulatory compliance",
+    image: "https://assets.nexuses.xyz/Regulatory_1793084475473_n1qu.jpg",
+  },
+  {
+    icon: "apartment",
+    label: "Mortgage, SME and corporate finance",
+    image: "https://assets.nexuses.xyz/Mortgage_1793084475473_tp3j.jpg",
+  },
+];
+
+/** Scatter layout for the six expertise cards (desktop + touch). */
+const expertiseCards: StackSpreadCard[] = [
+  {
+    item: {
+      src: expertise[0].image,
+      alt: expertise[0].label,
+      title: expertise[0].label,
+    },
+    stackOffset: { x: -10, y: -8 },
+    stackRotate: -14,
+    target: { x: -30, y: -28, rotate: -4, scale: 0.92, w: 20, h: 28 },
+    targetSm: { x: -22, y: -36 },
+    z: 2,
+  },
+  {
+    item: {
+      src: expertise[1].image,
+      alt: expertise[1].label,
+      title: expertise[1].label,
+    },
+    stackOffset: { x: 12, y: -10 },
+    stackRotate: 16,
+    target: { x: 30, y: -26, rotate: 3, scale: 0.88, w: 18, h: 30 },
+    targetSm: { x: 22, y: -36 },
+    z: 3,
+  },
+  {
+    item: {
+      src: expertise[2].image,
+      alt: expertise[2].label,
+      title: expertise[2].label,
+    },
+    stackOffset: { x: -14, y: 2 },
+    stackRotate: -6,
+    target: { x: -34, y: 4, rotate: -2, scale: 0.9, w: 17, h: 28 },
+    targetSm: { x: -22, y: -8 },
+    z: 4,
+  },
+  {
+    item: {
+      src: expertise[3].image,
+      alt: expertise[3].label,
+      title: expertise[3].label,
+    },
+    stackOffset: { x: 16, y: 0 },
+    stackRotate: 8,
+    target: { x: 34, y: 6, rotate: 2, scale: 0.9, w: 18, h: 28 },
+    targetSm: { x: 22, y: -8 },
+    z: 5,
+  },
+  {
+    item: {
+      src: expertise[4].image,
+      alt: expertise[4].label,
+      title: expertise[4].label,
+    },
+    stackOffset: { x: -6, y: 10 },
+    stackRotate: 5,
+    target: { x: -22, y: 32, rotate: -3, scale: 0.88, w: 20, h: 26 },
+    targetSm: { x: -22, y: 28 },
+    z: 6,
+  },
+  {
+    item: {
+      src: expertise[5].image,
+      alt: expertise[5].label,
+      title: expertise[5].label,
+    },
+    stackOffset: { x: 8, y: 12 },
+    stackRotate: -5,
+    target: { x: 22, y: 32, rotate: 4, scale: 0.9, w: 20, h: 26 },
+    targetSm: { x: 22, y: 28 },
+    z: 7,
+  },
 ];
 
 const approach = [
@@ -175,36 +280,17 @@ export default function AboutView() {
         </div>
       </section>
 
-      <section className="bg-white py-20 lg:py-28">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <Reveal className="max-w-2xl mb-12">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#1F4F4A] mb-3">
-              Experience
-            </p>
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-4">
-              Decades of Banking Experience
-            </h2>
-            <p className="font-inter text-[#26332F]/80 leading-relaxed">
-              Our team brings together decades of combined experience in
-              international and local banking. Our expertise includes:
-            </p>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {expertise.map((item, index) => (
-              <Reveal key={item.label} delay={index * 70}>
-                <div className="group h-full rounded-2xl border border-[#A9C1B8]/70 bg-[#F3EFE3] p-5 flex items-center gap-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-[#55BBB0]">
-                  <span className="w-12 h-12 rounded-xl bg-[#1F4F4A] text-[#55BBB0] flex items-center justify-center shrink-0 transition-colors duration-500 group-hover:bg-[#20AA45] group-hover:text-white">
-                    <Icon name={item.icon} className="text-[24px]" />
-                  </span>
-                  <h3 className="font-manrope font-semibold text-[#385445]">
-                    {item.label}
-                  </h3>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StackSpread
+        cards={expertiseCards}
+        title="Decades of Banking Experience"
+        subtitle="Our team brings together decades of combined experience in international and local banking. Our expertise includes:"
+        scrollLength={320}
+        bgColor="#ffffff"
+        textColor="#1F4F4A"
+        cardRadius={16}
+        stackScale={0.78}
+        showScrollHint
+      />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
