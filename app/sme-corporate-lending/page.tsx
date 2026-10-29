@@ -6,9 +6,9 @@ import SmeView from "@/components/sme/SmeView";
 import { smeFaqs } from "@/components/sme/content";
 
 export const metadata: Metadata = {
-  title: "SME & Corporate Lending in the UAE | AllWin Finances",
+  title: "SME & Corporate Financing in UAE | AllWin Finances",
   description:
-    "Business finance for SMEs and corporations in the UAE, including working capital, trade finance, invoice discounting and project finance.",
+    "AllWin Finances helps UAE businesses access SME loans, working capital, trade finance and corporate lending solutions through leading financial institutions.",
 };
 
 export default function SmeCorporateLendingPage() {

@@ -15,9 +15,9 @@ const socials = [
 ];
 
 export const metadata: Metadata = {
-  title: "Contact AllWin Finances | Business Bay, Dubai",
+  title: "Contact AllWin Finances | Mortgage & Finance Experts UAE",
   description:
-    "Talk to a mortgage and finance specialist in Business Bay, Dubai. Call, WhatsApp or send a message to AllWin Finances.",
+    "Contact AllWin Finances for expert assistance with mortgages, SME financing, corporate lending and financial solutions in Dubai and across the UAE.",
 };
 
 export default function ContactPage() {

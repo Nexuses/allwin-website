@@ -6,9 +6,9 @@ import ConsumerView from "@/components/consumer/ConsumerView";
 import { consumerFaqs } from "@/components/consumer/content";
 
 export const metadata: Metadata = {
-  title: "Personal Loans, Car Finance & Credit Cards in the UAE | AllWin Finances",
+  title: "Consumer Finance Solutions in UAE | AllWin Finances",
   description:
-    "Compare personal loans, car finance and credit cards in the UAE with AllWin Finances. Clear terms for salaried and self-employed people.",
+    "Explore flexible consumer finance solutions in the UAE with AllWin Finances. Get expert guidance on financing options tailored to your personal financial needs.",
 };
 
 export default function ConsumerFinancePage() {

@@ -7,9 +7,9 @@ import { ukBuyerPost } from "@/components/blog/posts";
 import Reveal from "@/components/about/Reveal";
 
 export const metadata: Metadata = {
-  title: "Dubai Mortgage & Finance Blog | AllWin Finances",
+  title: "UAE Banking, Mortgage & Finance Insights | AllWin Finances",
   description:
-    "Simple guides, tips and market insights for property buyers, investors and business owners in the UAE.",
+    "Explore expert insights on UAE mortgages, home loans, SME financing, banking trends and financial planning from the experienced team at AllWin Finances.",
 };
 
 export default function BlogPage() {

@@ -5,9 +5,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import ValueAddedView from "@/components/value-added/ValueAddedView";
 
 export const metadata: Metadata = {
-  title: "Value-Added Services in the UAE | AllWin Finances",
+  title: "Financial Advisory & Value-Added Services | AllWin Finances",
   description:
-    "Property advice, business setup, tax, wealth, insurance, relocation, visas and partner services in the UAE from AllWin Finances.",
+    "Discover value-added financial services from AllWin Finances. Get professional guidance and tailored financial solutions to support your needs in the UAE.",
 };
 
 export default function ValueAddedServicesPage() {

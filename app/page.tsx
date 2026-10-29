@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -12,6 +13,12 @@ import Refinance from "@/components/sections/Refinance";
 import TrackRecord from "@/components/sections/TrackRecord";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
+
+export const metadata: Metadata = {
+  title: "AllWin Finances | Mortgage & Financial Solutions in UAE",
+  description:
+    "AllWin Finances offers expert mortgage, SME and corporate financing solutions in the UAE. Compare banking options and find the right financial solution.",
+};
 
 export default function Home() {
   return (

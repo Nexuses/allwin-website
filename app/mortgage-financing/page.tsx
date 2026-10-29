@@ -6,9 +6,9 @@ import MortgageView from "@/components/mortgage/MortgageView";
 import { mortgageFaqs } from "@/components/mortgage/content";
 
 export const metadata: Metadata = {
-  title: "Mortgage Financing in Dubai & the UAE | AllWin Finances",
+  title: "Mortgage Financing in UAE | Home Loans | AllWin Finances",
   description:
-    "Compare Islamic and conventional home loans, refinancing, equity release and handover finance with AllWin Finances in Dubai.",
+    "Explore mortgage financing solutions in the UAE with AllWin Finances. Compare home loan options, refinancing solutions and competitive rates from leading banks.",
 };
 
 export default function MortgageFinancingPage() {

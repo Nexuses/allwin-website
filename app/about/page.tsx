@@ -5,9 +5,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import AboutView from "@/components/about/AboutView";
 
 export const metadata: Metadata = {
-  title: "About AllWin Finances | Mortgage & Finance Advisory in Dubai",
+  title: "About AllWin Finances | Trusted Financial Experts in UAE",
   description:
-    "AllWin Finances is a mortgage and finance advisory in Business Bay, Dubai. Meet the team and see how we help you compare UAE banks with clear, honest advice.",
+    "Learn about AllWin Finances, a team of experienced UAE banking professionals providing tailored mortgage, corporate lending and financial advisory solutions.",
 };
 
 export default function AboutPage() {
