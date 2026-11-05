@@ -50,8 +50,7 @@ export default function Hero() {
       />
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 pb-24 pt-32 sm:px-6 lg:px-10 lg:pb-32 lg:pt-40">
         <div className="max-w-2xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#55BBB0] backdrop-blur-md">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-[#55BBB0]" />
+          <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#55BBB0] backdrop-blur-md">
             UAE MORTGAGE &amp; FINANCIAL ADVISORY
           </div>
           <h1 className="mb-6 font-manrope text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl sm:leading-none lg:text-6xl">

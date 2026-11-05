@@ -30,7 +30,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full py-20 lg:py-28 bg-[#212529] text-white">
+    <section className="w-full py-20 lg:py-28 bg-[#3D464C] text-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <Reveal className="lg:col-span-5">
@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
               confidence.
             </p>
             <a
-              className="group/btn bg-[#55BBB0] hover:bg-[#20AA45] text-[#1e2227] font-semibold px-7 py-3 rounded-full transition-all duration-300 inline-flex items-center gap-2 text-sm shadow-md hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(85,187,176,0.45)]"
+              className="group/btn bg-[#55BBB0] hover:bg-[#20AA45] text-[#3D464C] font-semibold px-7 py-3 rounded-full transition-all duration-300 inline-flex items-center gap-2 text-sm shadow-md hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(85,187,176,0.45)]"
               href="/about"
             >
               <span>About Us</span>
@@ -56,7 +56,7 @@ export default function WhyChooseUs() {
             {reasons.map((reason, index) => (
               <Reveal key={reason.title} delay={index * 70} className="h-full">
               <div
-                className="why-card group h-full bg-[#1e2227] p-6 rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#55BBB0]/70 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
+                className="why-card group h-full bg-[#4A545B] p-6 rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#55BBB0]/70 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
               >
                 <div className="icon-chip w-12 h-12 rounded-xl bg-[#55BBB0]/10 text-[#55BBB0] flex items-center justify-center mb-4">
                   <Icon name={reason.icon} className="text-[26px]" />

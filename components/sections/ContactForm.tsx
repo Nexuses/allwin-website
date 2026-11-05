@@ -139,7 +139,7 @@ export default function ContactForm() {
         />
       </div>
       <button
-        className="w-full bg-[#55BBB0] hover:bg-[#44aba0] text-[#1e2227] font-bold py-3.5 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg text-sm tracking-wide disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full bg-[#55BBB0] hover:bg-[#44aba0] text-[#3D464C] font-bold py-3.5 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg text-sm tracking-wide disabled:cursor-not-allowed disabled:opacity-60"
         type="submit"
         disabled={status === "sending"}
       >

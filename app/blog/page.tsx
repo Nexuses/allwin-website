@@ -23,9 +23,6 @@ export default function BlogPage() {
             style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
           />
           <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[144px] pb-16 lg:pt-[176px] lg:pb-24">
-            <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-5">
-              Blog
-            </p>
             <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-5 max-w-3xl">
               Dubai Mortgage &amp; Finance Blog
             </h1>

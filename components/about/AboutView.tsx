@@ -219,10 +219,6 @@ export default function AboutView() {
         />
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[160px] pb-20 lg:pt-[192px] lg:pb-28 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
-            <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#20AA45] animate-pulse" />
-              About us
-            </p>
             <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-5">
               About AllWin Finances
             </h1>
@@ -258,9 +254,6 @@ export default function AboutView() {
       <section className="bg-[#F3EFE3] rounded-t-[2.5rem] shadow-[0_-28px_80px_rgba(0,0,0,0.28)]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#1F4F4A] mb-3">
-              Who we are
-            </p>
             <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-5">
               Who We Are
             </h2>
@@ -339,9 +332,6 @@ export default function AboutView() {
       <section className="bg-[#1F4F4A] text-white py-20 lg:py-28 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#55BBB0] mb-3">
-              Team
-            </p>
             <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-5">
               Meet Our Team
             </h2>
@@ -373,10 +363,14 @@ export default function AboutView() {
       <section className="py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 grid lg:grid-cols-2 gap-6">
           <Reveal>
-            <article className="h-full rounded-3xl bg-white border border-[#A9C1B8]/60 p-8 sm:p-10">
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#1F4F4A] mb-3">
-                Banks
-              </p>
+            <article className="group h-full rounded-3xl border border-[#A9C1B8]/60 bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#55BBB0]/55 hover:shadow-[0_24px_48px_rgba(85,187,176,0.22)] sm:p-10">
+              <Image
+                src="https://assets.nexuses.xyz/Frame_80_1793883303885_1s2f.png"
+                alt="Banks"
+                width={56}
+                height={56}
+                className="mb-4 h-14 w-14 object-contain transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:scale-110 group-hover:-rotate-3"
+              />
               <h2 className="font-manrope text-3xl font-bold text-[#385445] tracking-tight mb-4">
                 Our Bank Partners
               </h2>
@@ -387,10 +381,14 @@ export default function AboutView() {
             </article>
           </Reveal>
           <Reveal delay={100}>
-            <article className="h-full rounded-3xl border border-dashed border-[#1F4F4A]/40 bg-[#F3EFE3] p-8 sm:p-10">
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#1F4F4A] mb-3">
-                Trust
-              </p>
+            <article className="group h-full rounded-3xl border border-dashed border-[#1F4F4A]/40 bg-[#F3EFE3] p-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-solid hover:border-[#55BBB0]/70 hover:bg-white hover:shadow-[0_24px_48px_rgba(85,187,176,0.22)] sm:p-10">
+              <Image
+                src="https://assets.nexuses.xyz/handshake_1_1793883303885_51en.png"
+                alt="Trust"
+                width={66}
+                height={66}
+                className="mb-4 h-[66px] w-[66px] object-contain transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3"
+              />
               <h2 className="font-manrope text-3xl font-bold text-[#385445] tracking-tight mb-4">
                 Licences &amp; Registration
               </h2>

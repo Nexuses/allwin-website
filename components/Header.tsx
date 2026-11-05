@@ -90,7 +90,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto max-w-[1400px] px-3 sm:px-4 lg:px-6 pt-3">
-        <div className="flex h-16 items-center justify-between px-3 sm:px-6 lg:px-8 rounded-2xl bg-[#1e2227]/85 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.28)]">
+        <div className="flex h-16 items-center justify-between px-3 sm:px-6 lg:px-8 rounded-2xl bg-[#3D464C]/85 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.28)]">
           <a className="flex items-center py-2 bg-transparent shrink-0" href="/">
             <Image
               alt="AllWin Finances"
@@ -111,8 +111,8 @@ export default function Header() {
                 Home
               </a>
 
-              <div className="relative group py-2">
-                <button className="text-white/85 group-hover:text-[#55BBB0] font-medium text-[15px] flex items-center gap-1 px-3.5 py-2 rounded-full transition-colors hover:bg-white/5">
+              <div className="relative group">
+                <button className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-[#55BBB0]">
                   <span>Services</span>
                   <Icon
                     name="expand_more"
@@ -126,7 +126,7 @@ export default function Header() {
                       <div className="flex flex-col gap-4">
                         {financeServices.map((item) => (
                           <a key={item.title} href={item.href} className="group/item block">
-                            <span className="font-manrope font-bold text-[#212529] text-[15px] leading-snug block group-hover/item:text-[#1F4F4A]">
+                            <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block group-hover/item:text-[#1F4F4A]">
                               {item.title}
                             </span>
                             <span className="font-inter text-sm text-[#6c757d] leading-snug block mt-0.5">
@@ -140,7 +140,7 @@ export default function Header() {
                       <p className="font-inter text-sm text-[#6c757d] mb-4">Support</p>
                       {supportServices.map((item) => (
                         <a key={item.title} href={item.href} className="group/item block">
-                          <span className="font-manrope font-bold text-[#212529] text-[15px] leading-snug block group-hover/item:text-[#1F4F4A]">
+                          <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block group-hover/item:text-[#1F4F4A]">
                             {item.title}
                           </span>
                           <span className="font-inter text-sm text-[#6c757d] leading-snug block mt-0.5">
@@ -165,7 +165,7 @@ export default function Header() {
             </nav>
 
             <a
-              className="hidden lg:inline-flex bg-[#55BBB0] hover:bg-[#44aba0] text-[#1e2227] font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-[0_8px_24px_rgba(85,187,176,0.35)] hover:-translate-y-0.5 items-center gap-1.5 whitespace-nowrap"
+              className="hidden lg:inline-flex bg-[#55BBB0] hover:bg-[#44aba0] text-[#3D464C] font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-[0_8px_24px_rgba(85,187,176,0.35)] hover:-translate-y-0.5 items-center gap-1.5 whitespace-nowrap"
               href="/contact"
             >
               <span>Get Free Consultation</span>
@@ -185,7 +185,7 @@ export default function Header() {
         </div>
 
         {menuOpen ? (
-          <div className="mt-2 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-2xl border border-white/10 bg-[#1e2227]/95 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:hidden">
+          <div className="mt-2 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-2xl border border-white/10 bg-[#3D464C]/95 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:hidden">
             <nav className="flex flex-col" aria-label="Mobile navigation">
               <a
                 href="/"
@@ -266,7 +266,7 @@ export default function Header() {
               <a
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#55BBB0] px-6 py-3 text-sm font-semibold text-[#1e2227] shadow-md transition-all duration-300 hover:bg-[#44aba0]"
+                className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#55BBB0] px-6 py-3 text-sm font-semibold text-[#3D464C] shadow-md transition-all duration-300 hover:bg-[#44aba0]"
               >
                 <span>Get Free Consultation</span>
                 <Icon name="arrow_forward" className="text-[18px]" />

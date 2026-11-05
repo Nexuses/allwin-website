@@ -16,6 +16,13 @@ import {
 const ADVISOR =
   "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/businessman-using-smartphone-calculator-with-banking-financial-holographic-icons-digital-financial-management-concept.jpg";
 
+const commercialImages = [
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
+];
+
 function useScrub(ref: React.RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0);
 
@@ -49,6 +56,90 @@ function useScrub(ref: React.RefObject<HTMLElement | null>) {
   }, [ref]);
 
   return progress;
+}
+
+function CommercialFinance() {
+  const [active, setActive] = useState(0);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const count = commercialOptions.length;
+  const total = String(count).padStart(2, "0");
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      let next = 0;
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        if (card.getBoundingClientRect().top <= 128 + index * 16) next = index;
+      });
+      setActive(next);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <section id="commercial" className="py-16 lg:py-24">
+      <div className="mx-auto grid max-w-[1440px] items-start gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-10">
+        <div>
+          <h2 className="mb-8 max-w-[12ch] font-manrope text-4xl font-bold tracking-tight text-[#385445] sm:text-5xl lg:text-[3.4rem] lg:leading-[1.05]">
+            Commercial &amp; Building Finance
+          </h2>
+          <div>
+            {commercialOptions.map((option, index) => (
+              <article
+                key={option.title}
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
+                className="sticky mb-6"
+                style={{ top: 112 + index * 16, zIndex: index + 1 }}
+              >
+                <div className="rounded-[1.35rem] bg-[#1F4F4A] px-6 py-6 text-white shadow-[0_18px_40px_rgba(31,79,74,0.2)] sm:px-7 sm:py-7">
+                  <p className="font-inter text-sm font-medium tracking-[0.14em] text-[#55BBB0]">
+                    {String(index + 1).padStart(2, "0")}
+                    <span className="mx-2 text-white/40">/</span>
+                    {total}
+                  </p>
+                  <h3 className="mt-4 font-manrope text-[1.65rem] font-bold leading-snug tracking-tight">
+                    {option.title}
+                  </h3>
+                  <p className="mt-3 max-w-[42ch] font-inter text-[15px] leading-relaxed text-white/80 sm:text-base">
+                    {option.text}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="sticky top-28 self-start">
+          <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem] bg-[#E7EFEA] lg:aspect-[6/5]">
+            {commercialImages.map((src, index) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={src}
+                src={src}
+                alt={commercialOptions[index].title}
+                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out"
+                style={{ opacity: index === active ? 1 : 0 }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function BulletList({ items, light = false }: { items: string[]; light?: boolean }) {
@@ -315,9 +406,6 @@ export default function MortgageView() {
         />
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[144px] pb-16 lg:pt-[176px] lg:pb-24 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#55BBB0] text-xs font-semibold uppercase tracking-wider mb-5">
-              Mortgage financing
-            </p>
             <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-5">
               Mortgage Financing in Dubai &amp; the UAE
             </h1>
@@ -405,7 +493,6 @@ export default function MortgageView() {
           <Reveal>
           <div className="rounded-[2rem] bg-[#385445] text-white p-8 sm:p-12 grid lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#55BBB0] mb-3">Non-resident</p>
               <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight">
                 Non-Resident Mortgage Loans in the UAE
               </h2>
@@ -423,28 +510,7 @@ export default function MortgageView() {
         </div>
       </section>
 
-      <section id="commercial" className="py-16 lg:py-24">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <Reveal className="max-w-2xl mb-8">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#1F4F4A] mb-3">Commercial</p>
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight">
-              Commercial &amp; Building Finance
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-2 gap-4 auto-rows-fr">
-            {commercialOptions.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70} className="h-full">
-              <article
-                className="theme-card h-full rounded-[2rem] bg-[#1F4F4A] text-white p-6 sm:p-8 transition-all duration-300 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
-              >
-                <h2 className="font-manrope text-2xl font-bold mb-3">{item.title}</h2>
-                <p className="font-inter text-white/80 leading-relaxed">{item.text}</p>
-              </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CommercialFinance />
 
       <section className="pb-16 lg:pb-24">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">

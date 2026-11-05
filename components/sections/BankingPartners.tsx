@@ -48,7 +48,7 @@ export default function BankingPartners() {
     <section className="relative z-10 w-full py-16 lg:py-20 bg-[#F8F9FA] rounded-t-[2rem] sm:rounded-t-[2.5rem] border-t border-[#E9ECEF] shadow-[0_-24px_80px_rgba(0,0,0,0.28)]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
         <Reveal>
-        <h2 className="font-manrope text-2xl sm:text-3xl lg:text-4xl font-bold text-[#212529] tracking-tight mb-10">
+        <h2 className="font-manrope text-2xl sm:text-3xl lg:text-4xl font-bold text-[#3D464C] tracking-tight mb-10">
           We Work With Leading Banks Across the UAE
         </h2>
         </Reveal>

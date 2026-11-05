@@ -37,7 +37,7 @@ export default function Contact() {
               <p className="inline-flex w-fit items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8F5] text-[#1F4F4A] text-xs font-semibold uppercase tracking-wider mb-4">
                 Contact Us
               </p>
-              <h3 className="font-manrope text-3xl font-bold text-[#212529] tracking-tight mb-3">
+              <h3 className="font-manrope text-3xl font-bold text-[#3D464C] tracking-tight mb-3">
                 Talk to Our Team
               </h3>
               <p className="font-inter text-base text-gray-600 leading-relaxed max-w-md">
@@ -60,7 +60,7 @@ export default function Contact() {
                       <Icon name={detail.icon} className="text-[24px]" />
                     </span>
                     <span>
-                      <span className="block font-manrope text-base font-bold text-[#212529]">
+                      <span className="block font-manrope text-base font-bold text-[#3D464C]">
                         {detail.title}
                       </span>
                       <span className="block font-inter text-sm text-gray-600">
@@ -81,7 +81,7 @@ export default function Contact() {
             delay={100}
             className="lg:col-span-7 h-full bg-white p-8 sm:p-10 rounded-3xl border border-[#E9ECEF] shadow-xs"
           >
-            <h3 className="font-manrope text-2xl font-bold text-[#212529] mb-2">
+            <h3 className="font-manrope text-2xl font-bold text-[#3D464C] mb-2">
               Get In Touch
             </h3>
             <p className="font-inter text-sm text-gray-600 mb-6">

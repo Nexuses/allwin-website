@@ -61,7 +61,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={100} className="lg:col-span-6 order-1 lg:order-2">
             <Eyebrow>Our Foundation</Eyebrow>
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#212529] tracking-tight mb-2">
+            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#3D464C] tracking-tight mb-2">
               About AllWin Finances
             </h2>
             <h3 className="font-manrope text-xl font-semibold text-[#55BBB0] mb-6">
@@ -82,7 +82,7 @@ export default function About() {
                     <Icon name={item.icon} className="text-[22px]" />
                   </span>
                   <div>
-                    <h4 className="text-sm font-bold text-[#212529]">
+                    <h4 className="text-sm font-bold text-[#3D464C]">
                       {item.title}
                     </h4>
                     <p className="text-xs text-gray-500">{item.subtitle}</p>

@@ -152,9 +152,6 @@ export default function ValueAddedView() {
           style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
         />
         <div className="relative mx-auto max-w-[1440px] px-4 pt-[160px] pb-20 sm:px-6 lg:px-10 lg:pt-[192px] lg:pb-28">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#55BBB0]">
-            Beyond finance
-          </p>
           <h1 className="max-w-4xl font-manrope text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
             Value-Added Services: Property, Business Setup &amp; Investment Advice in the UAE
           </h1>

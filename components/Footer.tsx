@@ -22,7 +22,7 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#1e2227] text-white pt-16 pb-12 border-t border-white/10">
+    <footer className="w-full bg-[#3D464C] text-white pt-16 pb-12 border-t border-white/10">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
           <div className="md:col-span-4">
@@ -50,7 +50,7 @@ export default function Footer() {
                 <a
                   key={social.label}
                   aria-label={social.label}
-                  className="icon-chip w-9 h-9 rounded-full bg-white/10 hover:bg-[#55BBB0] hover:text-[#1e2227] flex items-center justify-center transition-colors text-white"
+                  className="icon-chip w-9 h-9 rounded-full bg-white/10 hover:bg-[#55BBB0] hover:text-[#3D464C] flex items-center justify-center transition-colors text-white"
                   href={social.href}
                 >
                   <Icon name={social.icon} className="text-[18px]" />
@@ -79,11 +79,11 @@ export default function Footer() {
             <h4 className="font-manrope text-base font-bold text-white mb-4">
               Directions
             </h4>
-            <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg bg-gray-800 max-w-xs">
+            <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg bg-[#4A545B] max-w-xs">
               <OfficeMap className="w-full h-48 border-0" />
               <div className="absolute top-3 left-3">
                 <a
-                  className="bg-white text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-sm shadow-md flex items-center gap-1 hover:bg-gray-100 transition-colors"
+                  className="bg-white text-[#3D464C] text-xs font-semibold px-3 py-1.5 rounded-sm shadow-md flex items-center gap-1 hover:bg-gray-100 transition-colors"
                   href={OFFICE_MAP_URL}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -92,7 +92,7 @@ export default function Footer() {
                   <Icon name="open_in_new" className="text-[14px]" />
                 </a>
               </div>
-              <div className="p-3 bg-[#212529]">
+              <div className="p-3 bg-[#4A545B]">
                 <span className="text-xs font-medium text-gray-300 block">
                   AllWin Finances • Business Bay, Dubai
                 </span>

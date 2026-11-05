@@ -173,9 +173,6 @@ export default function ConsumerView() {
         />
         <div className="relative mx-auto grid max-w-[1440px] items-center gap-12 px-4 pt-[144px] pb-16 sm:px-6 lg:grid-cols-12 lg:px-10 lg:pt-[176px] lg:pb-24">
           <div className="lg:col-span-7">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#55BBB0]">
-              Consumer finance
-            </p>
             <h1 className="mb-5 font-manrope text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
               Personal Loans, Car Finance &amp; Credit Cards in the UAE
             </h1>

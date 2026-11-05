@@ -20,7 +20,7 @@ const stats = [
 export default function TrackRecord() {
   return (
     <section
-      className="relative w-full py-20 bg-[#1e2227] text-white overflow-hidden"
+      className="relative w-full py-20 bg-[#3D464C] text-white overflow-hidden"
       id="stats"
     >
       <div
