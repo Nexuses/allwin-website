@@ -7,7 +7,8 @@ const HERO_POSTER =
   "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/businessman-using-smartphone-calculator-with-banking-financial-holographic-icons-digital-financial-management-concept.jpg";
 
 /** Finance-themed stock clip: investor reviewing charts on a tablet */
-const HERO_VIDEO = "https://assets.mixkit.co/videos/45706/45706-720.mp4";
+const HERO_VIDEO =
+  "https://assets.nexuses.xyz/Business_Meeting_Handshake_compressed_1793942792266_m1d6.mp4";
 
 export default function Hero() {
   const [reduceMotion, setReduceMotion] = useState(false);
