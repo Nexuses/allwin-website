@@ -193,8 +193,8 @@ export default function Testimonials() {
                 }
 
                 let transform = `translateY(${pose.y}px) rotateZ(${pose.rotate}deg) scale(${pose.scale})`;
-                let opacity = pose.opacity;
-                let zIndex = pose.z;
+                let opacity: number = pose.opacity;
+                let zIndex: number = pose.z;
 
                 if (isExiting) {
                   const lift = flipDir === 1 ? -160 : 130;
