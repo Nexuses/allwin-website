@@ -59,7 +59,7 @@ export default function TrackRecord() {
 
         <Reveal
           delay={120}
-          className="relative z-10 mt-8 sm:mt-10 lg:-mt-14"
+          className="relative z-10 mt-14 sm:mt-16 lg:mt-20"
         >
           {/* Accent band sits behind the stats card */}
           <div
