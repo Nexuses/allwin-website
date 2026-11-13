@@ -88,6 +88,7 @@
     font-feature-settings: "liga";
     -webkit-font-smoothing: antialiased;
   }
+
 }
 
 ::-webkit-scrollbar {
@@ -147,4 +148,54 @@
 
 .group\/marquee:hover .animate-marquee-track {
   animation-play-state: paused;
+}
+
+@keyframes orbit-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(10px, -14px) rotate(8deg);
+  }
+}
+
+@keyframes orbit-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-12px, 8px) rotate(-10deg);
+  }
+}
+
+@keyframes orbit-drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8px, 10px) scale(1.04);
+  }
+}
+
+.animate-orbit-a {
+  animation: orbit-drift-a 18s ease-in-out infinite;
+}
+
+.animate-orbit-b {
+  animation: orbit-drift-b 22s ease-in-out infinite;
+}
+
+.animate-orbit-c {
+  animation: orbit-drift-c 26s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit-a,
+  .animate-orbit-b,
+  .animate-orbit-c {
+    animation: none;
+  }
 }

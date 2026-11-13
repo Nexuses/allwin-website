@@ -34,7 +34,7 @@ export default function Refinance() {
               smooth and stress-free.
             </p>
             <a
-              className="bg-[#55BBB0] hover:bg-[#20AA45] text-[#1F4F4A] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center gap-2 text-sm"
+              className="inline-flex items-center gap-2 rounded-full bg-[#1F4F4A] px-7 py-3.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#0C665C] hover:shadow-lg"
               href="#contact"
             >
               <span>Check Your Refinance Options</span>

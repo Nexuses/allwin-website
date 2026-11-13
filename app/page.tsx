@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyHero from "@/components/sections/StickyHero";
+import StickyStack from "@/components/sections/StickyStack";
 import FeatureBar from "@/components/sections/FeatureBar";
 import About from "@/components/sections/About";
 import BankingPartners from "@/components/sections/BankingPartners";
@@ -30,10 +31,8 @@ export default function Home() {
           <div className="relative z-10">
             <BankingPartners />
             <FeatureBar />
-            <About />
-            <CoreExpertise />
-            <WhyChooseUs />
-            <Testimonials />
+            <StickyStack pin={<About />} overlay={<CoreExpertise />} />
+            <StickyStack pin={<WhyChooseUs />} overlay={<Testimonials />} />
             <Refinance />
             <TrackRecord />
             <FAQ />

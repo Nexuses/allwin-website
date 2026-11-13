@@ -112,7 +112,7 @@ function FeatureCard({
     <a
       href={feature.href}
       data-feature={feature.id}
-      className={`group relative overflow-hidden rounded-2xl p-4 flex flex-col self-center h-auto min-h-[168px] text-left text-white shadow-xs will-change-transform hover:shadow-[0_16px_36px_rgba(85,187,176,0.35)] ${feature.place}`}
+      className={`group relative flex h-auto min-h-[220px] flex-col self-center overflow-hidden rounded-2xl border border-white/35 bg-[#10221F] p-5 text-left text-white shadow-[0_18px_40px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.08)] will-change-transform transition-shadow duration-300 hover:border-[#55BBB0]/70 hover:shadow-[0_22px_48px_rgba(0,0,0,0.42),0_0_0_1px_rgba(85,187,176,0.45)] sm:min-h-[240px] sm:p-6 ${feature.place}`}
       style={{
         transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
         opacity,
@@ -134,16 +134,16 @@ function FeatureCard({
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-[#1F4F4A]/92 via-[#1F4F4A]/55 to-[#1F4F4A]/25 transition-colors duration-300 group-hover:from-[#1F4F4A]/95 group-hover:via-[#1F4F4A]/60"
+        className="absolute inset-0 bg-gradient-to-t from-black/85 via-[#1F4F4A]/70 to-black/35 transition-colors duration-300 group-hover:from-black/90 group-hover:via-[#1F4F4A]/75"
       />
-      <div className="relative z-10 mt-[10px] flex h-full flex-col">
-        <h3 className="font-manrope text-base font-bold leading-snug text-white">
+      <div className="relative z-10 mt-auto flex h-full flex-col justify-end">
+        <h3 className="font-manrope text-base font-bold leading-snug text-white drop-shadow-sm sm:text-lg">
           {feature.title}
         </h3>
-        <p className="mt-2 font-inter text-sm font-normal leading-snug text-white/85">
+        <p className="mt-2 font-inter text-sm font-normal leading-snug text-white/90">
           {feature.description}
         </p>
-        <div className="mt-auto flex justify-end pt-3">
+        <div className="mt-3 flex justify-end">
           <Icon
             name="arrow_forward"
             className="text-[18px] text-[#55BBB0] transition-transform duration-300 group-hover:translate-x-1"
@@ -236,10 +236,10 @@ export default function FeatureBar() {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-16 lg:py-24 overflow-hidden"
+      className="w-full overflow-hidden py-20 lg:py-32"
       style={{
         background:
-          "linear-gradient(135deg, #0C665C 0%, #20AA45 38%, #55BBB0 72%, #20AA5C 100%)",
+          "linear-gradient(135deg, #1A2E2B 0%, #1F4F4A 32%, #3D5C56 58%, #5A7A72 82%, #6E8F86 100%)",
       }}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
@@ -255,10 +255,10 @@ export default function FeatureBar() {
             }}
           >
             <div className="max-w-sm">
-              <h2 className="font-manrope text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F3EFE3] tracking-tight leading-[1.1] mb-3">
+              <h2 className="mb-3 font-manrope text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
                 Finance Solutions for Every Need
               </h2>
-              <p className="font-inter text-base sm:text-lg text-[#F3EFE3]/90 font-medium">
+              <p className="font-inter text-base font-medium text-white/90 sm:text-lg">
                 Whatever you want to finance, we can help. Choose a service
                 below to learn more.
               </p>

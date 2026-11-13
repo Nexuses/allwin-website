@@ -43,8 +43,10 @@ export default function Reveal({
       ref={ref}
       suppressHydrationWarning
       className={[
-        "transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+        "transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        shown
+          ? "translate-y-0 scale-100 opacity-100 blur-0"
+          : "translate-y-10 scale-[0.97] opacity-0 blur-[2px]",
         className,
       ]
         .filter(Boolean)

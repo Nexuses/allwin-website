@@ -42,7 +42,7 @@ export default function CoreExpertise() {
 
   return (
     <section
-      className="w-full bg-[#FFFFFF] pt-[30px] pb-20 lg:pt-[62px] lg:pb-28"
+      className="w-full rounded-t-[2rem] bg-[#E9EFEE] pt-[30px] pb-20 shadow-[0_-24px_80px_rgba(31,79,74,0.12)] sm:rounded-t-[2.5rem] lg:pt-[62px] lg:pb-28"
       id="products"
     >
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">

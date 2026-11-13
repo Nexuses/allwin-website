@@ -90,7 +90,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto max-w-[1400px] px-3 sm:px-4 lg:px-6 pt-3">
-        <div className="flex h-16 items-center justify-between px-3 sm:px-6 lg:px-8 rounded-2xl bg-[#3D464C]/85 backdrop-blur-xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.28)]">
+        <div className="flex h-16 items-center justify-between rounded-2xl border border-white/20 bg-[#1A3531]/40 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl backdrop-saturate-150 sm:px-6 lg:px-8">
           <a className="flex items-center py-2 bg-transparent shrink-0" href="/">
             <Image
               alt="AllWin Finances"
@@ -165,7 +165,7 @@ export default function Header() {
             </nav>
 
             <a
-              className="hidden lg:inline-flex bg-[#55BBB0] hover:bg-[#44aba0] text-[#3D464C] font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-[0_8px_24px_rgba(85,187,176,0.35)] hover:-translate-y-0.5 items-center gap-1.5 whitespace-nowrap"
+              className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-[#1F4F4A] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0C665C] hover:shadow-[0_8px_24px_rgba(12,102,92,0.35)] lg:inline-flex"
               href="/contact"
             >
               <span>Get Free Consultation</span>
@@ -185,7 +185,7 @@ export default function Header() {
         </div>
 
         {menuOpen ? (
-          <div className="mt-2 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-2xl border border-white/10 bg-[#3D464C]/95 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:hidden">
+          <div className="mt-2 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-2xl border border-white/20 bg-[#1A3531]/45 p-3 shadow-[0_8px_32px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl backdrop-saturate-150 lg:hidden">
             <nav className="flex flex-col" aria-label="Mobile navigation">
               <a
                 href="/"
@@ -266,7 +266,7 @@ export default function Header() {
               <a
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#55BBB0] px-6 py-3 text-sm font-semibold text-[#3D464C] shadow-md transition-all duration-300 hover:bg-[#44aba0]"
+                className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#1F4F4A] px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#0C665C]"
               >
                 <span>Get Free Consultation</span>
                 <Icon name="arrow_forward" className="text-[18px]" />

@@ -1,12 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import Icon from "../Icon";
 import Reveal from "../about/Reveal";
-
-const FAQ_IMAGE =
-  "https://assets.nexuses.xyz/Confused_business_character_compressed_1792993768345_gmck.jpg";
 
 const faqs = [
   {
@@ -38,8 +34,12 @@ const faqs = [
 
 type FaqItem = { question: string; answer: string };
 
+const OPEN_BORDER =
+  "linear-gradient(120deg, #0C665C 0%, #20AA45 42%, #55BBB0 78%, #A9C1B8 100%)";
+
 export default function FAQ({
   title = "Frequently Asked Questions",
+  intro,
   items = faqs,
 }: {
   eyebrow?: string;
@@ -47,83 +47,148 @@ export default function FAQ({
   intro?: string;
   items?: FaqItem[];
 }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [lockedIndex, setLockedIndex] = useState<number | null>(null);
+  const [hoverPaused, setHoverPaused] = useState(false);
+
+  const openIndex = hoverPaused ? lockedIndex : hoveredIndex;
+
+  const onItemEnter = (index: number) => {
+    if (hoverPaused) return;
+    setHoveredIndex(index);
+  };
+
+  const onItemLeave = () => {
+    if (hoverPaused) return;
+    setHoveredIndex(null);
+  };
+
+  const onItemClick = (index: number) => {
+    if (hoverPaused && lockedIndex === index) {
+      setHoverPaused(false);
+      setLockedIndex(null);
+      setHoveredIndex(index);
+      return;
+    }
+
+    setLockedIndex(index);
+    setHoverPaused(true);
+    setHoveredIndex(index);
+  };
 
   return (
-    <section className="w-full bg-[#F3EFE3] py-20 lg:py-28" id="faq">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#1F4F4A] sm:text-4xl lg:text-5xl lg:leading-[1.1]">
-              {title}
-            </h2>
-            <p className="mt-3 font-manrope text-2xl font-semibold tracking-tight text-[#55BBB0] sm:text-3xl lg:text-4xl lg:leading-[1.15]">
+    <section
+      id="faq"
+      className="relative w-full overflow-hidden bg-white py-20 lg:py-28"
+    >
+      <div className="mx-auto max-w-[820px] px-4 sm:px-6 lg:px-10">
+        <Reveal className="mb-10 text-center sm:mb-12">
+          <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#26332F] sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+            {title}
+          </h2>
+          {intro ? (
+            <p className="mx-auto mt-4 max-w-xl font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-base">
+              {intro}
+            </p>
+          ) : (
+            <p className="mx-auto mt-3 font-inter text-base text-[#26332F]/60">
               Clear answers.
             </p>
-            <div className="relative mt-8 aspect-square w-full max-w-[420px] overflow-hidden rounded-[2rem] bg-white/60 shadow-[0_18px_40px_rgba(31,79,74,0.12)] sm:mt-10">
-              <Image
-                src={FAQ_IMAGE}
-                alt="Confused business character asking questions"
-                fill
-                className="object-contain object-center p-4 sm:p-6"
-                sizes="(min-width: 1024px) 420px, 90vw"
-              />
-            </div>
-          </Reveal>
+          )}
+        </Reveal>
 
-          <div className="lg:col-span-7 lg:mt-[150px]">
-            <div className="border-t border-[#A9C1B8]/70">
-              {items.map((faq, index) => {
-                const isOpen = openIndex === index;
+        <div className="flex flex-col gap-3.5 sm:gap-4">
+          {items.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const number = String(index + 1).padStart(2, "0");
 
-                return (
-                  <Reveal key={faq.question} delay={index * 60}>
-                    <div className="border-b border-[#A9C1B8]/70">
-                      <button
-                        type="button"
-                        className="faq-toggle flex w-full items-start justify-between gap-4 py-5 text-left shadow-none transition-colors duration-300 sm:py-6"
-                        aria-expanded={isOpen}
-                        onClick={() => setOpenIndex(isOpen ? null : index)}
-                      >
-                        <span
-                          className={`font-manrope text-base font-bold leading-snug transition-colors duration-300 sm:text-lg ${
-                            isOpen ? "text-[#1F4F4A]" : "text-[#385445]"
-                          }`}
-                        >
-                          {faq.question}
-                        </span>
-                        <span
-                          className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
-                            isOpen
-                              ? "bg-[#55BBB0] text-[#1F4F4A]"
-                              : "bg-transparent text-[#1F4F4A] hover:bg-[#55BBB0]/15"
-                          }`}
-                          aria-hidden="true"
-                        >
-                          <Icon
-                            name={isOpen ? "close" : "add"}
-                            className="text-[22px]"
-                          />
-                        </span>
-                      </button>
-
-                      <div
-                        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+            return (
+              <Reveal key={faq.question} delay={index * 50}>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
+                  onMouseEnter={() => onItemEnter(index)}
+                  onMouseLeave={onItemLeave}
+                  onFocus={() => onItemEnter(index)}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                      onItemLeave();
+                    }
+                  }}
+                  onClick={() => onItemClick(index)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      onItemClick(index);
+                    }
+                  }}
+                  className={`rounded-[28px] p-[1.5px] transition-all duration-300 ${
+                    isOpen
+                      ? "shadow-[0_18px_40px_rgba(31,79,74,0.12)]"
+                      : "shadow-[0_10px_28px_rgba(31,79,74,0.06)]"
+                  }`}
+                  style={{
+                    background: isOpen ? OPEN_BORDER : "transparent",
+                  }}
+                >
+                  <div
+                    className={`rounded-[26.5px] px-4 py-4 transition-colors duration-300 sm:px-5 sm:py-5 ${
+                      isOpen ? "bg-white" : "bg-white/75"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <span
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-manrope text-xs font-semibold transition-colors duration-300 sm:h-10 sm:w-10 sm:text-sm ${
+                          isOpen
+                            ? "bg-[#E9EFEE] text-[#1F4F4A]"
+                            : "bg-[#E9EFEE]/90 text-[#26332F]/70"
                         }`}
                       >
-                        <div className="overflow-hidden">
-                          <p className="pb-5 font-inter text-sm leading-relaxed text-[#26332F]/75 sm:pb-6 sm:text-base sm:leading-7">
-                            {faq.answer}
-                          </p>
-                        </div>
+                        {number}
+                      </span>
+
+                      <span
+                        className={`min-w-0 flex-1 font-manrope text-[15px] leading-snug tracking-tight transition-all duration-300 sm:text-base ${
+                          isOpen
+                            ? "font-bold text-[#26332F]"
+                            : "font-medium text-[#26332F]/85"
+                        }`}
+                      >
+                        {faq.question}
+                      </span>
+
+                      <span
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 sm:h-10 sm:w-10 ${
+                          isOpen
+                            ? "border border-[#55BBB0] bg-white text-[#1F4F4A]"
+                            : "bg-[#1F4F4A] text-white"
+                        }`}
+                        aria-hidden="true"
+                      >
+                        <Icon
+                          name={isOpen ? "close" : "add"}
+                          className="text-[20px]"
+                        />
+                      </span>
+                    </div>
+
+                    <div
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="pb-1 pl-12 pr-12 pt-3 font-inter text-sm leading-relaxed text-[#26332F]/65 sm:pl-[3.25rem] sm:pr-14 sm:text-[15px] sm:leading-7">
+                          {faq.answer}
+                        </p>
                       </div>
                     </div>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </div>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,95 +1,47 @@
 import Icon from "../Icon";
-import ContactForm from "./ContactForm";
 import Reveal from "../about/Reveal";
-import { OFFICE_MAP_URL } from "../OfficeMap";
-
-const contactDetails = [
-  {
-    icon: "location_on",
-    title: "Address",
-    value: "Business Bay, Dubai, UAE",
-    href: OFFICE_MAP_URL,
-  },
-  {
-    icon: "mail",
-    title: "Email",
-    value: "contact@allwinfinances.com",
-    href: "mailto:contact@allwinfinances.com",
-  },
-  {
-    icon: "phone",
-    title: "Phone",
-    value: "+971-58-5666955",
-    href: "tel:+971585666955",
-  },
-];
 
 export default function Contact() {
   return (
-    <section
-      className="w-full bg-[#F8F9FA] pt-[30px] pb-20 lg:pt-[62px] lg:pb-28"
-      id="contact"
-    >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          <Reveal className="lg:col-span-5 h-full">
-            <div className="flex h-full flex-col">
-              <p className="inline-flex w-fit items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8F5] text-[#1F4F4A] text-xs font-semibold uppercase tracking-wider mb-4">
-                Contact Us
-              </p>
-              <h3 className="font-manrope text-3xl font-bold text-[#3D464C] tracking-tight mb-3">
-                Talk to Our Team
-              </h3>
-              <p className="font-inter text-base text-gray-600 leading-relaxed max-w-md">
-                Have a question about a home loan, refinancing or business
-                finance? Reach us directly, or send the form and we will get
-                back to you as soon as we can.
-              </p>
-
-              <div className="mt-8 space-y-4">
-                {contactDetails.map((detail) => (
-                  <a
-                    key={detail.title}
-                    href={detail.href}
-                    {...(detail.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="group flex items-center gap-4 rounded-2xl border border-[#E9ECEF] bg-white px-5 py-4 transition-all duration-300 hover:border-[#55BBB0]/40 hover:shadow-[0_14px_30px_rgba(85,187,176,0.22)]"
-                  >
-                    <span className="icon-chip w-12 h-12 rounded-xl bg-[#E8F8F5] flex items-center justify-center text-[#55BBB0] shrink-0">
-                      <Icon name={detail.icon} className="text-[24px]" />
-                    </span>
-                    <span>
-                      <span className="block font-manrope text-base font-bold text-[#3D464C]">
-                        {detail.title}
-                      </span>
-                      <span className="block font-inter text-sm text-gray-600">
-                        {detail.value}
-                      </span>
-                    </span>
-                    <Icon
-                      name="arrow_forward"
-                      className="ml-auto text-[20px] text-[#55BBB0]"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal
-            delay={100}
-            className="lg:col-span-7 h-full bg-white p-8 sm:p-10 rounded-3xl border border-[#E9ECEF] shadow-xs"
+    <section className="w-full bg-white py-16 sm:py-20 lg:py-24" id="contact">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-10">
+        <Reveal>
+          <div
+            className="relative overflow-hidden rounded-[28px] px-8 py-12 sm:rounded-[32px] sm:px-12 sm:py-14 lg:px-16 lg:py-16"
+            style={{
+              background:
+                "linear-gradient(135deg, #0C665C 0%, #1F4F4A 48%, #0C665C 100%)",
+            }}
           >
-            <h3 className="font-manrope text-2xl font-bold text-[#3D464C] mb-2">
-              Get In Touch
-            </h3>
-            <p className="font-inter text-sm text-gray-600 mb-6">
-              Tell us what you need and we will reply as soon as we can.
-            </p>
-            <ContactForm />
-          </Reveal>
-        </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-[0.12]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(243,239,227,0.55) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.55) 1px, transparent 1px)",
+                backgroundSize: "56px 56px",
+              }}
+            />
+
+            <div className="relative max-w-2xl">
+              <h2 className="font-manrope text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
+                Ready to find a clearer path to finance?
+              </h2>
+              <p className="mt-4 max-w-xl font-inter text-sm leading-relaxed text-white/85 sm:text-base sm:leading-7">
+                Have a question about a home loan, refinancing or business
+                finance? Our team is ready to help you compare options with
+                confidence.
+              </p>
+              <a
+                href="/contact"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-manrope text-sm font-semibold text-[#1F4F4A] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+              >
+                Get in touch
+                <Icon name="arrow_forward" className="text-[18px]" />
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

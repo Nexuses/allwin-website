@@ -30,48 +30,58 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full py-20 lg:py-28 bg-[#3D464C] text-white">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <Reveal className="lg:col-span-5">
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-4 leading-tight sm:leading-10">
-              Why Choose AllWin Finances?
-            </h2>
-            <h3 className="font-manrope text-lg font-semibold text-[#55BBB0] mb-6">
-              Your Trusted Mortgage Partner in the UAE
-            </h3>
-            <p className="font-inter text-gray-300 leading-relaxed text-sm sm:text-base sm:leading-6 mb-8">
-              We don&apos;t just arrange loans. We give you clarity, comfort and
-              confidence.
-            </p>
-            <a
-              className="group/btn bg-[#55BBB0] hover:bg-[#20AA45] text-[#3D464C] font-semibold px-7 py-3 rounded-full transition-all duration-300 inline-flex items-center gap-2 text-sm shadow-md hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(85,187,176,0.45)]"
-              href="/about"
-            >
-              <span>About Us</span>
-              <Icon name="arrow_forward" className="text-[18px] transition-transform duration-300 group-hover/btn:translate-x-1" />
-            </a>
-          </Reveal>
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {reasons.map((reason, index) => (
-              <Reveal key={reason.title} delay={index * 70} className="h-full">
-              <div
-                className="why-card group h-full bg-[#4A545B] p-6 rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#55BBB0]/70 hover:shadow-[0_18px_40px_rgba(85,187,176,0.35)]"
-              >
-                <div className="icon-chip w-12 h-12 rounded-xl bg-[#55BBB0]/10 text-[#55BBB0] flex items-center justify-center mb-4">
-                  <Icon name={reason.icon} className="text-[26px]" />
+    <section className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-white py-20 lg:py-28">
+      <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 lg:px-10">
+        <Reveal className="mx-auto mb-12 max-w-3xl text-center sm:mb-14">
+          <p className="mb-4 font-manrope text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0C665C]">
+            Why AllWin Finances?
+          </p>
+          <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#26332F] sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+            Your Trusted Mortgage Partner{" "}
+            <span className="text-[#0C665C]">in the UAE</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl font-inter text-sm leading-relaxed text-[#26332F]/70 sm:text-base">
+            We don&apos;t just arrange loans. We give you clarity, comfort and
+            confidence.
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+          {reasons.map((reason, index) => (
+            <Reveal key={reason.title} delay={index * 70} className="h-full">
+              <article className="group relative h-full overflow-hidden rounded-[24px] bg-white p-7 text-[#26332F] shadow-[0_18px_40px_rgba(31,79,74,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gradient-to-br hover:from-[#1F4F4A] hover:via-[#0C665C] hover:to-[#145C52] hover:text-white hover:shadow-[0_24px_50px_rgba(12,102,92,0.28)] sm:p-8">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#55BBB0]/25 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100"
+                />
+
+                <div className="relative flex items-start gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1F4F4A] text-white transition-colors duration-300 group-hover:bg-white group-hover:text-[#1F4F4A]">
+                    <Icon name={reason.icon} className="text-[22px]" />
+                  </div>
+                  <div className="min-w-0 pt-0.5">
+                    <h3 className="font-manrope text-lg font-bold tracking-tight sm:text-xl">
+                      {reason.title}
+                    </h3>
+                    <p className="mt-2 font-inter text-sm leading-relaxed text-[#26332F]/65 transition-colors duration-300 group-hover:text-white/80 sm:text-[15px] sm:leading-6">
+                      {reason.description}
+                    </p>
+                  </div>
                 </div>
-                <h4 className="font-manrope text-lg font-bold text-white mb-2">
-                  {reason.title}
-                </h4>
-                <p className="font-inter text-gray-400 text-xs sm:text-sm leading-relaxed sm:leading-5">
-                  {reason.description}
-                </p>
-              </div>
-              </Reveal>
-            ))}
-          </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
+
+        <Reveal delay={200} className="mt-10 text-center">
+          <a
+            href="/about"
+            className="inline-flex items-center gap-2 font-manrope text-sm font-semibold text-[#0C665C] transition-colors hover:text-[#20AA45]"
+          >
+            About Us
+            <Icon name="arrow_forward" className="text-[18px]" />
+          </a>
+        </Reveal>
       </div>
     </section>
   );

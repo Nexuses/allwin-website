@@ -59,9 +59,14 @@ export default function StickyHero() {
   const blur = progress * 8;
 
   return (
-    <div ref={pinRef} className="sticky top-0 z-0 w-full isolate">
+    <div
+      ref={pinRef}
+      className="sticky top-0 z-0 w-full isolate bg-[#1F4F4A]"
+    >
+      {/* Unscaled dark fill so scale/blur never reveals the light page surface */}
+      <div aria-hidden="true" className="absolute inset-0 bg-[#1F4F4A]" />
       <div
-        className="w-full will-change-transform"
+        className="relative w-full will-change-transform"
         style={{
           transform: `scale(${scale})`,
           opacity,
