@@ -94,7 +94,7 @@ export default function Header() {
           <a className="flex items-center py-2 bg-transparent shrink-0" href="/">
             <Image
               alt="AllWin Finances"
-              className="h-10 w-auto object-contain block bg-transparent"
+              className="h-[50px] w-auto object-contain block bg-transparent"
               src={LOGO_URL}
               width={240}
               height={52}
