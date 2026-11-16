@@ -60,7 +60,7 @@ export default function BlogPage() {
             <Reveal>
             <div
               className="rounded-[2rem] px-6 py-14 sm:px-12 text-center text-white"
-              style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
+              style={{ background: "linear-gradient(135deg, #0C665C 0%, #1F4F4A 48%, #132926 100%)" }}
             >
               <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-8">
                 Have a Question About Your Mortgage?

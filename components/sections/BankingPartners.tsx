@@ -1,26 +1,6 @@
 import Image from "next/image";
 import Reveal from "../about/Reveal";
-
-const PARTNER_BASE =
-  "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/Screenshot%202026-09-29%20";
-
-const partnerLogos = [
-  "142958",
-  "143049",
-  "143025",
-  "143158",
-  "143134",
-  "143110",
-  "143222",
-  "143248",
-  "143317",
-  "143341",
-  "143420",
-  "143523",
-].map((id, index) => ({
-  src: `${PARTNER_BASE}${id}.png`,
-  alt: `Banking Partner ${index + 1}`,
-}));
+import { partnerLogos } from "../partners";
 
 function LogoGroup({ hidden = false }: { hidden?: boolean }) {
   return (
@@ -36,7 +16,7 @@ function LogoGroup({ hidden = false }: { hidden?: boolean }) {
           width={200}
           height={50}
           loading="eager"
-          className="h-[46px] sm:h-[50px] w-auto object-contain mix-blend-multiply opacity-75 hover:opacity-100 hover:scale-105 transition-all duration-300 cursor-pointer"
+          className="h-[46px] sm:h-[50px] w-auto object-contain opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300 cursor-pointer"
         />
       ))}
     </div>

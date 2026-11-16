@@ -363,7 +363,7 @@ export default function AboutView() {
       <section className="py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 grid lg:grid-cols-2 gap-6">
           <Reveal>
-            <article className="group h-full rounded-3xl border border-[#A9C1B8]/60 bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#55BBB0]/55 hover:shadow-[0_24px_48px_rgba(85,187,176,0.22)] sm:p-10">
+            <article className="group h-full rounded-3xl border border-[#A9C1B8]/60 bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#55BBB0]/55 hover:bg-[#F3EFE3] hover:shadow-[0_24px_48px_rgba(85,187,176,0.22)] sm:p-10">
               <Image
                 src="https://assets.nexuses.xyz/Frame_80_1793883303885_1s2f.png"
                 alt="Banks"
@@ -381,7 +381,7 @@ export default function AboutView() {
             </article>
           </Reveal>
           <Reveal delay={100}>
-            <article className="group h-full rounded-3xl border border-dashed border-[#1F4F4A]/40 bg-[#F3EFE3] p-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-solid hover:border-[#55BBB0]/70 hover:bg-white hover:shadow-[0_24px_48px_rgba(85,187,176,0.22)] sm:p-10">
+            <article className="group h-full rounded-3xl border border-dashed border-[#1F4F4A]/40 bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-solid hover:border-[#55BBB0]/70 hover:bg-[#F3EFE3] hover:shadow-[0_24px_48px_rgba(85,187,176,0.22)] sm:p-10">
               <Image
                 src="https://assets.nexuses.xyz/handshake_1_1793883303885_51en.png"
                 alt="Trust"

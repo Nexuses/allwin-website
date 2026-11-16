@@ -6,6 +6,7 @@ import Icon from "@/components/Icon";
 import Reveal from "@/components/about/Reveal";
 import FAQ from "@/components/sections/FAQ";
 import StickyStack from "@/components/sections/StickyStack";
+import PartnerLogoMarquee from "@/components/sections/PartnerLogoMarquee";
 import {
   commercialOptions,
   equityUses,
@@ -16,21 +17,6 @@ import {
   processSteps,
   refinanceBenefits,
 } from "./content";
-
-const PARTNER_BASE =
-  "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/Screenshot%202026-09-29%20";
-
-const partnerLogos = [
-  "142958",
-  "143049",
-  "143025",
-  "143158",
-  "143134",
-  "143110",
-].map((id, index) => ({
-  src: `${PARTNER_BASE}${id}.png`,
-  alt: `Banking Partner ${index + 1}`,
-}));
 
 const gridOverlay =
   "linear-gradient(to right, rgba(243,239,227,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.12) 1px, transparent 1px)";
@@ -279,21 +265,7 @@ export default function MortgageView() {
         </div>
       </section>
 
-      {/* Partner logos */}
-      <section className="border-y border-[#A9C1B8]/35 bg-[#F8F9FA] py-8 sm:py-10">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-10 gap-y-6 px-4 sm:gap-x-14 sm:px-6 lg:px-10">
-          {partnerLogos.map((logo) => (
-            <Image
-              key={logo.src}
-              src={logo.src}
-              alt={logo.alt}
-              width={160}
-              height={40}
-              className="h-8 w-auto object-contain opacity-70 mix-blend-multiply transition hover:opacity-100 sm:h-9"
-            />
-          ))}
-        </div>
-      </section>
+      <PartnerLogoMarquee />
 
       <StickyStack
         pin={
