@@ -33,6 +33,11 @@ const nextConfig: NextConfig = {
         hostname: "assets.nexuses.xyz",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -59,11 +59,8 @@ function StickyCover({ children }: { children: React.ReactNode }) {
   );
 }
 
-const PORTRAIT =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDKtZT39uMrOzvhqQuy0mYnL_69NroPhn_MXs1uib68T_JcdMr0-9jqs-AKJrZbLr7H7ZPHkjuBaOyeya8O4zlAmqFEX8EfZ1ofVoZCJZdULGAm0uyp_W4sm8AWOauiTRqsuzce4c_LG_45VCfe3GonXld39FhTR_j8jK5JNBDdBEysTiswku9Rum_7ZJXm8QqjpeTIHfxgLtBME6qH_iFtbdyXaa5ZlLNTelF7ojSk05rulWEfGjhX";
-
-const LEADERSHIP =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuB51E08sqpKpZ_DmbjQ1Kre5Tbr2ihcw7AkZexhCdDN2u9V4zEwJ_NxdPpLByOQM1qdeAnWHNgNX5IHAfMdK9BxjmdBymLr6yMbvp7oUaihX9C5oRZI7F5k-xp9PWL1U_8KsU-CHp_qJylSV85Buzas6WgjrsCdcf5WYdUtg_Sy0mzegAX1mJVGL-fupbsnh6eaIOpAbLRsRk_9oo8MZNsyODSQ5nufju0Nd3YCFhlRwcop4tWyz4oN";
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2400&auto=format&fit=crop";
 
 const expertise = [
   {
@@ -203,89 +200,92 @@ const achievements = [
 
 const teamSlots = ["Director", "Director", "Management"];
 
+const gridOverlay =
+  "linear-gradient(to right, rgba(243,239,227,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.12) 1px, transparent 1px)";
+
 export default function AboutView() {
   return (
-    <div className="bg-[#F3EFE3] text-[#26332F]">
+    <div className="bg-white text-[#26332F]">
       <div className="relative">
-      <StickyCover>
-      <section className="relative overflow-hidden bg-[#1F4F4A] text-white min-h-[100svh] flex items-center">
-        <div
-          className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
-        />
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 rounded-full opacity-30 blur-3xl"
-          style={{ background: "radial-gradient(circle, #20AA45, transparent 70%)" }}
-        />
-        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[160px] pb-20 lg:pt-[192px] lg:pb-28 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6">
-            <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-5">
-              About AllWin Finances
-            </h1>
-            <p className="font-inter text-lg sm:text-xl text-white/80 max-w-xl leading-relaxed">
-              Expert finance advice built on real banking experience
-            </p>
-          </div>
-          <div className="lg:col-span-6 relative h-[300px] sm:h-[480px]">
-            <div className="absolute right-0 top-6 w-[72%] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+        <StickyCover>
+          <section className="bg-white px-3 pb-2 pt-[88px] sm:px-5 sm:pt-[96px] lg:px-8">
+            <div className="relative flex min-h-[min(72svh,640px)] flex-col overflow-hidden rounded-[1.75rem] sm:rounded-[2rem] lg:min-h-[min(68svh,620px)] lg:rounded-[2.5rem]">
               <Image
-                src={PORTRAIT}
-                alt="AllWin Finances advisory"
+                src={HERO_IMAGE}
+                alt="Dubai skyline"
                 fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 360px, 70vw"
+                preload
+                className="object-cover object-center"
+                sizes="100vw"
               />
-            </div>
-            <div className="absolute left-0 bottom-0 w-[48%] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#1F4F4A]">
-              <Image
-                src={LEADERSHIP}
-                alt="AllWin Finances leadership"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 240px, 40vw"
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,40,38,0.55)_0%,rgba(12,40,38,0.35)_42%,rgba(12,40,38,0.72)_100%)]"
               />
-            </div>
-          </div>
-        </div>
-      </section>
-      </StickyCover>
 
-      <div className="relative z-10">
-      <section className="bg-[#F3EFE3] rounded-t-[2.5rem] shadow-[0_-28px_80px_rgba(0,0,0,0.28)]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
-          <Reveal className="lg:col-span-5">
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-5">
-              Who We Are
-            </h2>
-          </Reveal>
-          <Reveal delay={100} className="lg:col-span-7 space-y-5">
-            <p className="font-inter text-base sm:text-lg text-[#26332F]/85 leading-relaxed">
-              AllWin Finances is a mortgage and finance advisory based in
-              Business Bay, Dubai. We help individuals, families, investors and
-              businesses find the right finance from banks and financial
-              institutions across the UAE.
-            </p>
-            <p className="font-manrope text-xl sm:text-2xl font-semibold text-[#1F4F4A] leading-snug">
-              We don&apos;t just offer loans. We offer clarity, comfort and
-              confidence.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+              <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 pb-7 pt-12 text-center sm:px-8 sm:pb-8 lg:px-12">
+                <Reveal>
+                  <h1 className="max-w-[16ch] font-manrope text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.75rem] lg:leading-[1.05]">
+                    About AllWin Finances
+                  </h1>
+                </Reveal>
+
+                <Reveal delay={80}>
+                  <p className="mt-4 max-w-xl font-inter text-base leading-relaxed text-white/85 sm:text-lg">
+                    Expert finance advice built on real banking experience
+                  </p>
+                </Reveal>
+
+                <Reveal delay={160} className="mt-7 sm:mt-8">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-manrope text-sm font-semibold text-[#1F4F4A] shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+                  >
+                    Get Free Consultation
+                    <Icon name="arrow_forward" className="text-[16px]" />
+                  </a>
+                </Reveal>
+              </div>
+            </div>
+          </section>
+        </StickyCover>
+
+        <section className="relative z-10 overflow-hidden rounded-t-[2rem] bg-white shadow-[0_-24px_80px_rgba(12,40,38,0.28)] sm:rounded-t-[2.5rem]">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-12 gap-12 items-center">
+            <Reveal className="lg:col-span-5">
+              <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight mb-5">
+                Who We Are
+              </h2>
+            </Reveal>
+            <Reveal delay={100} className="lg:col-span-7 space-y-5">
+              <p className="font-inter text-base sm:text-lg text-[#26332F]/85 leading-relaxed">
+                AllWin Finances is a mortgage and finance advisory based in
+                Business Bay, Dubai. We help individuals, families, investors and
+                businesses find the right finance from banks and financial
+                institutions across the UAE.
+              </p>
+              <p className="font-manrope text-xl sm:text-2xl font-semibold text-[#1F4F4A] leading-snug">
+                We don&apos;t just offer loans. We offer clarity, comfort and
+                confidence.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      </div>
 
       <StackSpread
         cards={expertiseCards}
         title="Decades of Banking Experience"
         subtitle="Our team brings together decades of combined experience in international and local banking. Our expertise includes:"
-        scrollLength={320}
         bgColor="#ffffff"
         textColor="#1F4F4A"
         cardRadius={16}
         stackScale={0.78}
-        showScrollHint
+        appearOnView
+        showScrollHint={false}
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="bg-[#F3EFE3] py-20 lg:py-28">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
           <Reveal className="text-center max-w-2xl mx-auto mb-12">
             <p className="text-xs font-semibold uppercase tracking-wider text-[#1F4F4A] mb-3">
@@ -425,36 +425,49 @@ export default function AboutView() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
           <Reveal>
             <div
-              className="rounded-[2rem] px-6 py-14 sm:px-12 text-center text-white"
+              className="relative overflow-hidden rounded-[1.75rem] px-7 py-14 sm:px-12 sm:py-16 lg:px-16"
               style={{
                 background:
-                  "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)",
+                  "linear-gradient(135deg, #0C665C 0%, #1F4F4A 48%, #132926 100%)",
               }}
             >
-              <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-                Let&apos;s Talk About Your Goals
-              </h2>
-              <p className="font-inter text-white/90 max-w-xl mx-auto mb-8">
-                Call us, message us on WhatsApp or request a free quote. We are
-                happy to help.
-              </p>
-              <a
-                href="/#contact"
-                className="inline-flex items-center gap-2 bg-white text-[#1F4F4A] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-              >
-                Get a Free Quote
-                <Icon name="arrow_forward" className="text-[18px]" />
-              </a>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-35"
+                style={{
+                  backgroundImage: gridOverlay,
+                  backgroundSize: "52px 52px",
+                }}
+              />
+              <div className="relative max-w-xl">
+                <h2 className="max-w-[14ch] font-manrope text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+                  Let&apos;s talk about your goals
+                </h2>
+                <p className="mt-4 font-inter text-sm leading-relaxed text-white/80 sm:text-base">
+                  Call us, message us on WhatsApp or request a free quote. We
+                  are happy to help.
+                </p>
+                <a
+                  href="/contact"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+                >
+                  Get a free quote
+                  <Icon name="arrow_forward" className="text-[16px]" />
+                </a>
+                <p className="mt-6 font-inter text-xs leading-relaxed text-white/55">
+                  Rates, eligibility and approval depend on each bank&apos;s
+                  policies and your personal profile. AllWin Finances cannot
+                  guarantee approval.
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
-      </div>
-      </div>
     </div>
   );
 }

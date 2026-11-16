@@ -3,7 +3,9 @@
 "use client";
 
 import {
+  animate,
   motion,
+  useInView,
   useScroll,
   useTransform,
   useReducedMotion,
@@ -351,6 +353,8 @@ interface StackSpreadStageProps {
   textColor?: string;
   textFadeStart?: number;
   showScrollHint?: boolean;
+  /** Play once when the section enters view, instead of scrubbing on scroll. */
+  appearOnView?: boolean;
 }
 
 function StackSpreadStage({
@@ -365,22 +369,45 @@ function StackSpreadStage({
   textColor = "#141414",
   textFadeStart = 0.3,
   showScrollHint = true,
+  appearOnView = false,
 }: StackSpreadStageProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scale: scaleMul, small: isSmall, colX, card: fixedCard } =
     useResponsive();
 
+  const inView = useInView(wrapRef, {
+    once: true,
+    amount: 0.4,
+    margin: "0px 0px -12% 0px",
+  });
+
   const { scrollYProgress } = useScroll({
     target: wrapRef,
     offset: ["start start", "end end"],
   });
 
-  const progress = useTransform(
+  const scrollProgress = useTransform(
     scrollYProgress,
     [0, SCATTER_START, SCATTER_END, 1],
     [0, 0, 1, 1],
   );
+  const appearProgress = useMotionValue(reduce === true ? 1 : 0);
+  const progress = appearOnView ? appearProgress : scrollProgress;
+
+  useEffect(() => {
+    if (!appearOnView) return;
+    if (reduce === true) {
+      appearProgress.set(1);
+      return;
+    }
+    if (!inView) return;
+    const controls = animate(appearProgress, 1, {
+      duration: 1.45,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return () => controls.stop();
+  }, [appearOnView, appearProgress, inView, reduce]);
 
   const [spread, setSpread] = useState(false);
   useMotionValueEvent(progress, "change", (p) => {
@@ -392,19 +419,36 @@ function StackSpreadStage({
   const noScale = reduce === true;
   const copyOpacity = useTransform(
     progress,
-    [textFadeStart, textFadeStart + 0.35],
+    appearOnView
+      ? [0, 0.45]
+      : [textFadeStart, textFadeStart + 0.35],
     [0, 1],
   );
-  const copyScale = useTransform(progress, [textFadeStart, 0.9], [0.85, 1]);
+  const copyScale = useTransform(
+    progress,
+    appearOnView ? [0, 0.85] : [textFadeStart, 0.9],
+    [0.85, 1],
+  );
   const hintOpacity = useTransform(progress, [0, SCATTER_START], [1, 0]);
+  const showHint = showScrollHint && !appearOnView;
 
   return (
     <section
       ref={wrapRef}
       className="relative w-full"
-      style={{ height: `${scrollLength}vh`, backgroundColor: bgColor }}
+      style={{
+        height: appearOnView ? undefined : `${scrollLength}vh`,
+        minHeight: appearOnView ? "100svh" : undefined,
+        backgroundColor: bgColor,
+      }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div
+        className={
+          appearOnView
+            ? "relative h-[100svh] w-full overflow-hidden"
+            : "sticky top-0 h-screen w-full overflow-hidden"
+        }
+      >
         <motion.div
           className="pointer-events-none absolute inset-0 z-[5] flex flex-col items-center justify-center px-6 text-center max-md:px-8"
           style={{
@@ -448,7 +492,7 @@ function StackSpreadStage({
           ))}
         </div>
 
-        {showScrollHint && (
+        {showHint && (
           <motion.div
             className="pointer-events-none absolute inset-x-0 bottom-[3vh] z-20 flex flex-col items-center gap-[0.6vh] text-[0.8vw] font-medium uppercase tracking-[0.2em] max-md:bottom-6 max-md:gap-1 max-md:text-[2.8vw]"
             style={{ color: textColor, opacity: hintOpacity }}
@@ -487,6 +531,7 @@ export interface StackSpreadProps {
   textColor?: string;
   textFadeStart?: number;
   showScrollHint?: boolean;
+  appearOnView?: boolean;
 }
 
 export default function StackSpread({
@@ -501,6 +546,7 @@ export default function StackSpread({
   textColor = "#141414",
   textFadeStart = 0.3,
   showScrollHint = true,
+  appearOnView = false,
 }: StackSpreadProps) {
   return (
     <StackSpreadStage
@@ -515,6 +561,7 @@ export default function StackSpread({
       textColor={textColor}
       textFadeStart={textFadeStart}
       showScrollHint={showScrollHint}
+      appearOnView={appearOnView}
     />
   );
 }

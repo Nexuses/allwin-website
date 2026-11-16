@@ -61,11 +61,6 @@ export default function TrackRecord() {
           delay={120}
           className="relative z-10 mt-14 sm:mt-16 lg:mt-20"
         >
-          {/* Accent band sits behind the stats card */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-3 -top-2 h-8 rounded-t-[22px] bg-[#55BBB0] sm:inset-x-4 sm:-top-2.5 sm:h-9 sm:rounded-t-[26px]"
-          />
           <div className="relative overflow-hidden rounded-[22px] bg-white px-4 py-8 shadow-[0_20px_50px_rgba(31,79,74,0.1)] sm:rounded-[26px] sm:px-2 sm:py-10">
             <div className="grid grid-cols-2 lg:grid-cols-4">
               {stats.map((stat, index) => (

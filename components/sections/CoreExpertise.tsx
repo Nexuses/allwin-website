@@ -9,7 +9,7 @@ const products = [
   {
     title: "Real Estate Mortgages in the UAE",
     image:
-      "https://assets.nexuses.xyz/38d6060c7f961f35de4fe86ab256cfc3_1792732637106_rfaz.jpg",
+      "https://assets.nexuses.xyz/People_relaxing_with_a_laptop_1794828668983_vdyp.png",
     description:
       "First-time buyer, investor or looking to refinance? We help you find the right residential or commercial mortgage from UAE banks and guide you at every step.",
     cta: "Get Started",
@@ -18,7 +18,7 @@ const products = [
   {
     title: "SME & Corporate Lending",
     image:
-      "https://assets.nexuses.xyz/53d019de559409815fdc8513398573e3_1792732637106_ln36.jpg",
+      "https://assets.nexuses.xyz/Silver-haired_potter_in_her_studio_1794829254104_a2mx.png",
     description:
       "We match businesses of all sizes with flexible lending options, from trade finance and working capital to funding for growth.",
     cta: "Explore Corporate",
@@ -27,7 +27,7 @@ const products = [
   {
     title: "Consumer Finance Products",
     image:
-      "https://assets.nexuses.xyz/8e90ac7259fb2ac2b9d3c1823e9aff59_1792732637106_6ddz.jpg",
+      "https://assets.nexuses.xyz/Boutique_Clothing_Display_on_Wood_Floors_1794828888248_yllv.png",
     description:
       "Personal loans, car finance, credit cards and finance for everyday purchases, with clear terms that fit your budget.",
     cta: "View Options",

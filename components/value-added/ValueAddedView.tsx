@@ -1,210 +1,167 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/about/Reveal";
 import { services } from "./content";
 
-function useScrub(ref: React.RefObject<HTMLElement | null>) {
-  const [progress, setProgress] = useState(0);
+const HERO_IMAGE =
+  "https://assets.nexuses.xyz/Sunlit_collaboration_with_laptop_and_tablet_1794830870326_sico.png";
 
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      setProgress(1);
-      return;
-    }
-
-    let frame = 0;
-    const update = () => {
-      const element = ref.current;
-      if (!element) return;
-      const total = element.offsetHeight - window.innerHeight;
-      const scrolled = Math.min(Math.max(-element.getBoundingClientRect().top, 0), Math.max(total, 1));
-      setProgress(total > 0 ? scrolled / total : 1);
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [ref]);
-
-  return progress;
-}
-
-function ServiceRail() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const progress = useScrub(sectionRef);
-  const active = Math.min(services.length - 1, Math.round(progress * (services.length - 1)));
-
-  const jumpTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
-
-  return (
-    <section ref={sectionRef} className="py-8 lg:py-16">
-      <div className="mx-auto grid max-w-[1440px] gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:px-10">
-        <div className="lg:col-span-4">
-          <div className="sticky top-24 z-20 -mx-4 bg-[#F3EFE3]/95 px-4 py-3 backdrop-blur-sm lg:mx-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
-            <div className="flex gap-2 overflow-x-auto pb-1 lg:hidden">
-              {services.map((service, index) => (
-                <button
-                  key={service.id}
-                  type="button"
-                  onClick={() => jumpTo(service.id)}
-                  className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-                    index === active ? "bg-[#1F4F4A] text-white" : "bg-white text-[#385445]"
-                  }`}
-                >
-                  {service.title}
-                </button>
-              ))}
-            </div>
-            <nav className="relative hidden lg:block" aria-label="Value-added services">
-              <div className="absolute bottom-3 left-[14px] top-3 z-0 w-0.5 bg-[#A9C1B8]/70">
-                <div className="w-full bg-[#55BBB0]" style={{ height: `${progress * 100}%` }} />
-              </div>
-              <ul className="relative z-10 space-y-1">
-                {services.map((service, index) => {
-                  const current = index === active;
-                  return (
-                    <li key={service.id}>
-                      <button
-                        type="button"
-                        onClick={() => jumpTo(service.id)}
-                        className={`flex w-full items-start gap-3 rounded-xl px-2 py-2 text-left transition-colors ${
-                          current ? "text-[#1F4F4A]" : "text-[#26332F]/45 hover:text-[#385445]"
-                        }`}
-                      >
-                        <span
-                          className={`relative z-10 mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full border-2 transition-colors ${
-                            current ? "border-[#55BBB0] bg-[#55BBB0]" : "border-[#A9C1B8] bg-[#F3EFE3]"
-                          }`}
-                        />
-                        <span className={`font-inter text-sm leading-snug ${current ? "font-semibold" : "font-medium"}`}>
-                          {service.title}
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-        <div className="space-y-5 lg:col-span-8">
-          {services.map((service, index) => {
-            const current = index === active;
-            return (
-              <Reveal key={service.id} delay={index * 40}>
-              <article
-                id={service.id}
-                className={`scroll-mt-28 rounded-[2rem] p-6 transition-all duration-500 sm:p-8 ${
-                  current
-                    ? "bg-[#1F4F4A] text-white shadow-[0_18px_40px_rgba(85,187,176,0.28)]"
-                    : "bg-white text-[#385445] shadow-xs hover:shadow-[0_18px_40px_rgba(85,187,176,0.28)]"
-                }`}
-              >
-                <span
-                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${
-                    current ? "bg-[#55BBB0] text-[#1F4F4A]" : "bg-[#55BBB0]/15 text-[#1F4F4A]"
-                  }`}
-                >
-                  <Icon name={service.icon} className="text-[24px]" />
-                </span>
-                <h2 className="font-manrope text-2xl font-bold tracking-tight sm:text-3xl">{service.title}</h2>
-                <p className={`mt-3 font-inter leading-relaxed ${current ? "text-white/85" : "text-[#26332F]/85"}`}>
-                  {service.text}
-                </p>
-                {service.detail ? (
-                  <div className={`mt-5 rounded-2xl p-5 ${current ? "bg-white/10" : "bg-[#F3EFE3]"}`}>
-                    <h3 className="font-manrope text-lg font-bold">{service.detail.title}</h3>
-                    <p className={`mt-2 font-inter text-sm leading-relaxed ${current ? "text-white/80" : "text-[#26332F]/80"}`}>
-                      {service.detail.text}
-                    </p>
-                  </div>
-                ) : null}
-              </article>
-              </Reveal>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
+const gridOverlay =
+  "linear-gradient(to right, rgba(243,239,227,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.12) 1px, transparent 1px)";
 
 export default function ValueAddedView() {
   return (
-    <div className="bg-[#F3EFE3] text-[#26332F]">
-      <section className="relative overflow-hidden bg-[#1F4F4A] text-white">
-        <div
-          className="pointer-events-none absolute -left-16 top-10 h-72 w-72 rounded-full opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
-        />
-        <div className="relative mx-auto max-w-[1440px] px-4 pt-[160px] pb-20 sm:px-6 lg:px-10 lg:pt-[192px] lg:pb-28">
-          <h1 className="max-w-4xl font-manrope text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Value-Added Services: Property, Business Setup &amp; Investment Advice in the UAE
-          </h1>
-          <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/80 sm:text-xl">
-            Expert support that goes beyond finance.
-          </p>
+    <div className="bg-[#F7F8F6] text-[#26332F]">
+      <section className="bg-white px-3 pb-10 pt-[88px] sm:px-5 sm:pb-12 sm:pt-[96px] lg:px-8 lg:pb-14">
+        <div className="relative mx-auto flex min-h-[min(62svh,560px)] max-w-[1400px] flex-col overflow-hidden rounded-[1.75rem] sm:rounded-[2rem] lg:min-h-[min(58svh,540px)] lg:rounded-[2.5rem]">
+          <Image
+            src={HERO_IMAGE}
+            alt="AllWin Finances advisors collaborating"
+            fill
+            preload
+            className="object-cover object-[center_30%]"
+            sizes="100vw"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[linear-gradient(105deg,rgba(12,40,38,0.88)_0%,rgba(31,79,74,0.72)_48%,rgba(12,40,38,0.4)_100%)]"
+          />
+
+          <div className="relative z-10 flex flex-1 flex-col justify-center px-6 py-14 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+            <Reveal>
+              <p className="mb-4 inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 font-inter text-xs font-semibold text-white/90 backdrop-blur-sm">
+                Value-added services
+              </p>
+            </Reveal>
+            <Reveal delay={60}>
+              <h1 className="max-w-[14ch] font-manrope text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.4rem] lg:leading-[1.05]">
+                Distinct challenges. Dedicated expertise.
+              </h1>
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="mt-4 max-w-md font-inter text-base leading-relaxed text-white/85 sm:text-lg">
+                Specialized support for the property, business and lifestyle
+                steps that sit alongside your finance.
+              </p>
+            </Reveal>
+            <Reveal delay={180} className="mt-8">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-manrope text-sm font-semibold text-[#1F4F4A] shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+              >
+                Get Free Consultation
+                <Icon name="arrow_forward" className="text-[16px]" />
+              </a>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-[1440px] items-end gap-10 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:px-10 lg:py-24">
-        <Reveal className="lg:col-span-5">
-          <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">More Than Finance</h2>
-        </Reveal>
-        <Reveal delay={80} className="lg:col-span-7">
-          <p className="font-inter text-base leading-relaxed text-[#26332F]/85 sm:text-lg">
-            Moving to the UAE, buying property or starting a business involves more than a loan. We guide you through the extra steps and connect you with trusted partners where needed.
-          </p>
-        </Reveal>
-      </section>
+      <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-[1100px]">
+          <Reveal className="max-w-[720px]">
+            <h2 className="font-manrope text-2xl font-bold tracking-tight text-[#1F4F4A] sm:text-3xl">
+              Our value-added services
+            </h2>
+            <p className="mt-5 font-inter text-base leading-relaxed text-[#26332F]/75 sm:text-lg">
+              Moving to the UAE, buying property or starting a business involves
+              more than a loan. We bring together trusted partners and practical
+              guidance so you can handle the extra steps with confidence.
+            </p>
+            <p className="mt-4 font-inter text-sm leading-relaxed text-[#26332F]/55 sm:text-[15px]">
+              Focused expertise. Connected partners. Clear next steps.
+            </p>
+          </Reveal>
 
-      <ServiceRail />
+          <div className="mt-10 border-t border-[#D7DED9] sm:mt-12">
+          {services.map((service, index) => (
+            <Reveal key={service.id} delay={Math.min(index * 40, 200)}>
+              <article className="grid gap-6 border-b border-[#D7DED9] py-8 sm:py-10 lg:grid-cols-[72px_minmax(0,1fr)_auto] lg:items-center lg:gap-8">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E8EEEA] text-[#1F4F4A]">
+                  <Icon name={service.icon} className="text-[26px]" />
+                </div>
 
-      <section className="pb-8">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-          <Reveal>
-          <p className="font-inter text-sm leading-relaxed text-[#26332F]/70">
+                <div className="min-w-0">
+                  <p className="font-inter text-xs font-medium tracking-wide text-[#26332F]/45 sm:text-sm">
+                    {service.label}
+                  </p>
+                  <h3 className="mt-2 font-manrope text-xl font-bold tracking-tight text-[#1F4F4A] sm:text-2xl">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl font-inter text-sm leading-relaxed text-[#26332F]/80 sm:text-[15px]">
+                    {service.text}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-[#D0D8D3] bg-white px-3 py-1 font-inter text-xs text-[#385445]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <a
+                  href="/contact"
+                  className="inline-flex h-11 items-center justify-center gap-2 self-start rounded-xl border border-[#1F4F4A]/35 px-5 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:border-[#1F4F4A] hover:bg-[#1F4F4A] hover:text-white lg:self-center"
+                >
+                  Explore
+                  <Icon name="arrow_forward" className="text-[16px]" />
+                </a>
+              </article>
+            </Reveal>
+          ))}
+          </div>
+          <p className="mt-6 font-inter text-sm text-[#26332F]/55">
             Some services are provided through licensed third-party partners.
           </p>
-          </Reveal>
         </div>
       </section>
 
-      <section className="pb-20 lg:pb-28">
-        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <section className="bg-[#F7F8F6] py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
           <Reveal>
-          <div
-            className="rounded-[2rem] px-6 py-14 text-center text-white sm:px-12"
-            style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
-          >
-            <h2 className="mb-4 font-manrope text-3xl font-bold tracking-tight sm:text-4xl">
-              Need Help With More Than Finance?
-            </h2>
-            <p className="mx-auto mb-8 max-w-xl font-inter text-white/90">
-              Tell us what you are planning and we will point you to the right support.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5"
+            <div
+              className="relative overflow-hidden rounded-[1.75rem] px-7 py-14 sm:px-12 sm:py-16 lg:px-16"
+              style={{
+                background:
+                  "linear-gradient(135deg, #0C665C 0%, #1F4F4A 48%, #132926 100%)",
+              }}
             >
-              Get in Touch
-              <Icon name="arrow_forward" className="text-[18px]" />
-            </a>
-          </div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-35"
+                style={{
+                  backgroundImage: gridOverlay,
+                  backgroundSize: "52px 52px",
+                }}
+              />
+              <div className="relative max-w-xl">
+                <h2 className="max-w-[14ch] font-manrope text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+                  Need help with more than finance?
+                </h2>
+                <p className="mt-4 font-inter text-sm leading-relaxed text-white/80 sm:text-base">
+                  Tell us what you are planning and we will point you to the
+                  right support.
+                </p>
+                <a
+                  href="/contact"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+                >
+                  Get a free quote
+                  <Icon name="arrow_forward" className="text-[16px]" />
+                </a>
+                <p className="mt-6 font-inter text-xs leading-relaxed text-white/55">
+                  Some services are provided through licensed third-party
+                  partners. AllWin Finances will guide you to the right next
+                  step.
+                </p>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

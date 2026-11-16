@@ -3,7 +3,7 @@ import Icon from "../Icon";
 import Reveal from "../about/Reveal";
 
 const REFINANCE_IMAGE =
-  "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/business-person-looking-finance-graphs.jpg";
+  "https://assets.nexuses.xyz/Colleagues_collaborating_in_a_glass_office_1794829728071_ia1l.png";
 
 export default function Refinance() {
   return (

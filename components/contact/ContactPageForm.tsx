@@ -4,11 +4,10 @@ import { useState } from "react";
 import { submitLead } from "./submitLead";
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-[#A9C1B8]/70 bg-white text-base sm:text-sm text-[#26332F] focus:outline-hidden focus:border-[#55BBB0] transition-colors disabled:opacity-60";
+  "w-full rounded-xl border border-[#D5DDD9] bg-white px-4 py-3.5 font-inter text-base text-[#26332F] outline-none transition placeholder:text-[#26332F]/35 focus:border-[#55BBB0] focus:ring-2 focus:ring-[#55BBB0]/25 disabled:opacity-60 sm:text-sm";
 
-const labelClass = "block font-inter text-sm font-semibold text-[#385445] mb-1.5";
-
-const options = ["New purchase", "Refinance / Buy-Out", "SME / Corporate Loan", "Consumer Finance"];
+const labelClass =
+  "mb-1.5 block font-inter text-sm font-medium text-[#385445]";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -20,6 +19,9 @@ export default function ContactPageForm() {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+    const firstName = String(data.get("firstName") || "").trim();
+    const lastName = String(data.get("lastName") || "").trim();
+    const name = [firstName, lastName].filter(Boolean).join(" ");
 
     setStatus("sending");
     setError("");
@@ -27,12 +29,12 @@ export default function ContactPageForm() {
     try {
       await submitLead({
         source: "Contact page form",
-        name: String(data.get("name") || ""),
+        name,
         phone: String(data.get("phone") || ""),
         email: String(data.get("email") || ""),
-        age: String(data.get("age") || ""),
-        type: String(data.get("type") || ""),
-        message: String(data.get("help") || ""),
+        age: "",
+        type: "General enquiry",
+        message: String(data.get("message") || ""),
       });
       form.reset();
       setStatus("success");
@@ -48,57 +50,88 @@ export default function ContactPageForm() {
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className={labelClass} htmlFor="message-name">
-            Full name
+          <label className={labelClass} htmlFor="contact-first-name">
+            First Name
           </label>
-          <input id="message-name" name="name" type="text" className={inputClass} autoComplete="name" required />
+          <input
+            id="contact-first-name"
+            name="firstName"
+            type="text"
+            autoComplete="given-name"
+            required
+            className={inputClass}
+            placeholder="First name"
+          />
         </div>
         <div>
-          <label className={labelClass} htmlFor="message-phone">
-            Phone number
+          <label className={labelClass} htmlFor="contact-last-name">
+            Last Name
           </label>
-          <input id="message-phone" name="phone" type="tel" className={inputClass} autoComplete="tel" required />
+          <input
+            id="contact-last-name"
+            name="lastName"
+            type="text"
+            autoComplete="family-name"
+            required
+            className={inputClass}
+            placeholder="Last name"
+          />
         </div>
       </div>
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label className={labelClass} htmlFor="message-email">
-            Email
-          </label>
-          <input id="message-email" name="email" type="email" className={inputClass} autoComplete="email" required />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="message-age">
-            Age
-          </label>
-          <input id="message-age" name="age" type="number" min={18} className={inputClass} />
-        </div>
-      </div>
+
       <div>
-        <label className={labelClass} htmlFor="message-type">
-          Are you buying or refinancing?
+        <label className={labelClass} htmlFor="contact-email">
+          Email
         </label>
-        <select id="message-type" name="type" className={inputClass}>
-          {options.map((option) => (
-            <option key={option}>{option}</option>
-          ))}
-        </select>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          className={inputClass}
+          placeholder="you@example.com"
+        />
       </div>
+
       <div>
-        <label className={labelClass} htmlFor="message-help">
-          What do you need help with?
+        <label className={labelClass} htmlFor="contact-phone">
+          Phone Number
         </label>
-        <textarea id="message-help" name="help" rows={4} className={inputClass} />
+        <input
+          id="contact-phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          required
+          className={inputClass}
+          placeholder="+971 5X XXX XXXX"
+        />
       </div>
+
+      <div>
+        <label className={labelClass} htmlFor="contact-message">
+          Message
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows={5}
+          className={`${inputClass} min-h-[120px] resize-y`}
+          placeholder="Tell us what you need help with"
+        />
+      </div>
+
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full bg-[#55BBB0] hover:bg-[#20AA45] text-white font-semibold py-3.5 px-6 rounded-full transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-xl bg-[#1F4F4A] py-3.5 px-6 font-manrope text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0C665C] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "sending" ? "Sending..." : "Send Message"}
       </button>
+
       {status === "success" ? (
         <p
           role="status"
@@ -107,6 +140,7 @@ export default function ContactPageForm() {
           Thank you. Your message has been sent and we will get back to you soon.
         </p>
       ) : null}
+
       {status === "error" ? (
         <p
           role="alert"
@@ -115,9 +149,13 @@ export default function ContactPageForm() {
           {error}
         </p>
       ) : null}
-      <p className="font-inter text-sm text-[#26332F]/70 leading-relaxed">
+
+      <p className="font-inter text-xs leading-relaxed text-[#26332F]/55">
         By submitting this form you agree to our{" "}
-        <a href="/privacy-policy" className="font-semibold text-[#1F4F4A] underline underline-offset-4">
+        <a
+          href="/privacy-policy"
+          className="font-semibold text-[#1F4F4A] underline underline-offset-2"
+        >
           Privacy Policy
         </a>
         .

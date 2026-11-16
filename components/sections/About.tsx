@@ -3,7 +3,7 @@ import Icon from "../Icon";
 import Reveal from "../about/Reveal";
 
 const ABOUT_IMAGE =
-  "https://assets.nexuses.xyz/849e6238fc4b9a326589fc6f212bf90f_1792734932834_e21q.jpg";
+  "https://assets.nexuses.xyz/Coworkers_in_a_Glass_Conference_Room_1794828134974_2uop.png";
 
 const highlights = [
   { icon: "verified", title: "100% Impartial", subtitle: "Zero broker bias" },

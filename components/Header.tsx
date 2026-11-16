@@ -36,7 +36,6 @@ const supportServices = [
 const navLinks = [
   { label: "About", href: "/about" },
   { label: "Blogs", href: "/blog" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
