@@ -67,11 +67,11 @@ function NewsletterForm() {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         placeholder="Enter email address"
-        className="h-12 w-full flex-1 rounded-2xl border-0 bg-white px-4 font-inter text-sm text-[#26332F] shadow-[0_8px_24px_rgba(15,40,35,0.08)] placeholder:text-[#26332F]/45 focus:outline-none focus:ring-2 focus:ring-[#55BBB0]/60"
+        className="h-12 w-full flex-1 rounded-2xl border border-white/15 bg-[#132926] px-4 font-inter text-sm text-[#F3EFE3] shadow-[0_8px_24px_rgba(0,0,0,0.2)] placeholder:text-[#F3EFE3]/45 focus:outline-none focus:ring-2 focus:ring-[#55BBB0]/60"
       />
       <button
         type="submit"
-        className="inline-flex h-12 shrink-0 items-center justify-center rounded-2xl bg-[#1F4F4A] px-5 font-manrope text-sm font-semibold text-white transition-colors hover:bg-[#0C665C]"
+        className="inline-flex h-12 shrink-0 items-center justify-center rounded-2xl bg-[#55BBB0] px-5 font-manrope text-sm font-semibold text-[#132926] transition-colors hover:bg-[#7ed0c7]"
       >
         Subscribe
       </button>
@@ -81,10 +81,10 @@ function NewsletterForm() {
 
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden bg-[#E8EEEA] pt-10 pb-8 sm:pt-14 sm:pb-10">
+    <footer className="relative w-full overflow-hidden bg-[#0F2421] pt-10 pb-8 sm:pt-14 sm:pb-10">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none text-center font-manrope text-[18vw] font-extrabold leading-none tracking-tight text-[#1F4F4A]/[0.05]"
+        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none text-center font-manrope text-[18vw] font-extrabold leading-none tracking-tight text-white/[0.04]"
       >
         AllWin
       </div>
@@ -135,7 +135,7 @@ export default function Footer() {
                           ? "noopener noreferrer"
                           : undefined
                       }
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1A3531]/85 text-white transition-transform hover:-translate-y-0.5 hover:bg-[#132926]"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0F2421]/80 text-white transition-transform hover:-translate-y-0.5 hover:bg-[#0A1A18]"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -152,18 +152,18 @@ export default function Footer() {
           </div>
 
           {/* Links + newsletter panel */}
-          <div className="relative overflow-hidden rounded-[28px] bg-[#F7F8F6] p-7 sm:p-8 lg:rounded-[32px] lg:p-10">
+          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#1A3531] p-7 sm:p-8 lg:rounded-[32px] lg:p-10">
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
               <div>
-                <h4 className="mb-4 font-manrope text-base font-bold text-[#26332F]">
+                <h4 className="mb-4 font-manrope text-base font-bold text-[#F3EFE3]">
                   Navigation
                 </h4>
-                <ul className="space-y-2.5 font-inter text-sm text-[#26332F]/70">
+                <ul className="space-y-2.5 font-inter text-sm text-[#F3EFE3]/70">
                   {navigationLinks.map((link) => (
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="transition-colors hover:text-[#0C665C]"
+                        className="transition-colors hover:text-[#55BBB0]"
                       >
                         {link.label}
                       </a>
@@ -172,15 +172,15 @@ export default function Footer() {
                 </ul>
               </div>
               <div>
-                <h4 className="mb-4 font-manrope text-base font-bold text-[#26332F]">
+                <h4 className="mb-4 font-manrope text-base font-bold text-[#F3EFE3]">
                   Company
                 </h4>
-                <ul className="space-y-2.5 font-inter text-sm text-[#26332F]/70">
+                <ul className="space-y-2.5 font-inter text-sm text-[#F3EFE3]/70">
                   {companyLinks.map((link) => (
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="transition-colors hover:text-[#0C665C]"
+                        className="transition-colors hover:text-[#55BBB0]"
                       >
                         {link.label}
                       </a>
@@ -190,15 +190,15 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-12 flex flex-col gap-8 border-t border-[#1F4F4A]/10 pt-8 lg:mt-16 lg:flex-row lg:items-end lg:justify-between">
-              <p className="order-2 font-inter text-xs text-[#26332F]/50 lg:order-1">
+            <div className="mt-12 flex flex-col gap-8 border-t border-white/10 pt-8 lg:mt-16 lg:flex-row lg:items-end lg:justify-between">
+              <p className="order-2 font-inter text-xs text-[#F3EFE3]/45 lg:order-1">
                 © 2026 AllWin Finances. All rights reserved.
               </p>
 
               <div className="order-1 w-full max-w-md lg:order-2">
-                <p className="mb-3 font-inter text-sm leading-snug text-[#26332F]/55">
+                <p className="mb-3 font-inter text-sm leading-snug text-[#F3EFE3]/55">
                   Finance moves fast.{" "}
-                  <span className="font-manrope font-semibold text-[#26332F]">
+                  <span className="font-manrope font-semibold text-[#F3EFE3]">
                     Stay ahead with AllWin.
                   </span>
                 </p>
@@ -208,16 +208,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-5 px-1 font-inter text-[11px] leading-relaxed text-[#26332F]/45 sm:text-xs">
+        <p className="mt-5 px-1 font-inter text-[11px] leading-relaxed text-[#F3EFE3]/40 sm:text-xs">
           Authorized Financial &amp; Mortgage Advisory across the United Arab
           Emirates · Business Bay, Dubai ·{" "}
-          <a href="tel:+971585666955" className="hover:text-[#0C665C]">
+          <a href="tel:+971585666955" className="hover:text-[#55BBB0]">
             +971-58-5666955
           </a>{" "}
           ·{" "}
           <a
             href="mailto:contact@allwinfinances.com"
-            className="hover:text-[#0C665C]"
+            className="hover:text-[#55BBB0]"
           >
             contact@allwinfinances.com
           </a>

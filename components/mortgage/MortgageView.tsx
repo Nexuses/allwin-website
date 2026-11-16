@@ -1,568 +1,743 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/about/Reveal";
 import FAQ from "@/components/sections/FAQ";
+import StickyStack from "@/components/sections/StickyStack";
 import {
   commercialOptions,
   equityUses,
+  insightArticles,
+  keyFeatures,
+  mortgageFaqs,
   moreOptions,
   processSteps,
   refinanceBenefits,
 } from "./content";
 
-const ADVISOR =
-  "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/businessman-using-smartphone-calculator-with-banking-financial-holographic-icons-digital-financial-management-concept.jpg";
+const PARTNER_BASE =
+  "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/Screenshot%202026-09-29%20";
 
-const commercialImages = [
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
-];
+const partnerLogos = [
+  "142958",
+  "143049",
+  "143025",
+  "143158",
+  "143134",
+  "143110",
+].map((id, index) => ({
+  src: `${PARTNER_BASE}${id}.png`,
+  alt: `Banking Partner ${index + 1}`,
+}));
 
-function useScrub(ref: React.RefObject<HTMLElement | null>) {
-  const [progress, setProgress] = useState(0);
+const gridOverlay =
+  "linear-gradient(to right, rgba(243,239,227,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.12) 1px, transparent 1px)";
 
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      setProgress(1);
-      return;
-    }
+function QuoteForm() {
+  const [email, setEmail] = useState("");
 
-    let frame = 0;
-    const update = () => {
-      const element = ref.current;
-      if (!element) return;
-      const total = element.offsetHeight - window.innerHeight;
-      const scrolled = Math.min(Math.max(-element.getBoundingClientRect().top, 0), Math.max(total, 1));
-      setProgress(total > 0 ? scrolled / total : 1);
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [ref]);
-
-  return progress;
-}
-
-function CommercialFinance() {
-  const [active, setActive] = useState(0);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const count = commercialOptions.length;
-  const total = String(count).padStart(2, "0");
-
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      let next = 0;
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
-        if (card.getBoundingClientRect().top <= 128 + index * 16) next = index;
-      });
-      setActive(next);
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const query = email.trim()
+      ? `?email=${encodeURIComponent(email.trim())}`
+      : "";
+    window.location.href = `/contact${query}`;
+  };
 
   return (
-    <section id="commercial" className="py-16 lg:py-24">
-      <div className="mx-auto grid max-w-[1440px] items-start gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-10">
-        <div>
-          <h2 className="mb-8 max-w-[12ch] font-manrope text-4xl font-bold tracking-tight text-[#385445] sm:text-5xl lg:text-[3.4rem] lg:leading-[1.05]">
-            Commercial &amp; Building Finance
-          </h2>
-          <div>
-            {commercialOptions.map((option, index) => (
-              <article
-                key={option.title}
-                ref={(node) => {
-                  cardRefs.current[index] = node;
-                }}
-                className="sticky mb-6"
-                style={{ top: 112 + index * 16, zIndex: index + 1 }}
-              >
-                <div className="rounded-[1.35rem] bg-[#1F4F4A] px-6 py-6 text-white shadow-[0_18px_40px_rgba(31,79,74,0.2)] sm:px-7 sm:py-7">
-                  <p className="font-inter text-sm font-medium tracking-[0.14em] text-[#55BBB0]">
-                    {String(index + 1).padStart(2, "0")}
-                    <span className="mx-2 text-white/40">/</span>
-                    {total}
-                  </p>
-                  <h3 className="mt-4 font-manrope text-[1.65rem] font-bold leading-snug tracking-tight">
-                    {option.title}
-                  </h3>
-                  <p className="mt-3 max-w-[42ch] font-inter text-[15px] leading-relaxed text-white/80 sm:text-base">
-                    {option.text}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="sticky top-28 self-start">
-          <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem] bg-[#E7EFEA] lg:aspect-[6/5]">
-            {commercialImages.map((src, index) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={src}
-                src={src}
-                alt={commercialOptions[index].title}
-                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out"
-                style={{ opacity: index === active ? 1 : 0 }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    <form
+      onSubmit={onSubmit}
+      className="flex w-full max-w-lg flex-col gap-2.5 sm:flex-row sm:items-stretch"
+    >
+      <label className="sr-only" htmlFor="mortgage-email">
+        Email address
+      </label>
+      <input
+        id="mortgage-email"
+        type="email"
+        name="email"
+        required
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+        placeholder="Enter your email"
+        className="h-12 w-full flex-1 rounded-full border border-[#A9C1B8]/70 bg-white px-5 font-inter text-sm text-[#26332F] outline-none transition placeholder:text-[#26332F]/40 focus:border-[#55BBB0] focus:ring-2 focus:ring-[#55BBB0]/30"
+      />
+      <button
+        type="submit"
+        className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-[#1F4F4A] px-6 font-manrope text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0C665C]"
+      >
+        Get a free quote
+      </button>
+    </form>
   );
 }
 
-function BulletList({ items, light = false }: { items: string[]; light?: boolean }) {
-  return (
-    <ul className="mt-4 space-y-2.5">
-      {items.map((item) => (
-        <li key={item} className="flex gap-3 font-inter text-sm leading-relaxed">
-          <Icon
-            name="check_circle"
-            className={`text-[18px] shrink-0 mt-0.5 ${light ? "text-[#55BBB0]" : "text-[#20AA45]"}`}
-          />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
+const HERO_IMAGE =
+  "https://assets.nexuses.xyz/Collaborative_discussion_in_a_warm_wooden_interior_1794824072698_7nsi.png";
 
-const deck = [
-  {
-    id: "new-purchase",
-    eyebrow: "New purchase",
-    title: "Home Loans for New Property Purchases",
-    dark: false,
-    body: (
-      <>
-        <h3 className="font-manrope text-lg font-semibold text-[#1F4F4A] mb-3">
-          Residential and commercial mortgages (Islamic and conventional)
-        </h3>
-        <div className="space-y-3 font-inter text-sm sm:text-base text-[#26332F]/85 leading-relaxed">
-          <p>
-            At this important moment in your life you may have many questions, and you may be unsure which documents you need. We understand how that feels.
-          </p>
-          <p>
-            Whether you are a young professional investing early or a family settling into a new community, our mortgage advisors give you honest advice and practical, proven solutions. We will guide you towards your goal of becoming a happy homeowner.
-          </p>
-          <p>
-            Not sure where to start?{" "}
-            <a href="/#contact" className="font-semibold text-[#1F4F4A] underline underline-offset-4">
-              Get in touch
-            </a>{" "}
-            and our friendly team will help.
-          </p>
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "refinance",
-    eyebrow: "Refinance",
-    title: "Mortgage Refinance & Buyout in Dubai",
-    dark: false,
-    body: (
-      <>
-        <p className="font-inter text-sm sm:text-base text-[#26332F]/85 leading-relaxed">
-          A mortgage buyout (also called refinancing) means moving your current mortgage to a new lender, or renegotiating your terms. It is important to research the market and understand what you can gain. We compare interest and profit rates from different lenders and explain the paperwork you will need.
-        </p>
-        <h3 className="font-manrope text-lg font-semibold text-[#1F4F4A] mt-5">Benefits of refinancing</h3>
-        <BulletList items={refinanceBenefits} />
-        <p className="font-inter text-sm text-[#26332F]/70 mt-4">
-          Benefits depend on your lender, property and personal profile.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "equity-release",
-    eyebrow: "Equity release",
-    title: "Equity Release (Cash-Out) Mortgage",
-    dark: false,
-    body: (
-      <>
-        <p className="font-inter text-sm sm:text-base text-[#26332F]/85 leading-relaxed">
-          Equity release lets you access money from the value you have built in your property, as a lump sum or in installments. It can help you manage uncertain times with confidence.
-        </p>
-        <h3 className="font-manrope text-lg font-semibold text-[#1F4F4A] mt-5">How could equity release help you?</h3>
-        <BulletList items={equityUses} />
-      </>
-    ),
-  },
-];
-
-function SpreadStack() {
+function ProcessRoadmap() {
   const sectionRef = useRef<HTMLElement>(null);
-  const progress = useScrub(sectionRef);
-  const [reduced, setReduced] = useState(false);
+  const [activeCount, setActiveCount] = useState(0);
+  const [lineReady, setLineReady] = useState(false);
 
   useEffect(() => {
-    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const element = sectionRef.current;
+    if (!element) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActiveCount(processSteps.length);
+      setLineReady(true);
+      return;
+    }
+
+    let timers: number[] = [];
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        setLineReady(true);
+        processSteps.forEach((_, index) => {
+          timers.push(
+            window.setTimeout(() => {
+              setActiveCount(index + 1);
+            }, 180 + index * 280),
+          );
+        });
+      },
+      { threshold: 0.28 },
+    );
+
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      timers.forEach((id) => window.clearTimeout(id));
+    };
   }, []);
 
-  if (reduced) {
-    return (
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 space-y-6">
-        {deck.map((card) => (
-          <article
-            key={card.id}
-            id={card.id}
-            className={`rounded-[2rem] p-5 sm:p-10 shadow-xl ${card.dark ? "bg-[#1F4F4A] text-white" : "bg-white text-[#385445]"}`}
-          >
-            <p className={`text-xs font-semibold uppercase tracking-wider mb-3 ${card.dark ? "text-[#55BBB0]" : "text-[#1F4F4A]"}`}>
-              {card.eyebrow}
-            </p>
-            <h2 className="font-manrope text-3xl font-bold tracking-tight mb-4">{card.title}</h2>
-            {card.body}
-          </article>
-        ))}
-      </section>
-    );
-  }
-
-  const index = progress * (deck.length - 1);
-
   return (
-    <section ref={sectionRef} className="relative h-[260vh]">
-      <div className="sticky top-20 h-[calc(100svh-5rem)] flex items-center">
-        <div className="relative w-full max-w-3xl mx-auto h-[min(680px,calc(100svh-8rem))] px-4 sm:px-6">
-          {deck.map((card, i) => {
-            const delta = i - index;
-            const behind = Math.max(delta, 0);
-            const passed = Math.min(delta, 0);
-            const opacity = passed < -0.35 ? Math.max(0, 1 + (passed + 0.35) * 2.4) : 1;
-            const front = delta < 0.45 && delta > -0.55;
+    <section ref={sectionRef} className="bg-[#F7F8F6] py-16 lg:py-24">
+      <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-10">
+        <Reveal>
+          <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
+            How our mortgage process works
+          </h2>
+        </Reveal>
 
-            return (
-              <article
-                key={card.id}
-                id={card.id}
-                className={`absolute inset-x-4 sm:inset-x-6 top-0 h-full rounded-[2rem] p-5 sm:p-10 shadow-[0_24px_60px_rgba(31,79,74,0.18)] overflow-auto ${
-                  card.dark ? "bg-[#1F4F4A] text-white" : i % 2 === 0 ? "bg-white text-[#385445]" : "bg-[#F3EFE3] text-[#385445] border border-[#A9C1B8]/70"
-                }`}
-                style={{
-                  zIndex: front ? 20 : 10 - i,
-                  pointerEvents: front ? "auto" : "none",
-                  opacity,
-                  transform: `translateY(calc(${passed * 108}% + ${behind * 18}px)) scale(${1 - behind * 0.045})`,
-                }}
-              >
-                <p className={`text-xs font-semibold uppercase tracking-wider mb-3 ${card.dark ? "text-[#55BBB0]" : "text-[#1F4F4A]"}`}>
-                  {card.eyebrow}
-                </p>
-                <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-4">{card.title}</h2>
-                {card.body}
-              </article>
-            );
-          })}
+        <div className="relative mt-14 lg:mt-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-8 hidden h-[2px] overflow-hidden lg:block"
+          >
+            <div
+              className="h-full origin-left border-t border-dashed border-[#A9C1B8] transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ transform: lineReady ? "scaleX(1)" : "scaleX(0)" }}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4 lg:gap-6">
+            {processSteps.map((step, index) => {
+              const shown = index < activeCount;
+              return (
+                <article
+                  key={step.title}
+                  className={`relative flex flex-col items-center text-center transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    shown
+                      ? "translate-y-0 scale-100 opacity-100 blur-0"
+                      : "translate-y-8 scale-[0.96] opacity-0 blur-[2px]"
+                  }`}
+                >
+                  <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-[#C8DED6] text-[#1F4F4A] shadow-[0_8px_24px_rgba(31,79,74,0.08)]">
+                    <Icon name={step.icon} className="text-[26px]" />
+                  </div>
+                  <h3 className="mt-5 max-w-[16ch] font-manrope text-base font-bold tracking-tight text-[#26332F] sm:text-[17px]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 max-w-[22ch] font-inter text-sm leading-relaxed text-[#26332F]/65">
+                    {step.text}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function ProcessLine() {
-  const lineRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+function ArticlesRow() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const count = processSteps.length;
-    if (reduced) {
-      setActive(0);
-      if (lineRef.current) lineRef.current.style.width = "0%";
-      return;
-    }
-
-    const segment = 3000;
-    const hold = 3000;
-    const cycle = segment * (count - 1) + hold;
-    let frame = 0;
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const elapsed = (now - start) % cycle;
-      let nextActive = 0;
-      let line = 0;
-
-      if (elapsed >= segment * (count - 1)) {
-        nextActive = count - 1;
-        line = 1;
-      } else {
-        nextActive = Math.floor(elapsed / segment);
-        const local = (elapsed % segment) / segment;
-        line = (nextActive + local) / (count - 1);
-      }
-
-      if (lineRef.current) lineRef.current.style.width = `${line * 100}%`;
-      setActive((current) => (current === nextActive ? current : nextActive));
-      frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, []);
+  const scrollBy = (dir: -1 | 1) => {
+    const node = scrollerRef.current;
+    if (!node) return;
+    node.scrollBy({
+      left: dir * Math.min(340, node.clientWidth * 0.85),
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section className="bg-white py-16 lg:py-24">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-        <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight text-center mb-14">
-          How Our Mortgage Process Works
-        </h2>
-        </Reveal>
-        <Reveal delay={80}>
-        <div className="relative grid grid-cols-2 gap-y-10 sm:grid-cols-4 sm:gap-y-0">
-          <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[21px] hidden h-[2px] bg-[#E7E4DE] sm:block">
-            <div
-              ref={lineRef}
-              className="h-full origin-left"
-              style={{
-                width: "0%",
-                background: "linear-gradient(90deg, #c6a15a 0%, #8d9a62 55%, #8aa4bc 100%)",
-              }}
-            />
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <Reveal>
+            <h2 className="max-w-[14ch] font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+              Read our next article
+            </h2>
+          </Reveal>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Previous articles"
+              onClick={() => scrollBy(-1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A9C1B8]/70 text-[#1F4F4A] transition hover:bg-[#F3EFE3]"
+            >
+              <Icon name="arrow_back" className="text-[18px]" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next articles"
+              onClick={() => scrollBy(1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A9C1B8]/70 text-[#1F4F4A] transition hover:bg-[#F3EFE3]"
+            >
+              <Icon name="arrow_forward" className="text-[18px]" />
+            </button>
           </div>
-          {processSteps.map((step, index) => {
-            const current = index === active;
-            return (
-              <article key={step.title} className="relative z-10 px-1.5 sm:px-4 text-center">
-                <div
-                  className={`mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-500 ${
-                    current
-                      ? "bg-[#1B2744] text-white"
-                      : "border border-[#E6E6E6] bg-white text-[#C8C8C8]"
-                  }`}
-                >
-                  {current ? (
-                    <Icon name="check" className="text-[22px]" />
-                  ) : (
-                    <span className="font-inter text-sm">{index + 1}</span>
-                  )}
-                </div>
-                <h3
-                  className={`font-manrope text-[13px] sm:text-[15px] leading-snug mb-2 transition-colors duration-500 ${
-                    current ? "font-bold text-[#1A1A1A]" : "font-medium text-[#C5C5C5]"
-                  }`}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  className={`font-inter text-[11px] sm:text-[13px] leading-relaxed transition-colors duration-500 ${
-                    current ? "text-[#4A4A4A]" : "text-[#D0D0D0]"
-                  }`}
-                >
-                  {step.text}
-                </p>
-              </article>
-            );
-          })}
         </div>
-        </Reveal>
+
+        <div
+          ref={scrollerRef}
+          className="flex gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {insightArticles.map((article, index) => (
+            <Reveal
+              key={article.title}
+              delay={index * 60}
+              className="w-[78%] shrink-0 sm:w-[280px]"
+            >
+              <a href={article.href} className="group block h-full">
+                <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#A9C1B8]/40 bg-[#F3EFE3]">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={article.image}
+                      alt=""
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="font-manrope text-lg font-bold leading-snug text-[#385445]">
+                      {article.title}
+                    </h3>
+                    <p className="mt-2 font-inter text-sm leading-relaxed text-[#26332F]/65">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                </article>
+              </a>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
 export default function MortgageView() {
-
   return (
     <div className="bg-[#F3EFE3] text-[#26332F]">
-      <section className="relative overflow-hidden bg-[#1F4F4A] text-white">
-        <div
-          className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle, #55BBB0, transparent 70%)" }}
-        />
-        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-[144px] pb-16 lg:pt-[176px] lg:pb-24 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
-            <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-5">
-              Mortgage Financing in Dubai &amp; the UAE
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-white pt-[112px] sm:pt-[128px]">
+        <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-4 pb-14 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-10 lg:pb-20">
+          <div>
+            <h1 className="max-w-[15ch] font-manrope text-[2.5rem] font-bold leading-[1.08] tracking-tight text-[#385445] sm:text-5xl lg:text-[3.4rem] lg:leading-[1.05]">
+              Mortgage advice designed for{" "}
+              <span className="text-[#0C665C]">modern UAE living</span>.
             </h1>
-            <p className="font-inter text-lg sm:text-xl text-white/80 max-w-2xl leading-relaxed mb-8">
-              Islamic and conventional home loans, refinancing and more, explained simply and compared across UAE banks.
+            <p className="mt-5 max-w-md font-inter text-base leading-relaxed text-[#26332F]/70 sm:text-lg">
+              Islamic and conventional home loans, refinancing and equity
+              release — compared across UAE banks in plain language.
             </p>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 bg-[#55BBB0] hover:bg-[#20AA45] text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
-            >
-              Talk to a Mortgage Advisor
-              <Icon name="arrow_forward" className="text-[18px]" />
-            </a>
-          </div>
-          <div className="lg:col-span-5 relative h-[320px] sm:h-[420px]">
-            <div className="absolute inset-0 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
-              <Image
-                src={ADVISOR}
-                alt="Mortgage advisor reviewing home loan options in Dubai"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 460px, 90vw"
-                preload
-              />
+            <div className="mt-8">
+              <QuoteForm />
             </div>
+          </div>
+
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[5/6] lg:aspect-auto lg:min-h-[480px]">
+            <Image
+              src={HERO_IMAGE}
+              alt="Mortgage advisors in a collaborative discussion"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 536px, 90vw"
+              preload
+            />
           </div>
         </div>
       </section>
 
-      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-end">
-        <Reveal className="lg:col-span-5">
-          <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight">
-            Find the Right Home Loan in the UAE
-          </h2>
-        </Reveal>
-        <Reveal delay={80} className="lg:col-span-7">
-          <p className="font-inter text-base sm:text-lg text-[#26332F]/85 leading-relaxed">
-            Buying property is a big step. AllWin Finances compares mortgage options from leading UAE banks and guides you from your first question to final approval. Whether you are buying, refinancing or investing, we keep the process clear and simple.
-          </p>
-        </Reveal>
+      {/* Partner logos */}
+      <section className="border-y border-[#A9C1B8]/35 bg-[#F8F9FA] py-8 sm:py-10">
+        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-10 gap-y-6 px-4 sm:gap-x-14 sm:px-6 lg:px-10">
+          {partnerLogos.map((logo) => (
+            <Image
+              key={logo.src}
+              src={logo.src}
+              alt={logo.alt}
+              width={160}
+              height={40}
+              className="h-8 w-auto object-contain opacity-70 mix-blend-multiply transition hover:opacity-100 sm:h-9"
+            />
+          ))}
+        </div>
       </section>
 
-      <SpreadStack />
+      <StickyStack
+        pin={
+          <section className="bg-[#F3EFE3] py-16 lg:py-24">
+            <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
+              <Reveal>
+                <h2 className="mx-auto max-w-[18ch] text-center font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl lg:text-[2.85rem] lg:leading-[1.1]">
+                  Set yourself free from mortgage confusion.
+                </h2>
+              </Reveal>
 
-      <section className="py-16 lg:py-20">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <Reveal className="mb-8">
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight">
+              <div className="mt-10 grid gap-5 lg:mt-14 lg:grid-cols-2">
+                <Reveal>
+                  <article className="overflow-hidden rounded-[1.5rem] border border-[#A9C1B8]/40 bg-white p-6 shadow-[0_18px_40px_rgba(31,79,74,0.08)] sm:p-8">
+                    <div className="relative mb-8 flex min-h-[220px] items-end justify-center">
+                      <div className="absolute left-1/2 top-4 h-36 w-[78%] -translate-x-1/2 rotate-[-6deg] rounded-2xl bg-[#1F4F4A] shadow-lg" />
+                      <div className="absolute left-1/2 top-10 h-36 w-[78%] -translate-x-1/2 rotate-[4deg] rounded-2xl bg-[#0C665C] shadow-lg" />
+                      <div className="relative w-[78%] rounded-2xl bg-white p-5 shadow-[0_18px_40px_rgba(31,79,74,0.14)]">
+                        <p className="font-inter text-xs text-[#26332F]/50">
+                          New purchase
+                        </p>
+                        <p className="mt-1 font-manrope text-3xl font-bold tracking-tight text-[#385445]">
+                          Home loans
+                        </p>
+                        <p className="mt-2 font-inter text-sm text-[#26332F]/65">
+                          Islamic &amp; conventional · UAE banks
+                        </p>
+                      </div>
+                    </div>
+                    <h3 className="font-manrope text-xl font-bold text-[#385445] sm:text-[1.35rem]">
+                      Clear guidance for your first — or next — property purchase
+                    </h3>
+                    <p className="mt-3 font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-[15px]">
+                      Whether you are buying your first home or investing, we
+                      compare lenders, explain documents and guide you to approval
+                      with confidence.
+                    </p>
+                  </article>
+                </Reveal>
+
+                <Reveal delay={80}>
+                  <article className="overflow-hidden rounded-[1.5rem] border border-[#A9C1B8]/40 bg-white p-6 shadow-[0_18px_40px_rgba(31,79,74,0.08)] sm:p-8">
+                    <div className="mb-8 rounded-2xl bg-[#F3EFE3] p-5">
+                      <div className="mb-4 flex items-center justify-between">
+                        <p className="font-manrope text-sm font-semibold text-[#385445]">
+                          Refinance outlook
+                        </p>
+                        <span className="rounded-full bg-[#E8F5F2] px-2.5 py-1 font-inter text-[11px] font-medium text-[#0C665C]">
+                          AED / month
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="rounded-xl bg-white p-3">
+                          <p className="font-inter text-[11px] text-[#26332F]/50">
+                            Current
+                          </p>
+                          <p className="mt-1 font-manrope text-lg font-bold text-[#385445]">
+                            12,400
+                          </p>
+                        </div>
+                        <div className="rounded-xl bg-[#E8F5F2] p-3">
+                          <p className="font-inter text-[11px] text-[#0C665C]">
+                            After buyout
+                          </p>
+                          <p className="mt-1 font-manrope text-lg font-bold text-[#0C665C]">
+                            10,850
+                          </p>
+                        </div>
+                      </div>
+                      <ul className="mt-4 space-y-1.5">
+                        {refinanceBenefits.slice(0, 3).map((item) => (
+                          <li
+                            key={item}
+                            className="flex gap-2 font-inter text-xs text-[#26332F]/70"
+                          >
+                            <Icon
+                              name="check_circle"
+                              className="mt-0.5 shrink-0 text-[14px] text-[#20AA45]"
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <h3 className="font-manrope text-xl font-bold text-[#385445] sm:text-[1.35rem]">
+                      Refinance when the numbers work harder for you
+                    </h3>
+                    <p className="mt-3 font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-[15px]">
+                      We check rates across lenders, surface fees early and help
+                      you decide whether a mortgage buyout is worth it.
+                    </p>
+                  </article>
+                </Reveal>
+              </div>
+            </div>
+          </section>
+        }
+        overlay={
+          <section className="relative overflow-hidden rounded-t-[2rem] bg-[#1F4F4A] py-16 shadow-[0_-24px_80px_rgba(12,40,38,0.35)] sm:rounded-t-[2.5rem] lg:py-24">
+            <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
+              <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-12">
+                <Reveal>
+                  <h2 className="max-w-[16ch] font-manrope text-3xl font-bold tracking-tight text-[#F3EFE3] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+                    Key features of our mortgage advisory
+                  </h2>
+                </Reveal>
+                <Reveal delay={60}>
+                  <p className="max-w-md font-inter text-sm leading-relaxed text-[#F3EFE3]/75 sm:text-base lg:justify-self-end">
+                    AllWin Finances compares options from leading UAE banks and
+                    stays with you from the first question to final approval — so
+                    you can focus on the property, not the paperwork.
+                  </p>
+                </Reveal>
+              </div>
+
+              <div className="mt-10">
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+                  {keyFeatures.map((feature, index) => (
+                    <Reveal key={feature.title} delay={index * 70} className="h-full">
+                      <article className="group relative flex h-full min-h-[220px] flex-col overflow-hidden rounded-[1.5rem] border border-transparent bg-white p-6 shadow-[0_16px_40px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:border-[#55BBB0] hover:shadow-[0_22px_48px_rgba(85,187,176,0.28)] sm:min-h-[240px] sm:p-7">
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#E8EEEA] to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                        />
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#55BBB0]/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+                        />
+                        <div className="relative">
+                          <h3 className="font-manrope text-xl font-bold tracking-tight text-[#1F4F4A] transition-colors duration-300 group-hover:text-[#0C665C] sm:text-[1.35rem]">
+                            {feature.title}
+                          </h3>
+                          <p className="mt-3 max-w-[36ch] font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-[15px]">
+                            {feature.text}
+                          </p>
+                        </div>
+                        <div className="relative mt-auto flex items-end justify-between pt-8">
+                          <span
+                            className="font-manrope text-5xl font-bold leading-none tracking-tight text-transparent transition-transform duration-300 group-hover:scale-105 sm:text-6xl"
+                            style={{ WebkitTextStroke: "1.5px #55BBB0" }}
+                          >
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <div className="mb-1 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1F4F4A] text-white transition-all duration-300 group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:bg-[#0C665C] group-hover:shadow-[0_10px_24px_rgba(12,102,92,0.35)]">
+                            <Icon name={feature.icon} className="text-[22px]" />
+                          </div>
+                        </div>
+                      </article>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+      />
+
+      {/* More ways — with icons */}
+      <section className="bg-[#F3EFE3] py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
+          <Reveal>
+            <h2 className="max-w-[16ch] font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
               More ways to finance property
             </h2>
           </Reveal>
-          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4">
-            {moreOptions.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70} className="snap-start shrink-0 w-[82%] sm:w-[420px]">
-              <article
-                className="h-full rounded-[2rem] bg-white border border-[#A9C1B8]/60 p-7 shadow-xs"
-              >
-                <h2 className="font-manrope text-2xl font-bold text-[#385445] mb-3">
-                  {item.title === "Tailor-Made Mortgages" ? (
-                    <>
-                      Tailor-Made
-                      <br />
-                      Mortgages
-                    </>
-                  ) : item.title === "Land & Plot Financing" ? (
-                    <>
-                      Land &amp; Plot
-                      <br />
-                      Financing
-                    </>
-                  ) : (
-                    item.title
-                  )}
-                </h2>
-                <p className="font-inter text-[#26332F]/85 leading-relaxed">{item.text}</p>
-              </article>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {moreOptions.slice(0, 3).map((item, index) => (
+              <Reveal key={item.title} delay={index * 60}>
+                <article className="group h-full rounded-[1.5rem] border border-[#A9C1B8]/45 bg-white p-6 shadow-[0_12px_30px_rgba(31,79,74,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(31,79,74,0.12)]">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1F4F4A] text-white">
+                    <Icon name={item.icon} className="text-[22px]" />
+                  </div>
+                  <h3 className="font-manrope text-lg font-bold text-[#385445]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 font-inter text-sm leading-relaxed text-[#26332F]/65">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {moreOptions.slice(3).map((item, index) => (
+              <Reveal key={item.title} delay={index * 60}>
+                <article className="group h-full rounded-[1.5rem] border border-[#A9C1B8]/45 bg-white p-6 shadow-[0_12px_30px_rgba(31,79,74,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(31,79,74,0.12)]">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1F4F4A] text-white">
+                    <Icon name={item.icon} className="text-[22px]" />
+                  </div>
+                  <h3 className="font-manrope text-lg font-bold text-[#385445]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 font-inter text-sm leading-relaxed text-[#26332F]/65">
+                    {item.text}
+                  </p>
+                </article>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="non-resident" className="py-8 lg:py-12">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <Reveal>
-          <div className="rounded-[2rem] bg-[#385445] text-white p-8 sm:p-12 grid lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5">
-              <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight">
-                Non-Resident Mortgage Loans in the UAE
-              </h2>
+      <StickyStack
+        pin={
+          <section className="bg-white py-16 lg:py-20">
+            <div className="mx-auto grid max-w-[1200px] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+              <Reveal>
+                <article className="h-full rounded-[1.5rem] border border-[#A9C1B8]/40 bg-[#F3EFE3] p-7 sm:p-8">
+                  <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0C665C]">
+                    Equity release
+                  </p>
+                  <h3 className="mt-3 font-manrope text-3xl font-bold tracking-tight text-[#385445]">
+                    Unlock value you already own
+                  </h3>
+                  <p className="mt-3 font-inter text-sm leading-relaxed text-[#26332F]/65">
+                    Access cash from the equity in your property as a lump sum or
+                    in stages — with clear guidance on what lenders expect.
+                  </p>
+                  <ul className="mt-5 space-y-2">
+                    {equityUses.map((use) => (
+                      <li
+                        key={use}
+                        className="flex gap-2 font-inter text-sm text-[#26332F]/75"
+                      >
+                        <Icon
+                          name="check_circle"
+                          className="mt-0.5 shrink-0 text-[16px] text-[#20AA45]"
+                        />
+                        {use}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </Reveal>
+              <Reveal delay={80}>
+                <article
+                  className="relative h-full overflow-hidden rounded-[1.5rem] p-7 text-white sm:p-8"
+                  style={{
+                    background:
+                      "linear-gradient(145deg, #1F4F4A 0%, #0C665C 100%)",
+                  }}
+                >
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 opacity-30"
+                    style={{
+                      backgroundImage: gridOverlay,
+                      backgroundSize: "44px 44px",
+                    }}
+                  />
+                  <div className="relative">
+                    <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#55BBB0]">
+                      Non-resident
+                    </p>
+                    <h3 className="mt-3 font-manrope text-3xl font-bold tracking-tight">
+                      Mortgages for buyers abroad
+                    </h3>
+                    <p className="mt-3 font-inter text-sm leading-relaxed text-white/80">
+                      Getting a loan as a non-resident can be tricky, but it is
+                      possible. We explain requirements, organise documents and
+                      compare rates, loan amounts and repayment periods that
+                      could work for you.
+                    </p>
+                    <a
+                      href="/contact"
+                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+                    >
+                      Talk to an advisor
+                      <Icon name="arrow_forward" className="text-[16px]" />
+                    </a>
+                  </div>
+                </article>
+              </Reveal>
             </div>
-            <div className="lg:col-span-7 space-y-4">
-              <p className="font-inter text-white/85 leading-relaxed">
-                Getting a loan as a non-resident can be tricky, but it is possible. There are several options for non-resident buyers.
-              </p>
-              <p className="font-inter text-white/85 leading-relaxed">
-                Our mortgage experts explain the requirements for the property you are interested in and help you organise your documents. Together we will look at rates, loan amounts and repayment periods that could work for you.
-              </p>
+          </section>
+        }
+        overlay={
+          <section className="relative overflow-hidden rounded-t-[2rem] bg-[#EEF3F0] py-16 shadow-[0_-24px_80px_rgba(12,40,38,0.2)] sm:rounded-t-[2.5rem] lg:py-24">
+            <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
+              <Reveal className="mx-auto max-w-2xl text-center">
+                <p className="mx-auto inline-flex rounded-full border border-[#1F4F4A]/25 px-3.5 py-1 font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4F4A]">
+                  Commercial
+                </p>
+                <h2 className="mt-5 font-manrope text-3xl font-bold tracking-tight text-[#26332F] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
+                  Commercial &amp; building finance
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-base">
+                  From residential builds to warehouses and commercial mortgages,
+                  we source lenders and manage the process without the confusion.
+                </p>
+              </Reveal>
+
+              <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:gap-5">
+                {commercialOptions.map((option, index) => {
+                  const tone =
+                    index === 1 || index === 2
+                      ? index === 1
+                        ? "dark"
+                        : "sage"
+                      : "light";
+
+                  return (
+                    <Reveal
+                      key={option.title}
+                      delay={index * 70}
+                      className="h-full"
+                    >
+                      <article
+                        className={`group flex h-full flex-col rounded-[1.75rem] border border-transparent p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#55BBB0] sm:p-7 ${
+                          tone === "dark"
+                            ? "bg-[#1F4F4A] text-white hover:shadow-[0_22px_48px_rgba(85,187,176,0.25)]"
+                            : tone === "sage"
+                              ? "bg-[#C5D5CC] text-[#26332F] hover:shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
+                              : "bg-white text-[#26332F] shadow-[0_12px_32px_rgba(31,79,74,0.06)] hover:shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
+                        }`}
+                      >
+                        <div
+                          className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 group-hover:-translate-y-0.5 group-hover:scale-105 ${
+                            tone === "dark"
+                              ? "bg-[#55BBB0]/25 text-[#55BBB0] group-hover:bg-[#55BBB0]/40"
+                              : "bg-[#1F4F4A]/10 text-[#20AA45] group-hover:bg-[#1F4F4A] group-hover:text-white"
+                          }`}
+                        >
+                          <Icon name={option.icon} className="text-[26px]" />
+                        </div>
+                        <h3
+                          className={`font-manrope text-lg font-bold tracking-tight transition-colors duration-300 sm:text-xl ${
+                            tone === "dark"
+                              ? "text-white"
+                              : "text-[#1F4F4A] group-hover:text-[#0C665C]"
+                          }`}
+                        >
+                          {option.title}
+                        </h3>
+                        <p
+                          className={`mt-3 flex-1 font-inter text-sm leading-relaxed ${
+                            tone === "dark"
+                              ? "text-white/75"
+                              : "text-[#26332F]/65"
+                          }`}
+                        >
+                          {option.text}
+                        </p>
+                        <a
+                          href="/contact"
+                          className={`mt-6 inline-flex w-fit items-center gap-1.5 border-b pb-0.5 font-manrope text-sm font-semibold transition-colors ${
+                            tone === "dark"
+                              ? "border-white/50 text-white group-hover:border-[#55BBB0] group-hover:text-[#55BBB0]"
+                              : "border-[#1F4F4A]/40 text-[#1F4F4A] group-hover:border-[#0C665C] group-hover:text-[#0C665C]"
+                          }`}
+                        >
+                          Talk to a specialist
+                        </a>
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-          </Reveal>
-        </div>
-      </section>
+          </section>
+        }
+      />
 
-      <CommercialFinance />
+      <ProcessRoadmap />
 
-      <section className="pb-16 lg:pb-24">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+      {/* CTA */}
+      <section className="bg-[#F3EFE3] py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
           <Reveal>
-          <div className="rounded-[2rem] border border-[#A9C1B8]/70 bg-white p-8 sm:p-12 grid lg:grid-cols-12 gap-8">
-            <h2 className="lg:col-span-5 font-manrope text-3xl sm:text-4xl font-bold text-[#385445] tracking-tight">
-              Real Estate Investment Advice
-            </h2>
-            <div className="lg:col-span-7 space-y-4">
-              <p className="font-inter text-[#26332F]/85 leading-relaxed">
-                Get guidance on buying residential or commercial property in popular areas of Dubai, Abu Dhabi, Ajman, Sharjah and Ras Al Khaimah. We help you find property deals that match your needs.
-              </p>
-              <p className="font-inter text-[#26332F]/85 leading-relaxed">
-                We can also guide you on legal steps, property management and rental agreements.
-              </p>
-            </div>
-          </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <ProcessLine />
-
-      <FAQ />
-
-      <section className="pb-20 lg:pb-28">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <Reveal>
-          <div
-            className="rounded-[2rem] px-6 py-14 sm:px-12 text-center text-white"
-            style={{ background: "linear-gradient(135deg, #0C665C 0%, #20AA45 42%, #55BBB0 100%)" }}
-          >
-            <h2 className="font-manrope text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-              Ready to Talk About Your Mortgage?
-            </h2>
-            <p className="font-inter text-white/90 max-w-xl mx-auto mb-8">
-              Call, WhatsApp or request a free quote. Our friendly team is happy to help.
-            </p>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 bg-white text-[#1F4F4A] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+            <div
+              className="relative overflow-hidden rounded-[1.75rem] px-7 py-14 sm:px-12 sm:py-16 lg:px-16"
+              style={{
+                background:
+                  "linear-gradient(135deg, #0C665C 0%, #1F4F4A 48%, #132926 100%)",
+              }}
             >
-              Get a Free Quote
-              <Icon name="arrow_forward" className="text-[18px]" />
-            </a>
-            <p className="font-inter text-sm text-white/80 max-w-2xl mx-auto mt-8">
-              Rates, eligibility and approval depend on each bank’s policies and your personal profile. AllWin Finances cannot guarantee approval.
-            </p>
-          </div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-35"
+                style={{
+                  backgroundImage: gridOverlay,
+                  backgroundSize: "52px 52px",
+                }}
+              />
+              <div className="relative grid items-center gap-10 lg:grid-cols-2">
+                <div>
+                  <h2 className="max-w-[14ch] font-manrope text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+                    Ready to talk about your mortgage?
+                  </h2>
+                  <p className="mt-4 max-w-md font-inter text-sm leading-relaxed text-white/80 sm:text-base">
+                    Call, WhatsApp or request a free quote. Our team compares
+                    options and explains every step in plain language.
+                  </p>
+                  <a
+                    href="/contact"
+                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
+                  >
+                    Get a free quote
+                    <Icon name="arrow_forward" className="text-[16px]" />
+                  </a>
+                  <p className="mt-6 max-w-md font-inter text-xs leading-relaxed text-white/55">
+                    Rates, eligibility and approval depend on each bank’s
+                    policies and your personal profile. AllWin Finances cannot
+                    guarantee approval.
+                  </p>
+                </div>
+
+                <div className="relative mx-auto h-[240px] w-full max-w-[420px] lg:h-[280px]">
+                  <div className="absolute left-0 top-8 w-[70%] rotate-[-8deg] rounded-2xl bg-white p-5 shadow-2xl">
+                    <p className="font-inter text-[11px] text-[#26332F]/45">
+                      AllWin · Purchase
+                    </p>
+                    <p className="mt-2 font-manrope text-2xl font-bold text-[#385445]">
+                      AED 3.8M
+                    </p>
+                    <p className="mt-1 font-inter text-xs text-[#26332F]/55">
+                      Indicative loan amount
+                    </p>
+                  </div>
+                  <div className="absolute bottom-2 right-0 w-[72%] rotate-[7deg] rounded-2xl bg-[#E8F5F2] p-5 shadow-2xl">
+                    <p className="font-inter text-[11px] text-[#0C665C]">
+                      AllWin · Refinance
+                    </p>
+                    <p className="mt-2 font-manrope text-2xl font-bold text-[#385445]">
+                      From 4.49%*
+                    </p>
+                    <p className="mt-1 font-inter text-xs text-[#26332F]/55">
+                      Sample illustration only
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
+
+      <ArticlesRow />
+
+      <FAQ
+        title="Frequently asked questions"
+        intro="Straight answers about brokers, Islamic finance and getting started in the UAE."
+        items={mortgageFaqs}
+      />
     </div>
   );
 }

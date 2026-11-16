@@ -27,24 +27,48 @@ export const services = [
 ];
 
 export const audiences = [
-  { icon: "storefront", title: "Small and medium-sized businesses (SMEs)" },
-  { icon: "domain", title: "Large corporations" },
-  { icon: "public", title: "Traders and businesses with import or export needs" },
-  { icon: "trending_up", title: "Companies planning projects or expansion" },
+  {
+    icon: "storefront",
+    title: "Small and medium-sized businesses (SMEs)",
+    text: "Working capital, trade finance and growth funding matched to how your business actually operates.",
+  },
+  {
+    icon: "domain",
+    title: "Large corporations",
+    text: "Structured lending and banking products for established groups with more complex needs.",
+  },
+  {
+    icon: "public",
+    title: "Traders with import or export needs",
+    text: "LC discounting, trade facilities and cash-flow support for cross-border commerce.",
+  },
+  {
+    icon: "trending_up",
+    title: "Companies planning projects or expansion",
+    text: "Project finance and restructuring advice when you are scaling into the next phase.",
+  },
 ];
 
 export const steps = [
   {
-    title: "1. Share your business needs",
+    icon: "send",
+    title: "Share your business needs",
     text: "Tell us about your business, your goals and the finance you are looking for.",
   },
   {
-    title: "2. We compare bank offers",
+    icon: "account_balance",
+    title: "We compare bank offers",
     text: "We approach suitable banks and explain the terms in simple language.",
   },
   {
-    title: "3. We support your application",
+    icon: "description",
+    title: "We support your application",
     text: "We help you prepare and follow up until you get a decision.",
+  },
+  {
+    icon: "star",
+    title: "Decision and next steps",
+    text: "Once you have a clear offer, we stay with you through onboarding and drawdown.",
   },
 ];
 
@@ -53,6 +77,11 @@ export const smeFaqs = [
     question: "What is SME and corporate lending?",
     answer:
       "SME and corporate lending is finance for businesses of all sizes, from small and medium-sized enterprises (SMEs) to large corporations. Banks and other lenders provide these loans to fund growth, working capital, equipment, inventory and day-to-day operations. We help you understand your options and find the right product from our bank partners.",
+  },
+  {
+    question: "What types of business finance can you help with?",
+    answer:
+      "We advise on trade and working capital finance, project financing and restructuring, invoice/bill/LC discounting, POS and merchant finance, and business bank accounts plus related financial products from UAE banks.",
   },
   {
     question: "How do I get started with business finance?",
