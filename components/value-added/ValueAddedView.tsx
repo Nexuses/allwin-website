@@ -105,13 +105,10 @@ export default function ValueAddedView() {
                   </div>
                 </div>
 
-                <a
-                  href="/contact"
-                  className="inline-flex h-11 items-center justify-center gap-2 self-start rounded-xl border border-[#1F4F4A]/35 px-5 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:border-[#1F4F4A] hover:bg-[#1F4F4A] hover:text-white lg:self-center"
-                >
-                  Explore
-                  <Icon name="arrow_forward" className="text-[16px]" />
-                </a>
+                <div
+                  aria-hidden="true"
+                  className="aspect-[4/3] w-full max-w-[180px] self-start overflow-hidden rounded-xl bg-[#E8EEEA] sm:max-w-[160px] lg:h-[112px] lg:w-[160px] lg:max-w-none lg:self-center lg:aspect-auto"
+                />
               </article>
             </Reveal>
           ))}

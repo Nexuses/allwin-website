@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ValueAddedView from "@/components/value-added/ValueAddedView";
+import ValueAddedHoverView from "@/components/value-added/ValueAddedHoverView";
 
 export const metadata: Metadata = {
   title: "Financial Advisory & Value-Added Services | AllWin Finances",
@@ -15,7 +15,7 @@ export default function ValueAddedServicesPage() {
     <>
       <Header />
       <main className="w-full">
-        <ValueAddedView />
+        <ValueAddedHoverView />
       </main>
       <Footer />
       <WhatsAppButton />
