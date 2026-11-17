@@ -19,7 +19,7 @@ const AUDIENCE_IMAGES: Record<string, { image: string; caption: string }> = {
   "Traders and businesses with import or export needs": {
     image:
       "https://assets.nexuses.xyz/7a37cffdd0609b7fe19934a3a3b7bfba_1793083052869_oz1d.jpg",
-    caption: "Trade and import–export finance needs.",
+    caption: "Trade, import and export finance needs.",
   },
   "Companies planning projects or expansion": {
     image:

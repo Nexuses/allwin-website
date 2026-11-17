@@ -179,9 +179,9 @@ export default function ContactView() {
                       Business hours
                     </h3>
                     <p className="mt-1 font-inter text-sm leading-relaxed text-[#26332F]/70">
-                      Monday–Friday: 9:00 AM–6:00 PM
+                      Monday to Friday: 9:00 AM to 6:00 PM
                       <br />
-                      Saturday–Sunday: Closed
+                      Saturday to Sunday: Closed
                     </p>
                   </div>
                 </div>

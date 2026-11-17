@@ -25,7 +25,7 @@ function LogoGroup({ hidden = false }: { hidden?: boolean }) {
 
 export default function BankingPartners() {
   return (
-    <section className="relative z-10 w-full bg-[#F8F9FA] pt-10 pb-12 lg:pt-12 lg:pb-14 rounded-t-[2rem] sm:rounded-t-[2.5rem] border-t border-[#E9ECEF] shadow-[0_-24px_80px_rgba(0,0,0,0.28)]">
+    <section className="relative z-10 w-full bg-[#F8F9FA] pt-10 pb-12 lg:pt-12 lg:pb-14 rounded-t-[2rem] sm:rounded-t-[2.5rem] border-t border-[#E9ECEF]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
         <Reveal>
         <h2 className="font-manrope text-2xl sm:text-3xl lg:text-4xl font-bold text-[#3D464C] tracking-tight mb-8">

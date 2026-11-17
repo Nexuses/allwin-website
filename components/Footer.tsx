@@ -96,7 +96,7 @@ export default function Footer() {
             className="relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[28px] p-7 sm:min-h-[360px] sm:p-8 lg:rounded-[32px]"
             style={{
               background:
-                "linear-gradient(165deg, #55BBB0 0%, #20AA45 42%, #0C665C 100%)",
+                "linear-gradient(165deg, #0F3F3A 0%, #0C665C 38%, #147A4A 72%, #0A3530 100%)",
             }}
           >
             <div
@@ -106,17 +106,21 @@ export default function Footer() {
             <a href="/" className="relative inline-flex w-fit">
               <Image
                 alt="AllWin Finances"
-                className="h-10 w-auto object-contain sm:h-11"
+                className="h-14 w-auto object-contain sm:h-16 lg:h-[4.5rem]"
                 src={LOGO_URL}
-                width={220}
-                height={48}
-                style={{ height: 44, maxHeight: 48 }}
+                width={320}
+                height={72}
               />
             </a>
 
-            <div className="relative mt-16 sm:mt-20">
+            <div className="relative mt-12 sm:mt-14">
               <p className="max-w-[16ch] font-manrope text-2xl font-semibold leading-snug tracking-tight text-white sm:text-[1.65rem]">
                 Seamless finance solutions under one roof.
+              </p>
+              <p className="mt-4 max-w-[28ch] font-inter text-sm leading-relaxed text-white/75 sm:text-[0.95rem] sm:leading-6">
+                We work with all of the UAE banks &amp; financial institutions
+                to get you the best offers across mortgage, SME, and consumer
+                finance.
               </p>
 
               <div className="mt-8">

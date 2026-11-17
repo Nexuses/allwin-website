@@ -12,7 +12,6 @@ import ServiceOptionsMarquee from "@/components/sections/ServiceOptionsMarquee";
 import {
   commercialOptions,
   equityUses,
-  insightArticles,
   keyFeatures,
   mortgageFaqs,
   moreOptions,
@@ -154,85 +153,6 @@ function ProcessRoadmap() {
               );
             })}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ArticlesRow() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = (dir: -1 | 1) => {
-    const node = scrollerRef.current;
-    if (!node) return;
-    node.scrollBy({
-      left: dir * Math.min(340, node.clientWidth * 0.85),
-      behavior: "smooth",
-    });
-  };
-
-  return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <Reveal>
-            <h2 className="max-w-[14ch] font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-              Read our next article
-            </h2>
-          </Reveal>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              aria-label="Previous articles"
-              onClick={() => scrollBy(-1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A9C1B8]/70 text-[#1F4F4A] transition hover:bg-[#F3EFE3]"
-            >
-              <Icon name="arrow_back" className="text-[18px]" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next articles"
-              onClick={() => scrollBy(1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A9C1B8]/70 text-[#1F4F4A] transition hover:bg-[#F3EFE3]"
-            >
-              <Icon name="arrow_forward" className="text-[18px]" />
-            </button>
-          </div>
-        </div>
-
-        <div
-          ref={scrollerRef}
-          className="flex gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {insightArticles.map((article, index) => (
-            <Reveal
-              key={article.title}
-              delay={index * 60}
-              className="w-[78%] shrink-0 sm:w-[280px]"
-            >
-              <a href={article.href} className="group block h-full">
-                <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#A9C1B8]/40 bg-[#F3EFE3]">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={article.image}
-                      alt=""
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-manrope text-lg font-bold leading-snug text-[#385445]">
-                      {article.title}
-                    </h3>
-                    <p className="mt-2 font-inter text-sm leading-relaxed text-[#26332F]/65">
-                      {article.excerpt}
-                    </p>
-                  </div>
-                </article>
-              </a>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>
@@ -584,8 +504,6 @@ export default function MortgageView() {
           </Reveal>
         </div>
       </section>
-
-      <ArticlesRow />
 
       <FAQ
         title="Frequently asked questions"

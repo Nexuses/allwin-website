@@ -18,7 +18,7 @@ export const services: ValueService[] = [
     label: "01. Find the right property",
     title: "Real Estate Investment & Advisory",
     shortTitle: "Real Estate",
-    text: "Guidance on buying residential or commercial property across Dubai, Abu Dhabi and Ras Al Khaimah — including legal steps, management and rentals.",
+    text: "Guidance on buying residential or commercial property across Dubai, Abu Dhabi and Ras Al Khaimah, including legal steps, management and rentals.",
     tags: ["Buyers", "Investors", "Landlords"],
     highlights: [
       "Property search",

@@ -21,8 +21,10 @@ export default function TrackRecord() {
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-10">
         <div className="relative z-0 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <Reveal>
-            <h2 className="max-w-[11ch] font-manrope text-4xl font-bold leading-[1.08] tracking-tight text-[#26332F] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
-              Experience that inspires confidence.
+            <h2 className="max-w-[20ch] font-manrope text-4xl font-bold leading-[1.08] tracking-tight text-[#26332F] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
+              Experience that
+              <br />
+              inspires confidence.
             </h2>
             <p className="mt-5 max-w-md font-inter text-base leading-relaxed text-[#26332F]/70 sm:text-lg">
               Trusted by clients across the UAE and beyond for clear advice and
@@ -59,7 +61,7 @@ export default function TrackRecord() {
 
         <Reveal
           delay={120}
-          className="relative z-10 mt-14 sm:mt-16 lg:mt-20"
+          className="relative z-10 mt-9 sm:mt-11 lg:mt-[60px]"
         >
           <div className="relative overflow-hidden rounded-[22px] bg-white px-4 py-8 shadow-[0_20px_50px_rgba(31,79,74,0.1)] sm:rounded-[26px] sm:px-2 sm:py-10">
             <div className="grid grid-cols-2 lg:grid-cols-4">

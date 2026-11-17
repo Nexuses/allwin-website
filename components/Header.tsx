@@ -1,11 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Icon from "./Icon";
 
 export const LOGO_URL =
   "https://22527425.fs1.hubspotusercontent-na2.net/hubfs/22527425/Allwin%20Finance/ChatGPT%20Image%20Sep%2029%2c%202026%2c%2002_21_58%20PM.png";
+
+/** Colored wordmark for the light menu. */
+export const LOGO_COLOR_URL = "/logo-color.png";
 
 const financeServices = [
   {
@@ -39,12 +43,17 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const menuOpenRef = useRef(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+
+  const isIsland = !isHome || scrolled || menuOpen;
 
   useEffect(() => {
     menuOpenRef.current = menuOpen;
@@ -53,10 +62,13 @@ export default function Header() {
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
+    setScrolled(window.scrollY > 24);
 
     const updateHeader = () => {
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY.current;
+
+      setScrolled(currentY > 24);
 
       if (menuOpenRef.current) {
         setHidden(false);
@@ -88,47 +100,65 @@ export default function Header() {
         hidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       }`}
     >
-      <div className="mx-auto max-w-[1400px] px-3 sm:px-4 lg:px-6 pt-3">
-        <div className="flex h-16 items-center justify-between rounded-2xl border border-white/20 bg-[#1A3531]/40 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl backdrop-saturate-150 sm:px-6 lg:px-8">
-          <a className="flex items-center py-2 bg-transparent shrink-0" href="/">
+      <div
+        className={`mx-auto max-w-[1400px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          isIsland
+            ? "px-3 pt-3 sm:px-4 lg:px-6"
+            : "px-3 pt-0 sm:px-4 lg:px-6"
+        }`}
+      >
+        <div
+          className={`flex h-16 items-center justify-between px-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-6 lg:px-8 ${
+            isIsland
+              ? "rounded-2xl border border-[#1F4F4A]/10 bg-white/80 shadow-[0_8px_32px_rgba(31,79,74,0.1),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-2xl backdrop-saturate-150"
+              : "rounded-none border border-transparent bg-transparent shadow-none backdrop-blur-none"
+          }`}
+        >
+          <a className="flex shrink-0 items-center bg-transparent py-2" href="/">
             <Image
               alt="AllWin Finances"
-              className="h-10 w-auto object-contain block bg-transparent"
-              src={LOGO_URL}
-              width={240}
-              height={52}
+              className="block h-10 w-auto bg-transparent object-contain"
+              src={LOGO_COLOR_URL}
+              width={257}
+              height={66}
               preload
             />
           </a>
 
           <div className="flex items-center gap-2 sm:gap-5 lg:gap-8">
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden items-center gap-1 lg:flex">
               <a
-                className="rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5"
+                className="rounded-full px-3.5 py-2 text-[15px] font-medium text-[#1F4F4A]/85 transition-colors hover:bg-[#1F4F4A]/5"
                 href="/"
               >
                 Home
               </a>
 
-              <div className="relative group">
-                <button className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5">
+              <div className="group relative">
+                <button className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium text-[#1F4F4A]/85 transition-colors hover:bg-[#1F4F4A]/5">
                   <span>Services</span>
                   <Icon
                     name="expand_more"
                     className="text-[18px] transition-transform duration-300 group-hover:rotate-180"
                   />
                 </button>
-                <div className="absolute top-full left-0 w-[520px] pt-3 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out">
-                  <div className="bg-white border border-[#E9ECEF] rounded-2xl p-6 shadow-[0_16px_40px_rgba(0,0,0,0.12)] grid grid-cols-2 gap-8">
+                <div className="invisible absolute top-full left-0 w-[520px] translate-y-2 pt-3 opacity-0 transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="grid grid-cols-2 gap-8 rounded-2xl border border-[#E9ECEF] bg-white p-6 shadow-[0_16px_40px_rgba(0,0,0,0.12)]">
                     <div>
-                      <p className="font-inter text-sm text-[#6c757d] mb-4">Finance</p>
+                      <p className="mb-4 font-inter text-sm text-[#6c757d]">
+                        Finance
+                      </p>
                       <div className="flex flex-col gap-4">
                         {financeServices.map((item) => (
-                          <a key={item.title} href={item.href} className="block rounded-lg transition-colors hover:bg-[#F7F8F6]">
-                            <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block">
+                          <a
+                            key={item.title}
+                            href={item.href}
+                            className="block rounded-lg transition-colors hover:bg-[#F7F8F6]"
+                          >
+                            <span className="block font-manrope text-[15px] font-bold leading-snug text-[#3D464C]">
                               {item.title}
                             </span>
-                            <span className="font-inter text-sm text-[#6c757d] leading-snug block mt-0.5">
+                            <span className="mt-0.5 block font-inter text-sm leading-snug text-[#6c757d]">
                               {item.text}
                             </span>
                           </a>
@@ -136,13 +166,19 @@ export default function Header() {
                       </div>
                     </div>
                     <div>
-                      <p className="font-inter text-sm text-[#6c757d] mb-4">Support</p>
+                      <p className="mb-4 font-inter text-sm text-[#6c757d]">
+                        Support
+                      </p>
                       {supportServices.map((item) => (
-                        <a key={item.title} href={item.href} className="block rounded-lg transition-colors hover:bg-[#F7F8F6]">
-                          <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block">
+                        <a
+                          key={item.title}
+                          href={item.href}
+                          className="block rounded-lg transition-colors hover:bg-[#F7F8F6]"
+                        >
+                          <span className="block font-manrope text-[15px] font-bold leading-snug text-[#3D464C]">
                             {item.title}
                           </span>
-                          <span className="font-inter text-sm text-[#6c757d] leading-snug block mt-0.5">
+                          <span className="mt-0.5 block font-inter text-sm leading-snug text-[#6c757d]">
                             {item.text}
                           </span>
                         </a>
@@ -155,7 +191,7 @@ export default function Header() {
               {navLinks.map((link) => (
                 <a
                   key={link.label}
-                  className="rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5"
+                  className="rounded-full px-3.5 py-2 text-[15px] font-medium text-[#1F4F4A]/85 transition-colors hover:bg-[#1F4F4A]/5"
                   href={link.href}
                 >
                   {link.label}
@@ -173,36 +209,39 @@ export default function Header() {
 
             <button
               type="button"
-              className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 lg:hidden"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#1F4F4A] transition-colors hover:bg-[#1F4F4A]/8 sm:h-11 sm:w-11 lg:hidden"
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               onClick={() => setMenuOpen((open) => !open)}
             >
-              <Icon name={menuOpen ? "close" : "menu"} className="text-[24px] sm:text-[26px]" />
+              <Icon
+                name={menuOpen ? "close" : "menu"}
+                className="text-[24px] sm:text-[26px]"
+              />
             </button>
           </div>
         </div>
 
         {menuOpen ? (
-          <div className="mt-2 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-2xl border border-white/20 bg-[#1A3531]/45 p-3 shadow-[0_8px_32px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl backdrop-saturate-150 lg:hidden">
+          <div className="mt-2 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-2xl border border-[#1F4F4A]/10 bg-white/90 p-3 shadow-[0_8px_32px_rgba(31,79,74,0.1)] backdrop-blur-2xl backdrop-saturate-150 lg:hidden">
             <nav className="flex flex-col" aria-label="Mobile navigation">
               <a
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-3 py-3 font-manrope text-base font-semibold text-white transition-colors hover:bg-white/5"
+                className="rounded-xl px-3 py-3 font-manrope text-base font-semibold text-[#1F4F4A] transition-colors hover:bg-[#1F4F4A]/5"
               >
                 Home
               </a>
               <button
                 type="button"
-                className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-manrope text-base font-semibold text-white transition-colors hover:bg-white/5"
+                className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-manrope text-base font-semibold text-[#1F4F4A] transition-colors hover:bg-[#1F4F4A]/5"
                 aria-expanded={servicesOpen}
                 onClick={() => setServicesOpen((open) => !open)}
               >
                 <span>Services</span>
                 <Icon
                   name="expand_more"
-                  className={`text-[22px] text-[#55BBB0] transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`}
+                  className={`text-[22px] text-[#0C665C] transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
@@ -212,7 +251,7 @@ export default function Header() {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="px-3 pb-1 pt-2 font-inter text-xs font-semibold uppercase tracking-wider text-[#55BBB0]">
+                  <p className="px-3 pb-1 pt-2 font-inter text-xs font-semibold uppercase tracking-wider text-[#0C665C]">
                     Finance
                   </p>
                   {financeServices.map((item) => (
@@ -220,17 +259,17 @@ export default function Header() {
                       key={item.title}
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="block rounded-xl py-2.5 pl-6 pr-3 transition-colors hover:bg-white/5"
+                      className="block rounded-xl py-2.5 pr-3 pl-6 transition-colors hover:bg-[#1F4F4A]/5"
                     >
-                      <span className="block font-manrope text-[15px] font-semibold text-white/90">
+                      <span className="block font-manrope text-[15px] font-semibold text-[#1F4F4A]">
                         {item.title}
                       </span>
-                      <span className="block font-inter text-sm text-white/60">
+                      <span className="block font-inter text-sm text-[#26332F]/60">
                         {item.text}
                       </span>
                     </a>
                   ))}
-                  <p className="px-3 pb-1 pt-3 font-inter text-xs font-semibold uppercase tracking-wider text-[#55BBB0]">
+                  <p className="px-3 pt-3 pb-1 font-inter text-xs font-semibold uppercase tracking-wider text-[#0C665C]">
                     Support
                   </p>
                   {supportServices.map((item) => (
@@ -238,12 +277,12 @@ export default function Header() {
                       key={item.title}
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="block rounded-xl py-2.5 pl-6 pr-3 transition-colors hover:bg-white/5"
+                      className="block rounded-xl py-2.5 pr-3 pl-6 transition-colors hover:bg-[#1F4F4A]/5"
                     >
-                      <span className="block font-manrope text-[15px] font-semibold text-white/90">
+                      <span className="block font-manrope text-[15px] font-semibold text-[#1F4F4A]">
                         {item.title}
                       </span>
-                      <span className="block font-inter text-sm text-white/60">
+                      <span className="block font-inter text-sm text-[#26332F]/60">
                         {item.text}
                       </span>
                     </a>
@@ -256,7 +295,7 @@ export default function Header() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-xl px-3 py-3 font-manrope text-base font-semibold text-white transition-colors hover:bg-white/5"
+                  className="rounded-xl px-3 py-3 font-manrope text-base font-semibold text-[#1F4F4A] transition-colors hover:bg-[#1F4F4A]/5"
                 >
                   {link.label}
                 </a>

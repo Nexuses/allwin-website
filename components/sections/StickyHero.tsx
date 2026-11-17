@@ -61,10 +61,10 @@ export default function StickyHero() {
   return (
     <div
       ref={pinRef}
-      className="sticky top-0 z-0 w-full isolate bg-[#1F4F4A]"
+      className="sticky top-0 z-0 w-full isolate bg-[#E8EEEA]"
     >
-      {/* Unscaled dark fill so scale/blur never reveals the light page surface */}
-      <div aria-hidden="true" className="absolute inset-0 bg-[#1F4F4A]" />
+      {/* Unscaled fill so scale/blur never reveals a mismatched page surface */}
+      <div aria-hidden="true" className="absolute inset-0 bg-[#E8EEEA]" />
       <div
         className="relative w-full will-change-transform"
         style={{

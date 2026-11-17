@@ -142,38 +142,3 @@ export const keyFeatures = [
     text: "From first enquiry to bank approval, we prepare paperwork and stay with you through completion.",
   },
 ];
-
-export const insightArticles = [
-  {
-    title: "How to Buy Property in Dubai From the UK",
-    excerpt:
-      "A clear 2026 guide for UK buyers: documents, timelines and non-resident mortgage options.",
-    href: "/blog/how-to-buy-property-in-dubai-from-the-uk",
-    image:
-      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "When Refinancing Makes Sense in the UAE",
-    excerpt:
-      "Lower rates, faster payoff or more stable payments: how to tell if a buyout is worth it.",
-    href: "/contact",
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Non-Resident Mortgages Explained",
-    excerpt:
-      "What banks typically ask for, how much they lend, and how we help you prepare.",
-    href: "/contact",
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Equity Release for Dubai Homeowners",
-    excerpt:
-      "Use the value you have built for renovations, debt clearance or family support.",
-    href: "/contact",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
-  },
-];
