@@ -124,7 +124,7 @@ export const keyFeatures = [
   {
     icon: "query_stats",
     title: "Real-time bank comparisons",
-    text: "See rates, fees and terms from leading UAE banks side by side — Islamic and conventional.",
+    text: "See rates, fees and terms from leading UAE banks side by side, Islamic and conventional.",
   },
   {
     icon: "account_balance",
@@ -134,7 +134,7 @@ export const keyFeatures = [
   {
     icon: "home_work",
     title: "Equity release clarity",
-    text: "Understand how much cash you could unlock from your property — and what it means for repayments.",
+    text: "Understand how much cash you could unlock from your property, and what it means for repayments.",
   },
   {
     icon: "support_agent",
@@ -155,7 +155,7 @@ export const insightArticles = [
   {
     title: "When Refinancing Makes Sense in the UAE",
     excerpt:
-      "Lower rates, faster payoff or more stable payments — how to tell if a buyout is worth it.",
+      "Lower rates, faster payoff or more stable payments: how to tell if a buyout is worth it.",
     href: "/contact",
     image:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80",

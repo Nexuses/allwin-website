@@ -248,7 +248,7 @@ export async function POST(request: Request) {
       from: `"AllWin Finances Website" <${from}>`,
       to,
       replyTo: `"${lead.name.replaceAll('"', "")}" <${lead.email}>`,
-      subject: `New Website Enquiry${lead.type ? ` — ${lead.type}` : ""} (${lead.name})`,
+      subject: `New Website Enquiry${lead.type ? ` - ${lead.type}` : ""} (${lead.name})`,
       text,
       html: buildHtml(lead),
     });

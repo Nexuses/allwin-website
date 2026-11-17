@@ -150,6 +150,31 @@
   animation-play-state: paused;
 }
 
+@keyframes commercial-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-commercial-marquee {
+  display: flex;
+  width: max-content;
+  animation: commercial-marquee 48s linear infinite;
+}
+
+.group\/commercial-marquee:hover .animate-commercial-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-commercial-marquee {
+    animation: none;
+  }
+}
+
 @keyframes orbit-drift-a {
   0%,
   100% {

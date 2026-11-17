@@ -6,7 +6,9 @@ import Icon from "@/components/Icon";
 import Reveal from "@/components/about/Reveal";
 import FAQ from "@/components/sections/FAQ";
 import StickyStack from "@/components/sections/StickyStack";
+import FeatureSplitRows from "@/components/sections/FeatureSplitRows";
 import PartnerLogoMarquee from "@/components/sections/PartnerLogoMarquee";
+import ServiceOptionsMarquee from "@/components/sections/ServiceOptionsMarquee";
 import {
   commercialOptions,
   equityUses,
@@ -17,6 +19,11 @@ import {
   processSteps,
   refinanceBenefits,
 } from "./content";
+
+const SPLIT_IMAGE_A =
+  "https://assets.nexuses.xyz/Collaborative_Office_Meeting_1794891659913_u6qy.png";
+const SPLIT_IMAGE_B =
+  "https://assets.nexuses.xyz/Modern_Office_Meeting_Discussion_1794891687204_w5z2.png";
 
 const gridOverlay =
   "linear-gradient(to right, rgba(243,239,227,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.12) 1px, transparent 1px)";
@@ -103,7 +110,7 @@ function ProcessRoadmap() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#F7F8F6] py-16 lg:py-24">
+    <section ref={sectionRef} className="bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-10">
         <Reveal>
           <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
@@ -245,7 +252,7 @@ export default function MortgageView() {
             </h1>
             <p className="mt-5 max-w-md font-inter text-base leading-relaxed text-[#26332F]/70 sm:text-lg">
               Islamic and conventional home loans, refinancing and equity
-              release — compared across UAE banks in plain language.
+              release, compared across UAE banks in plain language.
             </p>
             <div className="mt-8">
               <QuoteForm />
@@ -296,7 +303,7 @@ export default function MortgageView() {
                       </div>
                     </div>
                     <h3 className="font-manrope text-xl font-bold text-[#385445] sm:text-[1.35rem]">
-                      Clear guidance for your first — or next — property purchase
+                      Clear guidance for your first or next property purchase
                     </h3>
                     <p className="mt-3 font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-[15px]">
                       Whether you are buying your first home or investing, we
@@ -375,7 +382,7 @@ export default function MortgageView() {
                 <Reveal delay={60}>
                   <p className="max-w-md font-inter text-sm leading-relaxed text-[#F3EFE3]/75 sm:text-base lg:justify-self-end">
                     AllWin Finances compares options from leading UAE banks and
-                    stays with you from the first question to final approval — so
+                    stays with you from the first question to final approval, so
                     you can focus on the property, not the paperwork.
                   </p>
                 </Reveal>
@@ -423,7 +430,7 @@ export default function MortgageView() {
         }
       />
 
-      {/* More ways — with icons */}
+      {/* More ways with icons */}
       <section className="bg-[#F3EFE3] py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
           <Reveal>
@@ -470,162 +477,34 @@ export default function MortgageView() {
 
       <StickyStack
         pin={
-          <section className="bg-white py-16 lg:py-20">
-            <div className="mx-auto grid max-w-[1200px] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
-              <Reveal>
-                <article className="h-full rounded-[1.5rem] border border-[#A9C1B8]/40 bg-[#F3EFE3] p-7 sm:p-8">
-                  <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0C665C]">
-                    Equity release
-                  </p>
-                  <h3 className="mt-3 font-manrope text-3xl font-bold tracking-tight text-[#385445]">
-                    Unlock value you already own
-                  </h3>
-                  <p className="mt-3 font-inter text-sm leading-relaxed text-[#26332F]/65">
-                    Access cash from the equity in your property as a lump sum or
-                    in stages — with clear guidance on what lenders expect.
-                  </p>
-                  <ul className="mt-5 space-y-2">
-                    {equityUses.map((use) => (
-                      <li
-                        key={use}
-                        className="flex gap-2 font-inter text-sm text-[#26332F]/75"
-                      >
-                        <Icon
-                          name="check_circle"
-                          className="mt-0.5 shrink-0 text-[16px] text-[#20AA45]"
-                        />
-                        {use}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </Reveal>
-              <Reveal delay={80}>
-                <article
-                  className="relative h-full overflow-hidden rounded-[1.5rem] p-7 text-white sm:p-8"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, #1F4F4A 0%, #0C665C 100%)",
-                  }}
-                >
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 opacity-30"
-                    style={{
-                      backgroundImage: gridOverlay,
-                      backgroundSize: "44px 44px",
-                    }}
-                  />
-                  <div className="relative">
-                    <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#55BBB0]">
-                      Non-resident
-                    </p>
-                    <h3 className="mt-3 font-manrope text-3xl font-bold tracking-tight">
-                      Mortgages for buyers abroad
-                    </h3>
-                    <p className="mt-3 font-inter text-sm leading-relaxed text-white/80">
-                      Getting a loan as a non-resident can be tricky, but it is
-                      possible. We explain requirements, organise documents and
-                      compare rates, loan amounts and repayment periods that
-                      could work for you.
-                    </p>
-                    <a
-                      href="/contact"
-                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
-                    >
-                      Talk to an advisor
-                      <Icon name="arrow_forward" className="text-[16px]" />
-                    </a>
-                  </div>
-                </article>
-              </Reveal>
-            </div>
-          </section>
+          <FeatureSplitRows
+            rows={[
+              {
+                eyebrow: "Equity release",
+                title: "Unlock value you already own",
+                text: "Access cash from the equity in your property as a lump sum or in stages, with clear guidance on what lenders expect.",
+                bullets: equityUses,
+                image: SPLIT_IMAGE_A,
+                imageAlt: "Advisors collaborating on equity release options",
+              },
+              {
+                eyebrow: "Non-resident",
+                title: "Mortgages for buyers abroad",
+                text: "Getting a loan as a non-resident can be tricky, but it is possible. We explain requirements, organise documents and compare rates, loan amounts and repayment periods that could work for you.",
+                ctaLabel: "Talk to an advisor",
+                image: SPLIT_IMAGE_B,
+                imageAlt: "Discussion about non-resident mortgage options",
+              },
+            ]}
+          />
         }
         overlay={
-          <section className="relative overflow-hidden rounded-t-[2rem] bg-[#EEF3F0] py-16 shadow-[0_-24px_80px_rgba(12,40,38,0.2)] sm:rounded-t-[2.5rem] lg:py-24">
-            <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
-              <Reveal className="mx-auto max-w-2xl text-center">
-                <p className="mx-auto inline-flex rounded-full border border-[#1F4F4A]/25 px-3.5 py-1 font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4F4A]">
-                  Commercial
-                </p>
-                <h2 className="mt-5 font-manrope text-3xl font-bold tracking-tight text-[#26332F] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-                  Commercial &amp; building finance
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-base">
-                  From residential builds to warehouses and commercial mortgages,
-                  we source lenders and manage the process without the confusion.
-                </p>
-              </Reveal>
-
-              <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:gap-5">
-                {commercialOptions.map((option, index) => {
-                  const tone =
-                    index === 1 || index === 2
-                      ? index === 1
-                        ? "dark"
-                        : "sage"
-                      : "light";
-
-                  return (
-                    <Reveal
-                      key={option.title}
-                      delay={index * 70}
-                      className="h-full"
-                    >
-                      <article
-                        className={`group flex h-full flex-col rounded-[1.75rem] border border-transparent p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#55BBB0] sm:p-7 ${
-                          tone === "dark"
-                            ? "bg-[#1F4F4A] text-white hover:shadow-[0_22px_48px_rgba(85,187,176,0.25)]"
-                            : tone === "sage"
-                              ? "bg-[#C5D5CC] text-[#26332F] hover:shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
-                              : "bg-white text-[#26332F] shadow-[0_12px_32px_rgba(31,79,74,0.06)] hover:shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
-                        }`}
-                      >
-                        <div
-                          className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 group-hover:-translate-y-0.5 group-hover:scale-105 ${
-                            tone === "dark"
-                              ? "bg-[#55BBB0]/25 text-[#55BBB0] group-hover:bg-[#55BBB0]/40"
-                              : "bg-[#1F4F4A]/10 text-[#20AA45] group-hover:bg-[#1F4F4A] group-hover:text-white"
-                          }`}
-                        >
-                          <Icon name={option.icon} className="text-[26px]" />
-                        </div>
-                        <h3
-                          className={`font-manrope text-lg font-bold tracking-tight transition-colors duration-300 sm:text-xl ${
-                            tone === "dark"
-                              ? "text-white"
-                              : "text-[#1F4F4A] group-hover:text-[#0C665C]"
-                          }`}
-                        >
-                          {option.title}
-                        </h3>
-                        <p
-                          className={`mt-3 flex-1 font-inter text-sm leading-relaxed ${
-                            tone === "dark"
-                              ? "text-white/75"
-                              : "text-[#26332F]/65"
-                          }`}
-                        >
-                          {option.text}
-                        </p>
-                        <a
-                          href="/contact"
-                          className={`mt-6 inline-flex w-fit items-center gap-1.5 border-b pb-0.5 font-manrope text-sm font-semibold transition-colors ${
-                            tone === "dark"
-                              ? "border-white/50 text-white group-hover:border-[#55BBB0] group-hover:text-[#55BBB0]"
-                              : "border-[#1F4F4A]/40 text-[#1F4F4A] group-hover:border-[#0C665C] group-hover:text-[#0C665C]"
-                          }`}
-                        >
-                          Talk to a specialist
-                        </a>
-                      </article>
-                    </Reveal>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
+          <ServiceOptionsMarquee
+            eyebrow="Commercial"
+            title="Commercial & building finance"
+            intro="From residential builds to warehouses and commercial mortgages, we source lenders and manage the process without the confusion."
+            options={commercialOptions}
+          />
         }
       />
 

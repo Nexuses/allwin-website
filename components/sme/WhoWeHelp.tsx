@@ -64,7 +64,7 @@ export default function WhoWeHelp() {
           </Reveal>
           <Reveal delay={80} className="lg:col-span-6">
             <p className="max-w-xl font-inter text-base leading-relaxed text-[#26332F]/80 sm:text-lg">
-              Business finance for companies of all sizes — from growing SMEs to
+              Business finance for companies of all sizes, from growing SMEs to
               large corporations across the UAE.
             </p>
           </Reveal>

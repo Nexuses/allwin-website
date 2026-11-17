@@ -43,7 +43,7 @@ export const steps = [
   {
     icon: "send",
     title: "Tell us what you need",
-    text: "Share your goal — a personal loan, car finance or a credit card — and your budget.",
+    text: "Share your goal, a personal loan, car finance or a credit card, and your budget.",
   },
   {
     icon: "compare_arrows",

@@ -35,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
       <head>
-        {/* Google Tag Manager — early head inject via beforeInteractive */}
+        {/* Google Tag Manager: early head inject via beforeInteractive */}
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {`(function(){try{var entry=performance.getEntriesByType("navigation")[0];if(!entry||entry.type!=="reload")return;if("scrollRestoration"in history)history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);var pin=function(){window.scrollTo(0,0)};pin();document.addEventListener("DOMContentLoaded",pin);window.addEventListener("load",function(){pin();requestAnimationFrame(pin)})}catch(e){}})();`}
         </Script>
       </head>
-      {/* Google Analytics (gtag.js) — once sitewide; do not add again on individual pages */}
+      {/* Google Analytics (gtag.js): once sitewide; do not add again on individual pages */}
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       <body className="bg-surface text-[#26332F] antialiased selection:bg-[#55BBB0]/30 selection:text-[#26332F]">
         {/* Google Tag Manager (noscript) */}

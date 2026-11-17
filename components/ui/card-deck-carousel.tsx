@@ -3,7 +3,7 @@
 import * as React from "react";
 
 /*
- * Card Deck Carousel — photos stacked like a loose deck of prints. Throw the
+ * Card Deck Carousel: photos stacked like a loose deck of prints. Throw the
  * top card in any direction (drag and let go) and it flies off, then slides
  * back in at the bottom of the pile; the next one is already waiting. The
  * buttons, arrow keys and autoplay do the same throw; "previous" pulls the

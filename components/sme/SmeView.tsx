@@ -5,14 +5,21 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/about/Reveal";
 import FAQ from "@/components/sections/FAQ";
+import FeatureSplitRows from "@/components/sections/FeatureSplitRows";
 import StickyStack from "@/components/sections/StickyStack";
 import PartnerLogoMarquee from "@/components/sections/PartnerLogoMarquee";
+import ServiceOptionsMarquee from "@/components/sections/ServiceOptionsMarquee";
 import { audiences, services, smeFaqs, steps } from "./content";
 
 const gridOverlay =
   "linear-gradient(to right, rgba(243,239,227,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,239,227,0.12) 1px, transparent 1px)";
 
 const keyServices = services.slice(0, 4);
+
+const SPLIT_IMAGE_A =
+  "https://assets.nexuses.xyz/Friendly_Office_Collaboration_1794893114353_08hc.png";
+const SPLIT_IMAGE_B =
+  "https://assets.nexuses.xyz/Collaborative_Teamwork_in_a_Bright_Office_1794893200502_z654.png";
 
 function QuoteForm() {
   const [email, setEmail] = useState("");
@@ -96,7 +103,7 @@ function ProcessRoadmap() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#F7F8F6] py-16 lg:py-24">
+    <section ref={sectionRef} className="bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-10">
         <Reveal>
           <h2 className="font-manrope text-3xl font-bold tracking-tight text-[#385445] sm:text-4xl">
@@ -155,7 +162,7 @@ export default function SmeView() {
               <span className="text-[#0C665C]">growing UAE companies</span>.
             </h1>
             <p className="mt-5 max-w-md font-inter text-base leading-relaxed text-[#26332F]/70 sm:text-lg">
-              SME and corporate lending made simple — working capital, trade
+              SME and corporate lending made simple: working capital, trade
               finance, project funding and more, compared across trusted bank
               partners.
             </p>
@@ -314,149 +321,33 @@ export default function SmeView() {
 
       <StickyStack
         pin={
-          <section className="bg-white py-16 lg:py-20">
-            <div className="mx-auto grid max-w-[1200px] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
-              <Reveal>
-                <article className="h-full rounded-[1.5rem] border border-[#A9C1B8]/40 bg-[#F3EFE3] p-7 sm:p-8">
-                  <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0C665C]">
-                    Smart lending
-                  </p>
-                  <h3 className="mt-3 font-manrope text-3xl font-bold tracking-tight text-[#385445]">
-                    Finance that fits your stage of growth
-                  </h3>
-                  <p className="mt-3 font-inter text-sm leading-relaxed text-[#26332F]/65">
-                    SME and corporate lending funds growth, working capital,
-                    equipment, inventory and day-to-day operations — we help you
-                    find the right product from our bank partners.
-                  </p>
-                </article>
-              </Reveal>
-              <Reveal delay={80}>
-                <article
-                  className="relative h-full overflow-hidden rounded-[1.5rem] p-7 text-white sm:p-8"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, #1F4F4A 0%, #0C665C 100%)",
-                  }}
-                >
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 opacity-30"
-                    style={{
-                      backgroundImage: gridOverlay,
-                      backgroundSize: "44px 44px",
-                    }}
-                  />
-                  <div className="relative">
-                    <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#55BBB0]">
-                      Bank accounts
-                    </p>
-                    <h3 className="mt-3 font-manrope text-3xl font-bold tracking-tight">
-                      Open accounts &amp; access products with guidance
-                    </h3>
-                    <p className="mt-3 font-inter text-sm leading-relaxed text-white/80">
-                      {services[4].text}
-                    </p>
-                    <a
-                      href="/contact"
-                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-manrope text-sm font-semibold text-[#1F4F4A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3]"
-                    >
-                      Talk to an advisor
-                      <Icon name="arrow_forward" className="text-[16px]" />
-                    </a>
-                  </div>
-                </article>
-              </Reveal>
-            </div>
-          </section>
+          <FeatureSplitRows
+            rows={[
+              {
+                eyebrow: "Smart lending",
+                title: "Finance that fits your stage of growth",
+                text: "SME and corporate lending funds growth, working capital, equipment, inventory and day-to-day operations. We help you find the right product from our bank partners.",
+                image: SPLIT_IMAGE_A,
+                imageAlt: "Business advisors reviewing lending options",
+              },
+              {
+                eyebrow: "Bank accounts",
+                title: "Open accounts & access products with guidance",
+                text: services[4].text,
+                ctaLabel: "Talk to an advisor",
+                image: SPLIT_IMAGE_B,
+                imageAlt: "Discussion about business bank accounts",
+              },
+            ]}
+          />
         }
         overlay={
-          <section className="relative overflow-hidden rounded-t-[2rem] bg-[#EEF3F0] py-16 shadow-[0_-24px_80px_rgba(12,40,38,0.2)] sm:rounded-t-[2.5rem] lg:py-24">
-            <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
-              <Reveal className="mx-auto max-w-2xl text-center">
-                <p className="mx-auto inline-flex rounded-full border border-[#1F4F4A]/25 px-3.5 py-1 font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4F4A]">
-                  Services
-                </p>
-                <h2 className="mt-5 font-manrope text-3xl font-bold tracking-tight text-[#26332F] sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-                  Our business finance services
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl font-inter text-sm leading-relaxed text-[#26332F]/65 sm:text-base">
-                  Five ways we can fund and support your business — compared
-                  clearly across UAE banks.
-                </p>
-              </Reveal>
-              <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:gap-5">
-                {services.map((option, index) => {
-                  const tone =
-                    index === 1 || index === 2
-                      ? index === 1
-                        ? "dark"
-                        : "sage"
-                      : "light";
-                  return (
-                    <Reveal
-                      key={option.title}
-                      delay={index * 70}
-                      className={`h-full${
-                        index === services.length - 1 &&
-                        services.length % 2 === 1
-                          ? " sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[calc((100%-1rem)/2)] lg:max-w-[calc((100%-1.25rem)/2)]"
-                          : ""
-                      }`}
-                    >
-                      <article
-                        className={`group flex h-full flex-col rounded-[1.75rem] border border-transparent p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#55BBB0] sm:p-7 ${
-                          tone === "dark"
-                            ? "bg-[#1F4F4A] text-white hover:shadow-[0_22px_48px_rgba(85,187,176,0.25)]"
-                            : tone === "sage"
-                              ? "bg-[#C5D5CC] text-[#26332F] hover:shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
-                              : "bg-white text-[#26332F] shadow-[0_12px_32px_rgba(31,79,74,0.06)] hover:shadow-[0_22px_48px_rgba(85,187,176,0.22)]"
-                        }`}
-                      >
-                        <div
-                          className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 group-hover:-translate-y-0.5 group-hover:scale-105 ${
-                            tone === "dark"
-                              ? "bg-[#55BBB0]/25 text-[#55BBB0]"
-                              : "bg-[#1F4F4A]/10 text-[#20AA45] group-hover:bg-[#1F4F4A] group-hover:text-white"
-                          }`}
-                        >
-                          <Icon name={option.icon} className="text-[26px]" />
-                        </div>
-                        <h3
-                          className={`font-manrope text-lg font-bold tracking-tight sm:text-xl ${
-                            tone === "dark"
-                              ? "text-white"
-                              : "text-[#1F4F4A] group-hover:text-[#0C665C]"
-                          }`}
-                        >
-                          {option.title}
-                        </h3>
-                        <p
-                          className={`mt-3 flex-1 font-inter text-sm leading-relaxed ${
-                            tone === "dark"
-                              ? "text-white/75"
-                              : "text-[#26332F]/65"
-                          }`}
-                        >
-                          {option.text}
-                        </p>
-                        <a
-                          href="/contact"
-                          className={`mt-6 inline-flex w-fit items-center gap-1.5 border-b pb-0.5 font-manrope text-sm font-semibold transition-colors ${
-                            tone === "dark"
-                              ? "border-white/50 text-white group-hover:border-[#55BBB0] group-hover:text-[#55BBB0]"
-                              : "border-[#1F4F4A]/40 text-[#1F4F4A] group-hover:border-[#0C665C] group-hover:text-[#0C665C]"
-                          }`}
-                        >
-                          Talk to a specialist
-                        </a>
-                      </article>
-                    </Reveal>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
+          <ServiceOptionsMarquee
+            eyebrow="Services"
+            title="Our business finance services"
+            intro="Five ways we can fund and support your business, compared clearly across UAE banks."
+            options={services}
+          />
         }
       />
 
