@@ -49,9 +49,9 @@ export default function Hero() {
         <div className="relative z-10 flex min-h-[480px] items-center px-6 py-20 sm:min-h-[520px] sm:px-10 sm:py-24 lg:min-h-[560px] lg:px-14 lg:py-28">
           <div className="w-full max-w-xl pt-2 pb-2 sm:pt-4 sm:pb-4">
             <h1 className="mb-5 font-manrope text-4xl font-bold leading-[1.1] tracking-tight text-[#1F4F4A] sm:text-5xl sm:leading-[1.08] lg:text-[3.35rem]">
-              Seamless Finance Solutions
+              Seamless Finance
               <br />
-              Under One Roof.
+              Solutions Under One Roof
             </h1>
             <p className="mb-8 max-w-lg font-inter text-base leading-relaxed text-[#26332F]/75 sm:text-lg sm:leading-7">
               We Work with all of the UAE Banks &amp; Financial Institutions to
