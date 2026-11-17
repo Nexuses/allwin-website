@@ -238,9 +238,9 @@
     display: grid;
     grid-template-columns: 2.75rem minmax(0, 1fr) auto;
     align-items: start;
-    column-gap: 0.75rem;
+    column-gap: 0.85rem;
     row-gap: 1rem;
-    padding: 1.75rem 1.25rem;
+    padding: 1.5rem 1.25rem;
   }
 
   .value-service-row__arrow {
@@ -290,7 +290,7 @@
     .value-service-row__highlights {
       order: 3;
       grid-column: auto;
-      padding-right: 11.5rem;
+      padding-right: 12.5rem;
     }
   }
 

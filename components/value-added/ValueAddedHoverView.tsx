@@ -14,10 +14,6 @@ const gridOverlay =
 
 const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
 
-function formatIndex(index: number) {
-  return String(index + 1).padStart(2, "0");
-}
-
 export default function ValueAddedHoverView() {
   const [active, setActive] = useState<number | null>(null);
 
@@ -70,13 +66,17 @@ export default function ValueAddedHoverView() {
 
       <section className="bg-[#EEF2EF] px-4 py-14 sm:px-6 sm:py-16 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
-          <Reveal className="mb-10 max-w-[34rem] border-b border-[#D0D8D3] pb-8 sm:mb-12 sm:pb-10">
+          <Reveal className="mb-10 max-w-[720px] border-b border-[#D0D8D3] pb-8 sm:mb-12 sm:pb-10">
             <h2 className="font-manrope text-2xl font-bold tracking-tight text-[#1F4F4A] sm:text-3xl lg:text-[2.15rem] lg:leading-[1.15]">
-              Everything from brief to Day 1 and beyond
+              Our value-added services
             </h2>
-            <p className="mt-4 font-inter text-sm leading-relaxed text-[#26332F]/70 sm:text-base">
+            <p className="mt-5 font-inter text-base leading-relaxed text-[#26332F]/75 sm:text-lg">
               Moving to the UAE, buying property or starting a business involves
-              more than a loan. Hover a service to explore how we help.
+              more than a loan. We bring together trusted partners and practical
+              guidance so you can handle the extra steps with confidence.
+            </p>
+            <p className="mt-4 font-inter text-sm leading-relaxed text-[#26332F]/55 sm:text-[15px]">
+              Focused expertise. Connected partners. Clear next steps.
             </p>
           </Reveal>
 
@@ -108,22 +108,32 @@ export default function ValueAddedHoverView() {
                 >
                   <div className="value-service-row relative">
                     <div
-                      className={`pt-1 font-manrope text-sm font-semibold tracking-[0.14em] sm:text-base ${
-                        open ? "text-white/45" : "text-[#26332F]/35"
+                      className={`flex h-11 w-11 items-center justify-center rounded-xl sm:h-12 sm:w-12 ${
+                        open
+                          ? "bg-white/10 text-[#55BBB0]"
+                          : "bg-[#E8EEEA] text-[#1F4F4A]"
                       }`}
-                      style={{ transition: `color 450ms ${ease}` }}
+                      style={{ transition: `background-color 450ms ${ease}, color 450ms ${ease}` }}
                     >
-                      {formatIndex(index)}
+                      <Icon name={service.icon} className="text-[22px] sm:text-[24px]" />
                     </div>
 
                     <div className="min-w-0">
+                      <p
+                        className={`font-inter text-xs font-medium tracking-wide sm:text-sm ${
+                          open ? "text-white/45" : "text-[#26332F]/45"
+                        }`}
+                        style={{ transition: `color 450ms ${ease}` }}
+                      >
+                        {service.label.replace(/^\d+\.\s*/, "")}
+                      </p>
                       <h3
-                        className={`font-manrope text-xl font-bold tracking-tight sm:text-2xl ${
+                        className={`mt-1.5 font-manrope text-xl font-bold tracking-tight sm:text-2xl ${
                           open ? "text-white" : "text-[#1F4F4A]"
                         }`}
                         style={{ transition: `color 450ms ${ease}` }}
                       >
-                        {service.shortTitle}
+                        {service.title}
                       </h3>
                     </div>
 
@@ -175,19 +185,33 @@ export default function ValueAddedHoverView() {
                       </a>
                     </div>
 
-                    <ul className="value-service-row__highlights min-w-0 space-y-1.5">
-                      {service.highlights.map((item) => (
-                        <li
-                          key={item}
-                          className={`font-inter text-sm leading-relaxed ${
-                            open ? "text-white/70" : "text-[#26332F]/55"
-                          }`}
-                          style={{ transition: `color 450ms ${ease}` }}
-                        >
-                          + {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="value-service-row__highlights min-w-0">
+                      <p
+                        className={`font-inter text-sm leading-relaxed ${
+                          open ? "text-white/70" : "text-[#26332F]/80"
+                        }`}
+                        style={{ transition: `color 450ms ${ease}` }}
+                      >
+                        {service.text}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {service.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className={`rounded-full border px-3 py-1 font-inter text-xs ${
+                              open
+                                ? "border-white/25 bg-white/10 text-white/80"
+                                : "border-[#D0D8D3] bg-white text-[#385445]"
+                            }`}
+                            style={{
+                              transition: `color 450ms ${ease}, border-color 450ms ${ease}, background-color 450ms ${ease}`,
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
                     <div
                       className="value-service-mobile-image value-service-row__mobile-image overflow-hidden"

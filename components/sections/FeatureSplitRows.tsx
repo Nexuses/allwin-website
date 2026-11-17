@@ -11,6 +11,7 @@ export type FeatureSplitRow = {
   bullets?: string[];
   ctaLabel?: string;
   ctaHref?: string;
+  id?: string;
 };
 
 type FeatureSplitRowsProps = {
@@ -75,7 +76,10 @@ export default function FeatureSplitRows({ rows }: FeatureSplitRowsProps) {
           </Reveal>
         </div>
 
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div
+          id={second.id}
+          className="grid scroll-mt-28 items-center gap-8 lg:grid-cols-2 lg:gap-12"
+        >
           <Reveal delay={80} className="lg:order-2">
             <div>
               <p className="font-manrope text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0C665C]">

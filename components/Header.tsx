@@ -104,14 +104,14 @@ export default function Header() {
           <div className="flex items-center gap-2 sm:gap-5 lg:gap-8">
             <nav className="hidden lg:flex items-center gap-1">
               <a
-                className="px-3.5 py-2 text-white/85 hover:text-[#55BBB0] font-medium text-[15px] rounded-full transition-colors hover:bg-white/5"
+                className="rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5"
                 href="/"
               >
                 Home
               </a>
 
               <div className="relative group">
-                <button className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-[#55BBB0]">
+                <button className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5">
                   <span>Services</span>
                   <Icon
                     name="expand_more"
@@ -124,8 +124,8 @@ export default function Header() {
                       <p className="font-inter text-sm text-[#6c757d] mb-4">Finance</p>
                       <div className="flex flex-col gap-4">
                         {financeServices.map((item) => (
-                          <a key={item.title} href={item.href} className="group/item block">
-                            <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block group-hover/item:text-[#1F4F4A]">
+                          <a key={item.title} href={item.href} className="block rounded-lg transition-colors hover:bg-[#F7F8F6]">
+                            <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block">
                               {item.title}
                             </span>
                             <span className="font-inter text-sm text-[#6c757d] leading-snug block mt-0.5">
@@ -138,8 +138,8 @@ export default function Header() {
                     <div>
                       <p className="font-inter text-sm text-[#6c757d] mb-4">Support</p>
                       {supportServices.map((item) => (
-                        <a key={item.title} href={item.href} className="group/item block">
-                          <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block group-hover/item:text-[#1F4F4A]">
+                        <a key={item.title} href={item.href} className="block rounded-lg transition-colors hover:bg-[#F7F8F6]">
+                          <span className="font-manrope font-bold text-[#3D464C] text-[15px] leading-snug block">
                             {item.title}
                           </span>
                           <span className="font-inter text-sm text-[#6c757d] leading-snug block mt-0.5">
@@ -155,7 +155,7 @@ export default function Header() {
               {navLinks.map((link) => (
                 <a
                   key={link.label}
-                  className="px-3.5 py-2 text-white/85 hover:text-[#55BBB0] font-medium text-[15px] rounded-full transition-colors hover:bg-white/5"
+                  className="rounded-full px-3.5 py-2 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/5"
                   href={link.href}
                 >
                   {link.label}

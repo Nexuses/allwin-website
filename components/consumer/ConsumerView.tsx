@@ -183,6 +183,7 @@ export default function ConsumerView() {
       <PartnerLogoMarquee />
 
       <StickyStack
+        dwellClassName="h-[32vh] bg-[#F3EFE3] sm:h-[38vh] lg:h-[46vh]"
         pin={
           <section className="bg-[#F3EFE3] py-16 lg:py-24">
             <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
@@ -322,6 +323,7 @@ export default function ConsumerView() {
       </section>
 
       <StickyStack
+        dwellClassName="h-[32vh] bg-white sm:h-[38vh] lg:h-[46vh]"
         pin={
           <FeatureSplitRows
             rows={[

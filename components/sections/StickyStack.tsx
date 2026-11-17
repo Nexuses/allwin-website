@@ -7,6 +7,8 @@ type StickyStackProps = {
   overlay: ReactNode;
   className?: string;
   overlayClassName?: string;
+  /** Extra scroll space under the pin before the overlay covers it (include bg class). */
+  dwellClassName?: string;
 };
 
 export default function StickyStack({
@@ -14,6 +16,7 @@ export default function StickyStack({
   overlay,
   className = "",
   overlayClassName = "",
+  dwellClassName = "",
 }: StickyStackProps) {
   const pinRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -89,6 +92,9 @@ export default function StickyStack({
           }}
         >
           {pin}
+          {dwellClassName ? (
+            <div aria-hidden="true" className={dwellClassName} />
+          ) : null}
         </div>
       </div>
 
